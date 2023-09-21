@@ -1,6 +1,11 @@
 import React from 'react';
 import SplashScreen from './src/screens/Autentication/SplashScreen'; // Importe o componente de splash
 import LoginScreen from './src/screens/Autentication/LoginScreen';
+import ForgotPasswordScreen from './src/screens/Autentication/ForgotPasswordScreen';
+import ResetPasswordScreen from './src/screens/Autentication/ResetPasswordScreen';
+import HomeScreen from './src/screens/Home/HomeScreen';
+
+
 
 const App = () => {
   React.useEffect(() => {
@@ -9,7 +14,7 @@ const App = () => {
   }, []);
 
   return (
-    <LoginScreen />
+    <HomeScreen />
   );
 };
 
