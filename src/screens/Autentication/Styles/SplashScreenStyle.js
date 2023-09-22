@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#6A5AE0',
+        backgroundColor: '#0077B6',
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -17,10 +17,8 @@ export default StyleSheet.create({
         color: 'white',
         marginTop: 1,
     },
-    whiteText: {
-        color: '#FFFFFF',
-    },
     grayText: {
-        color: '#B2A8FF'
+        color: '#000',
+        fontSize: 15
     },
 });

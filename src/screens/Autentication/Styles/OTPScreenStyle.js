@@ -21,11 +21,9 @@ export default StyleSheet.create({
     borderRadius: 5,
     alignItems: 'center',
   },
-
   entrarButtonText: {
     color: '#fff',
     fontSize: 14,
-
   },
   loginText: {
     color: '#fff',
@@ -35,10 +33,10 @@ export default StyleSheet.create({
     color: '#fff',
     fontSize: 24
   },
-  inputContainer: {
-    paddingHorizontal: 20,
-    marginTop: 20,
-  },
+    inputContainer: {
+      paddingHorizontal: 20,
+      marginTop: 20,
+    },
   inputIconContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -49,25 +47,6 @@ export default StyleSheet.create({
     padding: 10,
     backgroundColor: '#fff',
   },
-  inputIcon: {
-    marginRight: 10,
-  },
-  passwordIcon: {
-
-    right: 10,
-  },
-  input: {
-    flex: 1,
-    height: 40,
-    fontSize: 14,
-  },
-  forgotPasswordText: {
-    color: 'blue',
-    marginTop: 5,
-    textAlign: 'right',
-    marginBottom: 20,
-    fontSize: 14
-  },
 
   backButton: {
     position: 'absolute',
@@ -76,5 +55,21 @@ export default StyleSheet.create({
     zIndex: 1,
   },
 
+  otpInputContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 25
+  },
+  otpInput: {
+    width: 60,
+    height: 60,
+    borderRadius: 5,
+    fontSize: 18,
+    textAlign: 'center',
+    marginHorizontal: 5,
+    backgroundColor: 'white',
+    color: '#000'
+  },
 
 });

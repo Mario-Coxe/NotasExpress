@@ -1,71 +1,89 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons'; // Import FontAwesome from expo/vector-icons
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, TextInput, StyleSheet, Button } from 'react-native';
+import { FontAwesome5 } from '@expo/vector-icons'; // Usando FontAwesome5 para ícones
+import { AntDesign } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
-import styles from './Styles/ResetPasswordScreenStyle'
+import { loadFonts } from '../../../assets/fonts/Fonts';
+import styles from './Styles/LoginScreenStyle';
+
 
 const ResetPasswordScreen = () => {
+
+    useEffect(() => {
+        loadFonts();
+    }, []);
+
+
+    const [showPassword, setShowPassword] = useState(false);
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
 
-    const handleTogglePasswordVisibility = () => {
-        setShowPassword(!showPassword); // Toggle password visibility
+    const handleLogin = () => {
+        // Aqui você pode adicionar a lógica de autenticação
+        // para verificar o nome de usuário e a senha.
     };
 
-    const handleResetPassword = () => {
-
+    const handleForgotPassword = () => {
+        // Adicione a lógica para lidar com a recuperação de senha aqui.
     };
+
+
+
 
     return (
         <View style={styles.container}>
-            <StatusBar backgroundColor={'#ffffff'}/>
-            <Text style={styles.title}>Redefinir Senha</Text>
+            <View style={styles.cardContainer}>
+                <Text style={[styles.bemvindoText, { fontFamily: 'bold' }]}>Redefinir Senha</Text>
+                <Text style={[styles.loginText, { fontFamily: 'regular' }]}>Digite seu novo senha nos campos abaixo</Text>
+                <Text style={[styles.loginText, { fontFamily: 'regular' }]}>e clique em Redefinir Senha para concluir</Text>
+                <Text style={[styles.loginText, { fontFamily: 'regular' }]}>o processo de redefinição de senha</Text>
+            </View>
             <View style={styles.inputContainer}>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Nova Senha"
-                    placeholderTextColor="gray"
-                    secureTextEntry={!showPassword} // Show/hide password based on state
-                    value={password}
-                    onChangeText={(text) => setPassword(text)}
-                />
-                <TouchableOpacity
-                    style={styles.showPasswordIcon}
-                    onPress={handleTogglePasswordVisibility}
-                >
-                    <FontAwesome
-                        name={showPassword ? 'eye' : 'eye-slash'}
-                        size={24}
-                        color="black"
+            <View style={styles.inputIconContainer}>
+                    <AntDesign name="lock1" size={24} color="gray" style={styles.inputIcon} />
+                    <TextInput
+                        style={[styles.input, { fontFamily: 'regular' }]}
+                        placeholder="Senha"
+                        secureTextEntry={!showPassword}
+                        onChangeText={text => setPassword(text)}
+                        placeholderTextColor={'gray'}
                     />
+                    <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+                        <FontAwesome5
+                            name={showPassword ? 'eye-slash' : 'eye'}
+                            size={24}
+                            color="gray"
+                            style={styles.passwordIcon}
+                        />
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.inputIconContainer}>
+                    <AntDesign name="lock1" size={24} color="gray" style={styles.inputIcon} />
+                    <TextInput
+                        style={[styles.input, { fontFamily: 'regular' }]}
+                        placeholder="Confirmar Senha"
+                        secureTextEntry={!showPassword}
+                        onChangeText={text => setPassword(text)}
+                        placeholderTextColor={'gray'}
+                    />
+                    <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+                        <FontAwesome5
+                            name={showPassword ? 'eye-slash' : 'eye'}
+                            size={24}
+                            color="gray"
+                            style={styles.passwordIcon}
+                        />
+                    </TouchableOpacity>
+                </View>
+        
+                <TouchableOpacity style={styles.entrarButton} onPress={handleLogin}>
+                    <Text style={[styles.entrarButtonText, {fontFamily: 'bold'}]}>Redefinir Senha</Text>
                 </TouchableOpacity>
-            </View>
-
-            <View style={styles.inputContainer}>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Confirmar Senha"
-                    placeholderTextColor="gray"
-                    secureTextEntry={!showPassword} // Show/hide password based on state
-                    value={confirmPassword}
-                    onChangeText={(text) => setConfirmPassword(text)}
-                />
-                <TouchableOpacity
-                    style={styles.showPasswordIcon}
-                    onPress={handleTogglePasswordVisibility}
-                >
-
-                </TouchableOpacity>
 
             </View>
-            <TouchableOpacity style={styles.button} onPress={handleResetPassword}>
-                <Text style={styles.buttonText}>Redefinir Senha</Text>
-            </TouchableOpacity>
+            <StatusBar style="#0077B6" />
         </View>
     );
 };
-
-
 
 export default ResetPasswordScreen;

@@ -3,66 +3,70 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#ffffff',
+        backgroundColor: '#D9D9D9',
+    },
+    cardContainer: {
+        height: 200,
+        width: '100%',
+        backgroundColor: '#0077B6',
+        borderBottomRightRadius: 80,
         justifyContent: 'center',
+        paddingLeft: 20,
+        marginBottom: 40
+    },
+    entrarButton: {
+        backgroundColor: '#0077B6', // Cor de fundo desejada
+        padding: 10,
+        height: 45,
+        borderRadius: 5,
         alignItems: 'center',
     },
-    logo: {
-        width: 200,
-        height: 150,
-        resizeMode: 'contain',
+
+    entrarButtonText: {
+        color: '#fff', 
+        fontSize: 14,
+    
     },
-    text: {
-        fontSize: 24,
-        color: 'white',
-        marginTop: 20,
+    loginText: {
+        color: '#fff',
+        fontSize: 14,
     },
-    whiteText: {
-        color: '#6A5AE0',
-    },
-    grayText: {
-        color: '#B2A8FF',
+    bemvindoText: {
+        color: '#fff',
+        fontSize: 24
     },
     inputContainer: {
+        paddingHorizontal: 20,
+        marginTop: 20,
+    },
+    inputIconContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        width: '85%',
+        borderWidth: 1,
+        borderColor: 'gray',
+        borderRadius: 5,
+        marginBottom: 10,
+        padding: 10,
+        backgroundColor: '#fff',
+    },
+    inputIcon: {
+        marginRight: 10,
+    },
+    passwordIcon: {
+
+        right: 10,
     },
     input: {
         flex: 1,
-        backgroundColor: 'white',
-        height: 50,
-        marginTop: 20,
-        paddingHorizontal: 10,
-        borderRadius: 5,
-        borderWidth: 1,
-        borderColor: '#858585'
-    },
-    showPasswordIcon: {
-        position: 'absolute',
-        top: 30,
-        right: 10,
-    },
-    button: {
-        backgroundColor: '#6A5AE0',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '80%',
-        marginTop: 20,
-        height: 50,
-        borderRadius: 15,
-    },
-    buttonText: {
-        color: 'white',
-        fontSize: 18,
-    },
-    forgotPassword: {
-        color: '#000',
-        marginTop: 20,
+        height: 40,
+        fontSize: 14,
     },
     forgotPasswordText: {
-        color: '#000',
-        marginTop: 20,
-        fontSize: 15
+        color: 'blue',
+        marginTop: 5,
+        textAlign: 'right',
+        marginBottom: 20,
+        fontSize: 14
     },
+   
 });
