@@ -5,6 +5,7 @@ import ForgotPasswordScreen from './src/screens/Autentication/ForgotPasswordScre
 import OTPScreen from './src/screens/Autentication/OTPScreen';
 import ResetPasswordScreen from './src/screens/Autentication/ResetPasswordScreen';
 import HomeScreen from './src/screens/Home/HomeScreen';
+import NewsContainer from './src/screens/Home/parts/NewsContainer';
 
 
 

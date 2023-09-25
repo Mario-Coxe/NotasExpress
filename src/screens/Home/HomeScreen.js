@@ -3,6 +3,9 @@ import { View, Text, TouchableOpacity, StyleSheet, Image, FlatList, Modal, Dimen
 import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import * as Progress from 'react-native-progress';
 import Carousel from 'react-native-snap-carousel';
+import NavigationButton from './parts/NavigationButton';
+import NewsContainer from './parts/NewsContainer';
+
 
 const HomeScreen = () => {
     const [notificationsCount, setNotificationsCount] = useState(3); // Exemplo de contagem de notificações
@@ -123,15 +126,28 @@ const HomeScreen = () => {
                         itemWidth={200}
                         loop={true}
                         autoplay={true}
-                        autoplayInterval={5000}
+                        autoplayInterval={3000}
                         layout="default"
                         layoutCardOffset={18}
                     />
                 </View>
 
+                
 
+                <NavigationButton
+                    onPressHome={() => {
+                        // Lógica para navegar para a tela "Home"
+                    }}
+                    onPressChat={() => {
+                        // Lógica para navegar para a tela de "Chat"
+                    }}
+                    onPressProfile={() => {
+                        // Lógica para navegar para a tela de "Perfil"
+                    }}
+                />
+
+             
             </View>
-
             {/* Modal com todas as opções acadêmicas */}
             <Modal
                 animationType='fade'
@@ -268,6 +284,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         width: '90%', // Ocupa 90% da tela
         alignSelf: 'center', // Centralizado horizontalmente
+        marginTop: 20,
 
     },
 
@@ -318,7 +335,8 @@ const styles = StyleSheet.create({
         marginBottom: 20
     },
     carouselContainer: {
-        marginTop: 20,
+        marginTop: 40,
+        marginBottom: 0
     },
     eventPhotoContainer: {
         width: 200,
