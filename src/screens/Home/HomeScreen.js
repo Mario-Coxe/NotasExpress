@@ -1,334 +1,343 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, ImageBackground, Image } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
-import Svg, { Circle, G, Text as SvgText } from 'react-native-svg';
-import { FAB } from 'react-native-paper'; // Importe o botão flutuante
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Image, FlatList, Modal, Dimensions } from 'react-native';
+import { FontAwesome5, Ionicons } from '@expo/vector-icons';
+import * as Progress from 'react-native-progress';
+import Carousel from 'react-native-snap-carousel';
 
-function HomeScreen({ navigation }) {
-    const notas = 16; // Substitua pelo valor real da porcentagem de notas
+const HomeScreen = () => {
+    const [notificationsCount, setNotificationsCount] = useState(3); // Exemplo de contagem de notificações
+    const [isModalVisible, setModalVisible] = useState(false);
+    const [academicOptions, setAcademicOptions] = useState([
+        { id: '1', icon: 'question-circle', text: 'Quiz' },
+        { id: '2', icon: 'book', text: 'Homework' },
+        { id: '3', icon: 'calendar-alt', text: 'Calendário' },
+        { id: '4', icon: 'book-open', text: 'Biblioteca' },
+        { id: '5', icon: 'file-alt', text: 'Notas' },
+        { id: '6', icon: 'question', text: 'Ajuda' },
+        // Adicione mais opções aqui
+    ]);
 
-    // Função para determinar a cor do gráfico com base na nota
-    const getChartColor = () => {
-        if (notas >= 16 && notas <= 20) {
-            return '#00FF00'; // Verde para 20
-        } else if (notas >= 10 && notas <= 15) {
-            return '#FFA500'; // Laranja para 13-15
-        } else {
-            return '#FF0000'; // Vermelho para outros valores
-        }
+
+    const [eventPhotos, setEventPhotos] = useState([
+        {
+            id: '1',
+            imageUrl: require('../../../assets/image/events/event1.jpeg'),
+            eventName: 'Evento 1',
+        },
+        {
+            id: '2',
+            imageUrl: require('../../../assets/image/events/event2.jpeg'),
+            eventName: 'Evento 2',
+        },
+        {
+            id: '3',
+            imageUrl: require('../../../assets/image/events/event3.png'),
+            eventName: 'Evento 3',
+        },
+        // Adicione mais fotos e eventos aqui
+    ]);
+
+    const toggleModal = () => {
+        setModalVisible(!isModalVisible);
     };
 
-    // Calcula o ângulo para preencher o círculo com base na nota (0-20)
-    const circleFillAngle = (notas / 20) * 500;
-
-    // Suponha que você tenha um objeto de disciplina com uma propriedade "nota"
-    const disciplinas = [
-        {
-            nome: 'Matemática',
-            nota: 18,
-        },
-        {
-            nome: 'Ciências',
-            nota: 15,
-        },
-        {
-            nome: 'História',
-            nota: 12,
-        },
-        // Adicione mais disciplinas conforme necessário
-    ];
-
-    // Função para calcular a porcentagem com base na nota (0-20)
-    const calcularPorcentagem = (nota) => {
-        return (nota / 20) * 100;
-    };
-
-    // Renderize as barras de progresso para todas as disciplinas
-    const barrasDeProgresso = disciplinas.map((disciplina, index) => {
-        const porcentagemNota = calcularPorcentagem(disciplina.nota);
-
-        return (
-            <View key={index} style={styles.disciplinaItem}>
-                <Text style={styles.disciplinaName}>{disciplina.nome}</Text>
-                <View style={styles.progressBarContainer}>
-                    <View
-                        style={[
-                            styles.progressBarFill,
-                            { width: `${porcentagemNota}%` },
-                        ]}
-                    ></View>
-                </View>
-            </View>
-        );
-    });
+    const renderEventPhoto = ({ item }) => (
+        <TouchableOpacity style={styles.eventPhotoContainer}>
+            <Image source={item.imageUrl} style={styles.eventPhoto} resizeMode="cover" />
+            <Text style={styles.eventName}>{item.eventName}</Text>
+        </TouchableOpacity>
+    );
 
     return (
         <View style={styles.container}>
-            <Image
-                source={require('../../../assets/image/bekablue.png')}
-                style={styles.logo}
-            />
+            {/* Barra de navegação */}
+            <View style={styles.navBar}>
+                <TouchableOpacity style={styles.menuIcon}>
+                    <FontAwesome5 name="bars" size={24} color="white" />
+                </TouchableOpacity>
 
-            <TouchableOpacity
-                style={styles.notificationButton}
-                onPress={() => navigation.navigate('Notificacoes')}
-            >
-                <FontAwesome name="bell" size={24} color="#000" />
-            </TouchableOpacity>
-            <ScrollView contentContainerStyle={styles.contentContainer}>
-                <View style={styles.featureSection}>
-                    {/* Container de Notificações */}
-                    <View style={styles.notificationContainer}>
-                        <Text style={styles.notificationTitle}>Notificações</Text>
-                        {/* Exemplo de notificação */}
-                        <View style={styles.notificationItem}>
-                            <FontAwesome name="bell" size={18} color="#007BFF" />
-                            <Text style={styles.notificationText}>Você tem uma nova mensagem.</Text>
+                <Text style={styles.titleText}>NotasExpress</Text>
+
+                {/* Ícone de notificações com número */}
+                <TouchableOpacity style={styles.notificationIcon}>
+                    <FontAwesome5 name="bell" size={24} color="white" />
+                    {notificationsCount > 0 && (
+                        <View style={styles.notificationBadge}>
+                            <Text style={styles.notificationText}>{notificationsCount}</Text>
                         </View>
-                        <View style={styles.notificationItem}>
-                            <FontAwesome name="bell" size={18} color="#007BFF" />
-                            <Text style={styles.notificationText}>Prova de Matemática será Amanhã.</Text>
-                        </View>
-                    </View>
-
-                    {/* Container de Disciplinas Destacadas */}
-                    <View style={styles.disciplinasContainer}>
-                        <Text style={styles.disciplinasTitle}>Disciplinas Destacadas</Text>
-                        {barrasDeProgresso}
-                    </View>
-                </View>
-
-                <View style={styles.chartSection}>
-                    <Text style={styles.chartTitle}>Desempenho</Text>
-                    <Svg width={200} height={200}>
-                        <Circle
-                            cx={100}
-                            cy={100}
-                            r={80}
-                            stroke="#007BFF"
-                            strokeWidth={20}
-                            fill="transparent"
-                        />
-                        <Circle
-                            cx={100}
-                            cy={100}
-                            r={80}
-                            stroke={getChartColor()} // Define a cor com base na nota
-                            strokeWidth={15}
-                            strokeDasharray={`${circleFillAngle}, 360`} // Preenche parcialmente com base no ângulo
-                            strokeLinecap="round"
-                            fill="transparent"
-                        />
-                        <G transform={{ translate: '100,100' }}>
-                            <SvgText
-                                x={0} // Centralize horizontalmente o texto
-                                y={10}
-                                fontSize={24}
-                                fontWeight="bold"
-                                fill="#007BFF"
-                                textAnchor="middle" // Isso mantém o texto centralizado horizontalmente
-                            >
-                                {`${notas}`}
-                            </SvgText>
-                            <SvgText
-                                x={0} // Centralize horizontalmente o texto
-                                y={40}
-                                fontSize={14}
-                                fill="#007BFF"
-                                textAnchor="middle" // Isso mantém o texto centralizado horizontalmente
-                            >
-                                Média
-                            </SvgText>
-                        </G>
-                    </Svg>
-                </View>
-                {/* Botão flutuante */}
-                <FAB
-                    style={styles.fab}
-                    icon={() => <FontAwesome name="book" size={24} color="white" />} // Ícone do livro aberto
-                    onPress={() => {
-                        // Lide com o pressionamento do botão flutuante aqui
-                        console.log('Botão flutuante pressionado');
-                    }}
-                />
-            </ScrollView>
-
-            <View style={styles.footer}>
-                <TouchableOpacity
-                    style={styles.footerMenuItem}
-                    onPress={() => navigation.navigate('Home')}
-                >
-                    <FontAwesome name="home" size={24} color="#007BFF" />
-                    <Text style={styles.footerMenuText}>Início</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    style={styles.footerMenuItem}
-                    onPress={() => navigation.navigate('Notas')}
-                >
-                    <FontAwesome name="file-text-o" size={24} color="gray" />
-                    <Text style={styles.footerMenuText}>Notas</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    style={styles.footerMenuItem}
-                    onPress={() => navigation.navigate('Chat')}
-                >
-                    <FontAwesome name="comments" size={24} color="gray" />
-                    <Text style={styles.footerMenuText}>Chat</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    style={styles.footerMenuItem}
-                    onPress={() => navigation.navigate('Calendario')}
-                >
-                    <FontAwesome name="calendar" size={24} color="gray" />
-                    <Text style={styles.footerMenuText}>Calendário</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    style={styles.footerMenuItem}
-                    onPress={() => navigation.navigate('Biblioteca')}
-                >
-                    <FontAwesome name="list-alt" size={24} color="gray" />
-                    <Text style={styles.footerMenuText}>Biblioteca</Text>
+                    )}
                 </TouchableOpacity>
             </View>
+
+            {/* Card com disciplina e barra de progresso */}
+            <View style={styles.card}>
+                {/* Imagem do usuário à direita no topo */}
+                <View style={styles.userImageContainer}>
+                    <Image
+                        source={require('../../../assets/image/users/userName.jpg')} // Substitua pelo caminho da imagem do usuário
+                        style={styles.userImage}
+                    />
+                </View>
+                <Text style={styles.disciplineText}>Programação</Text>
+                <Text style={styles.melhorPerformace}>Tua melhor Performace</Text>
+                <Text style={styles.percentagem}>75%</Text>
+                <Progress.Bar
+                    progress={0.75} // Ajuste este valor para representar o progresso desejado (de 0 a 1)
+                    width={337}
+                    height={5} // Tamanho da barra de progresso mais fina
+                    color="#D9D9D9"
+                    borderColor="#A9A9A9"
+                    borderRadius={0} // Borda mais arredondada
+                    style={{ alignSelf: 'flex-start' }} // Alinhamento à esquerda
+                />
+            </View>
+
+            {/* Menu Acadêmico */}
+            <View style={styles.academics}>
+                <FlatList
+                    data={academicOptions.slice(0, 4)} // Mostra apenas 4 itens
+                    horizontal
+                    keyExtractor={(item) => item.id}
+                    renderItem={({ item }) => (
+                        <TouchableOpacity style={styles.academicItem}>
+                            <FontAwesome5 name={item.icon} size={30} color="#0077B6" />
+                            <Text>{item.text}</Text>
+                        </TouchableOpacity>
+                    )}
+                />
+                {/* Botão para abrir o modal com todas as opções */}
+                <TouchableOpacity style={styles.modalButton} onPress={toggleModal}>
+                    <FontAwesome5 name="chevron-down" size={30} color="#0077B6" />
+                </TouchableOpacity>
+            </View>
+
+            {/* Conteúdo da tela */}
+            <View style={styles.content}>
+
+                {/* Carrossel de fotos de eventos */}
+                <View style={styles.carouselContainer}>
+                    <Carousel
+                        data={eventPhotos}
+                        renderItem={renderEventPhoto}
+                        sliderWidth={Dimensions.get('window').width}
+                        itemWidth={200}
+                        loop={true}
+                        autoplay={true}
+                        autoplayInterval={5000}
+                        layout="default"
+                        layoutCardOffset={18}
+                    />
+                </View>
+
+
+            </View>
+
+            {/* Modal com todas as opções acadêmicas */}
+            <Modal
+                animationType='fade'
+                transparent={true}
+                visible={isModalVisible}
+                onRequestClose={toggleModal}
+            >
+                <View style={styles.modalContainer}>
+                    <View style={styles.modalContent}>
+                        <View style={styles.modalRow}>
+                            {/* Itens à esquerda */}
+                            <View style={styles.modalColumn}>
+                                {academicOptions.slice(0, 3).map((item) => (
+                                    <TouchableOpacity style={styles.modalItem} key={item.id}>
+                                        <FontAwesome5 name={item.icon} size={30} color="#0077B6" />
+                                        <Text style={styles.modalItemText}>{item.text}</Text>
+                                    </TouchableOpacity>
+                                ))}
+                            </View>
+
+                            {/* Itens à direita */}
+                            <View style={styles.modalColumn}>
+                                {academicOptions.slice(3, 6).map((item) => (
+                                    <TouchableOpacity style={styles.modalItem} key={item.id}>
+                                        <FontAwesome5 name={item.icon} size={30} color="#0077B6" />
+                                        <Text style={styles.modalItemText}>{item.text}</Text>
+                                    </TouchableOpacity>
+                                ))}
+                            </View>
+                        </View>
+
+                        <TouchableOpacity
+                            style={styles.closeIcon}
+                            onPress={toggleModal}
+                        >
+                            <FontAwesome5 name="times" size={24} color="red" />
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
         </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#D9D9D9',
     },
-    banner: {
-        height: 220,
-        justifyContent: 'center',
+    navBar: {
+        flexDirection: 'row',
         alignItems: 'center',
-    },
-    notificationButton: {
-        position: 'absolute',
-        top: 20,
-        right: 20,
-        backgroundColor: 'transparent',
-    },
-    contentContainer: {
+        justifyContent: 'space-between',
+        backgroundColor: '#0077B6',
         paddingHorizontal: 16,
-        paddingBottom: 24,
+        paddingTop: 40,
     },
-    header: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginTop: 20,
-        marginBottom: 30,
-        marginLeft: 10,
+    menuIcon: {
+        padding: 10,
     },
-    logo: {
-        width: 50,
-        height: 100,
-        resizeMode: 'contain',
-        marginTop: 5
+    notificationIcon: {
+        position: 'relative', // Posição relativa para acomodar o número
+        padding: 10,
     },
-    featureSection: {
-        marginTop: 20,
+    titleText: {
+        fontSize: 24,
+        color: 'white',
     },
-    featureTitle: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: 16,
-    },
-    featureItem: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 16,
-    },
-    featureText: {
-        fontSize: 18,
-        marginLeft: 16,
-    },
-    chartSection: {
-        alignItems: 'center',
-        marginTop: 20,
-    },
-    chartTitle: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: 16,
-    },
-    footer: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        borderTopWidth: 1,
-        borderTopColor: 'lightgray',
-        paddingVertical: 10,
-    },
-    footerMenuItem: {
-        alignItems: 'center',
-    },
-    footerMenuText: {
-        fontSize: 14,
-        marginTop: 4,
-    },
-    notificationContainer: {
-        backgroundColor: '#F0F0F0',
-        padding: 16,
-        borderRadius: 8,
-        marginBottom: 16,
-    },
-    notificationTitle: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: 8,
-    },
-    notificationItem: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 8,
+    // Estilos para o número de notificações
+    notificationBadge: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        backgroundColor: 'red',
+        borderRadius: 10,
+        paddingHorizontal: 6,
+        paddingVertical: 2,
     },
     notificationText: {
-        fontSize: 16,
-        marginLeft: 8,
+        color: 'white',
+        fontSize: 12,
     },
-    disciplinasContainer: {
-        backgroundColor: '#F0F0F0',
+    card: {
+        backgroundColor: '#0077B6',
         padding: 16,
-        borderRadius: 8,
+        borderRadius: 10,
+        margin: 16,
+        alignItems: 'center',
+        width: '90%', // Ocupa 90% da tela
+        alignSelf: 'center', // Centralizado horizontalmente
     },
-    disciplinasTitle: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: 8,
+    disciplineText: {
+        fontSize: 18,
+        color: 'white',
+        marginBottom: 10,
+        alignSelf: 'flex-start', // Alinhamento à esquerda
     },
-    disciplinaItem: {
+    melhorPerformace: {
+        fontSize: 14,
+        color: 'white',
+        marginBottom: 10,
+        alignSelf: 'flex-start', // Alinhamento à esquerda
+    },
+    percentagem: {
+        fontSize: 14,
+        color: 'white',
+        alignSelf: 'flex-end',
+        marginTop: -20,
+    },
+    content: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    userImageContainer: {
+        alignItems: 'flex-end', // Alinhar à direita
+        justifyContent: 'flex-start', // Alinhar no topo
+        marginBottom: 10,
+        flexDirection: 'row', // Para alinhar a imagem e o texto lado a lado
+        alignSelf: 'flex-end',
+    },
+    userImage: {
+        width: 50, // Ajuste o tamanho da imagem do usuário conforme necessário
+        height: 50, // Ajuste o tamanho da imagem do usuário conforme necessário
+        borderRadius: 30, // Metade da largura/altura para torná-la circular
+        marginRight: 10, // Espaço entre a imagem e o texto
+    },
+    academics: {
+        backgroundColor: 'white',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center', // Alinhar verticalmente ao centro
+        padding: 16,
+        borderRadius: 10,
+        width: '90%', // Ocupa 90% da tela
+        alignSelf: 'center', // Centralizado horizontalmente
+
+    },
+
+    modalButton: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    academicItem: {
+        alignItems: 'center',
+        margin: 10
+    },
+
+    modalContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    modalContent: {
+        backgroundColor: 'white',
+        width: '80%',
+        padding: 20,
+        borderRadius: 10,
+        alignItems: 'center',
+    },
+    modalItem: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 8,
+        marginVertical: 10,
+        paddingHorizontal: 16,
     },
-    disciplinaName: {
+    modalItemText: {
+        fontSize: 18,
+        marginLeft: 10,
+    },
+    modalRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    modalColumn: {
+        flex: 1,
+        paddingHorizontal: 16,
+    },
+    closeIcon: {
+        position: 'absolute',
+
+        right: 10,
+        marginBottom: 20
+    },
+    carouselContainer: {
+        marginTop: 20,
+    },
+    eventPhotoContainer: {
+        width: 200,
+        height: 200,
+        borderRadius: 10,
+        marginHorizontal: 10,
+        overflow: 'hidden',
+    },
+    eventPhoto: {
+        width: '100%',
+        height: '100%',
+    },
+    eventName: {
+        position: 'absolute',
+        bottom: 10,
+        left: 10,
+        color: 'white',
         fontSize: 16,
         fontWeight: 'bold',
-        marginRight: 16,
-    },
-    progressBarContainer: {
-        flex: 1,
-        height: 10,
-        backgroundColor: '#D3D3D3',
-        borderRadius: 5,
-    },
-    progressBarFill: {
-        height: '100%',
-        backgroundColor: '#00FF00',
-        borderRadius: 5,
-    },
-    fab: {
-        position: 'absolute',
-        margin: 16,
-        right: 0,
-        bottom: 0,
-        marginBottom: 0,
-        backgroundColor: '#007BFF', // Cor de fundo do botão
     },
 });
 

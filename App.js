@@ -15,7 +15,7 @@ const App = () => {
   }, []);
 
   return (
-    <ResetPasswordScreen />
+    <HomeScreen />
   );
 };
 
