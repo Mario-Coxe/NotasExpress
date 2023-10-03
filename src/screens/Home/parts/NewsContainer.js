@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#D9D9D9',
     borderRadius: 10,
-   
   },
   title: {
     fontSize: 24,

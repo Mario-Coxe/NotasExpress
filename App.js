@@ -6,7 +6,8 @@ import OTPScreen from './src/screens/Autentication/OTPScreen';
 import ResetPasswordScreen from './src/screens/Autentication/ResetPasswordScreen';
 import HomeScreen from './src/screens/Home/HomeScreen';
 import NewsContainer from './src/screens/Home/parts/NewsContainer';
-
+import SideMenu from './src/screens/Home/parts/SideMenu';
+import CalenderScreen from './src/screens/Home/CalenderScreen';
 
 
 const App = () => {
@@ -16,7 +17,7 @@ const App = () => {
   }, []);
 
   return (
-    <HomeScreen />
+    <CalenderScreen />
   );
 };
 
