@@ -37,16 +37,16 @@ const ScheduleScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F2F2F2',
+    backgroundColor: '#fff',
     alignItems: 'center',
   },
   listContent: {
-    paddingTop: 20, // Adiciona espaço no topo da lista
+    paddingTop: 10, // Adiciona espaço no topo da lista
     paddingBottom: 100, // Adiciona espaço na parte inferior da lista
   },
   scheduleItem: {
     width: width * 0.95,
-    backgroundColor: '#fff',
+    backgroundColor: '#f5f5f5',
     borderRadius: 8,
     justifyContent: 'center',
     marginBottom: 20,

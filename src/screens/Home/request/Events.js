@@ -1,25 +1,16 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const Events = [
-    {
-        id: '1',
-        imageUrl: require('../../../../assets/image/events/event1.jpeg'),
-        eventName: 'Evento 1',
-    },
-    {
-        id: '2',
-        imageUrl: require('../../../../assets/image/events/event2.jpeg'),
-        eventName: 'Evento 2',
-    },
-    {
-        id: '3',
-        imageUrl: require('../../../../assets/image/events/event3.png'),
-        eventName: 'Evento 3',
-    },
 
-];
+  // Dados de exemplo para eventos
+  const eventData = [
+    { id: '1', theme: 'Conferência de Tecnologia', date: '2023-10-15', day: 'Sábado', image: require('../../../../assets/image/events/event2.jpeg'), description: 'Uma conferência incrível sobre tecnologia.' },
+    { id: '2', theme: 'Workshop de Design', date: '2023-10-20', day: 'Quinta-feira', image: require('../../../../assets/image/events/event1.jpeg'), description: 'Aprenda as melhores práticas de design.' },
+    { id: '3', theme: 'Sessão de Networking', date: '2023-10-25', day: 'Terça-feira', image: require('../../../../assets/image/events/event3.png'), description: 'Conheça profissionais da área.' },
+    // Adicione mais eventos conforme necessário
+  ];
 
 
-export default Events;
+
+export default eventData;
 

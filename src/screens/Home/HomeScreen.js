@@ -4,9 +4,8 @@ import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import * as Progress from 'react-native-progress';
 import Carousel from 'react-native-snap-carousel';
 import NavigationButton from './parts/NavigationButton';
-import NewsContainer from './parts/NewsContainer';
 import SideMenu from './parts/SideMenu';
-import Events from './request/Events';
+import eventData from './request/Events';
 import styles from './styles/HomeScreenStyle'
 import NavBar from './parts/NavBar';
 import AcademicOptionsModal from './parts/AcademicOptionsModal';
@@ -50,8 +49,8 @@ const HomeScreen = () => {
 
     const renderEventPhoto = ({ item }) => (
         <TouchableOpacity style={styles.eventPhotoContainer}>
-            <Image source={item.imageUrl} style={styles.eventPhoto} resizeMode="cover" />
-            <Text style={styles.eventName}>{item.eventName}</Text>
+            <Image source={item.image} style={styles.eventPhoto} resizeMode="cover" />
+            <Text style={styles.eventName}>{item.theme}</Text>
         </TouchableOpacity>
     );
 
@@ -120,7 +119,7 @@ const HomeScreen = () => {
                 {/* Carrossel de fotos de eventos */}
                 <View style={styles.carouselContainer}>
                     <Carousel
-                        data={Events}
+                        data={eventData}
                         renderItem={renderEventPhoto}
                         sliderWidth={Dimensions.get('window').width}
                         itemWidth={200}

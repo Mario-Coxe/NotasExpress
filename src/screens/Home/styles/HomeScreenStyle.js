@@ -168,7 +168,7 @@ export default StyleSheet.create({
         bottom: 10,
         left: 10,
         color: 'white',
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: 'bold',
     },
 });

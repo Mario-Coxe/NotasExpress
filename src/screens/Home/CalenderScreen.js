@@ -5,6 +5,7 @@ import SideMenu from './parts/SideMenu';
 import SchoolCalendarScreen from './parts/SchoolCalendarScreen';
 import NavigationButton from './parts/NavigationButton';
 import ScheduleScreen from './parts/ScheduleScreen';
+import EventScreen from './parts/EventScreen';
 
 const CalendarScreen = () => {
   const [selectedItem, setSelectedItem] = useState('ESCOLA'); // Use a mesma variável para rastrear a seleção
@@ -56,6 +57,8 @@ const CalendarScreen = () => {
 
       {selectedItem === 'ESCOLA' && <SchoolCalendarScreen />}
       {selectedItem === 'PROFESSOR' && <ScheduleScreen />}
+      {selectedItem === 'EVENTO' && <EventScreen />}
+
       <View style={styles.NavigationButton}>
         <NavigationButton />
       </View>
