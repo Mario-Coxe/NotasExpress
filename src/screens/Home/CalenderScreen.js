@@ -50,9 +50,9 @@ const CalendarScreen = () => {
       />
 
       <View style={styles.topBar}>
-        {renderTabItem('ESCOLA', 'Escola')}
-        {renderTabItem('PROFESSOR', 'Professor')}
-        {renderTabItem('EVENTO', 'Evento')}
+        {renderTabItem('PROFESSOR', 'Horário')}
+        {renderTabItem('ESCOLA', 'Calendário')}
+        {renderTabItem('EVENTO', 'Eventos')}
       </View>
 
       {selectedItem === 'ESCOLA' && <SchoolCalendarScreen />}

@@ -18,7 +18,7 @@ const SideMenu = ({ isOpen, onClose, onMenuItemClick }) => {
       isVisible={isOpen}
       onBackdropPress={onClose}
       style={styles.modal}
-      backdropOpacity={0.0}
+      backdropOpacity={0.2}
       animationIn="slideInLeft"
       animationOut="slideOutLeft"
     >
