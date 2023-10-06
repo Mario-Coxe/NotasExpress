@@ -3,87 +3,92 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import NavBar from './parts/NavBar';
 import SideMenu from './parts/SideMenu';
 import SchoolCalendarScreen from './parts/SchoolCalendarScreen';
+import NavigationButton from './parts/NavigationButton';
+import ScheduleScreen from './parts/ScheduleScreen';
 
-export default function CalendarScreen() {
-    const [selectedItem, setSelectedItem] = useState(null); // Use a mesma variável para rastrear a seleção
+const CalendarScreen = () => {
+  const [selectedItem, setSelectedItem] = useState('ESCOLA'); // Use a mesma variável para rastrear a seleção
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    //sidebar menu
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
+  const handleMenuItemClick = (route) => {
+    // Certifique-se de que você tem a variável 'navigation' disponível aqui
+    // navigation.navigate(route);
+  };
 
-    const handleMenuItemClick = (route) => {
-        navigation.navigate(route);
-    };
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+  };
 
-    const handleItemClick = (item) => {
-        setSelectedItem(item);
-    };
+  const renderTabItem = (item, text) => (
+    <TouchableOpacity
+      style={[styles.item, selectedItem === item && styles.selectedItem]}
+      onPress={() => handleItemClick(item)}
+    >
+      <Text style={styles.eventText}>{text}</Text>
+    </TouchableOpacity>
+  );
 
-    return (
-        <View style={{ flex: 1 }}>
-            <NavBar
-                title="Calendário"
-                onMenuPress={toggleMenu}
-                onBellPress={() => {
+  return (
+    <View style={styles.container}>
+      <NavBar
+        title="Calendário"
+        onMenuPress={toggleMenu}
+        onBellPress={() => {
+          // Lidar com o pressionamento do ícone do sino, se necessário
+        }}
+      />
 
-                }}
-            />
+      <SideMenu
+        isOpen={isMenuOpen}
+        onClose={toggleMenu}
+        onMenuItemClick={handleMenuItemClick}
+      />
 
-            <SideMenu
-                isOpen={isMenuOpen}
-                onClose={toggleMenu}
-                onMenuItemClick={handleMenuItemClick}
-            />
+      <View style={styles.topBar}>
+        {renderTabItem('ESCOLA', 'Escola')}
+        {renderTabItem('PROFESSOR', 'Professor')}
+        {renderTabItem('EVENTO', 'Evento')}
+      </View>
 
-            <View style={styles.topBar}>
-                <TouchableOpacity
-                    style={[styles.item, selectedItem === 'ESCOLA' && styles.selectedItem]}
-                    onPress={() => handleItemClick('ESCOLA')}
-                >
-                    <Text>ESCOLA</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={[styles.item, selectedItem === 'PROFESSOR' && styles.selectedItem]}
-                    onPress={() => handleItemClick('PROFESSOR')}
-                >
-                    <Text>PROFESSOR</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={[styles.item, selectedItem === 'EVENTO' && styles.selectedItem]}
-                    onPress={() => handleItemClick('EVENTO')}
-                >
-                    <Text>EVENTO</Text>
-                </TouchableOpacity>
-            </View>
-
-            {/* Renderize a tela do calendário da escola quando a opção "Escola" for clicada */}
-            {selectedItem === 'ESCOLA' && (
-                <SchoolCalendarScreen />
-            )}
-        </View>
-    );
-}
+      {selectedItem === 'ESCOLA' && <SchoolCalendarScreen />}
+      {selectedItem === 'PROFESSOR' && <ScheduleScreen />}
+      <View style={styles.NavigationButton}>
+        <NavigationButton />
+      </View>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-    topBar: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        borderBottomWidth: 1,
-        borderBottomColor: 'black',
-        paddingHorizontal: 10,
-    },
-    item: {
-        paddingVertical: 10,
-    },
-    selectedItem: {
-        borderBottomWidth: 2, // Linha mais grossa para o item selecionado
-    },
-    calendarContainer: {
-        flex: 1,
-        padding: 16,
-    },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  NavigationButton: {
+    alignItems: 'center',
+  },
+  topBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 30,
+    marginTop: 20,
+  },
+  item: {
+    paddingVertical: 10,
+  },
+  selectedItem: {
+    borderBottomWidth: 3,
+    borderColor: '#0077B6',
+  },
+  eventText: {
+    fontSize: 16,
+    color: '#000',
+  },
 });
+
+export default CalendarScreen;

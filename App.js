@@ -8,7 +8,7 @@ import HomeScreen from './src/screens/Home/HomeScreen';
 import NewsContainer from './src/screens/Home/parts/NewsContainer';
 import SideMenu from './src/screens/Home/parts/SideMenu';
 import CalenderScreen from './src/screens/Home/CalenderScreen';
-
+import ScheduleScreen from './src/screens/Home/parts/ScheduleScreen';
 
 const App = () => {
   React.useEffect(() => {
