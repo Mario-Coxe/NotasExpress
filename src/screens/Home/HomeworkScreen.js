@@ -57,14 +57,14 @@ const HomeworkScreen = () => {
                         style={styles.disciplinaItem}
                         onPress={() => setExpandedDisciplina(expandedDisciplina === item ? null : item)}
                     >
-                        <Text style={styles.disciplinaText}>{item.disciplina}</Text>
-                        <FontAwesome
-                            name={expandedDisciplina === item ? 'caret-up' : 'caret-down'}
-                            size={24}
-                            color="#333"
-                            style={{alignItems: 'center'}}
-                        />
-
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <Text style={styles.disciplinaText}>{item.disciplina}</Text>
+                            <FontAwesome
+                                name={expandedDisciplina === item ? 'caret-up' : 'caret-down'}
+                                size={24}
+                                color="#333"
+                            />
+                        </View>
                         {expandedDisciplina === item && (
                             <View style={styles.tarefasContainer}>
                                 <Text style={styles.title}>Tarefas de {item.disciplina}</Text>
