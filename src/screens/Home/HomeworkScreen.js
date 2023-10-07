@@ -22,7 +22,109 @@ const tarefasPorDisciplina = [
             { id: 5, descricao: 'Estudar a Revolução Francesa', dataEntrega: '18/10/2023' },
         ],
     },
-    // ... outras disciplinas ...
+
+    {
+        disciplina: 'Programação',
+        tarefas: [
+            { id: 6, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
+            { id: 7, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
+            // Adicione mais tarefas aqui
+            { id: 8, descricao: 'Estudar a Revolução Francesa', dataEntrega: '18/10/2023' },
+        ],
+    },
+
+    {
+        disciplina: 'SEAC',
+        tarefas: [
+            { id: 9, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
+            { id: 10, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
+            // Adicione mais tarefas aqui
+            { id: 11, descricao: 'Estudar a Revolução Francesa', dataEntrega: '18/10/2023' },
+        ],
+    },
+
+    {
+        disciplina: 'PT',
+        tarefas: [
+            { id: 6, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
+            { id: 7, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
+            // Adicione mais tarefas aqui
+            { id: 8, descricao: 'Estudar a Revolução Francesa', dataEntrega: '18/10/2023' },
+        ],
+    },
+
+    {
+        disciplina: 'Programação',
+        tarefas: [
+            { id: 9, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
+            { id: 10, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
+            // Adicione mais tarefas aqui
+            { id: 11, descricao: 'Estudar a Revolução Francesa', dataEntrega: '18/10/2023' },
+        ],
+    },
+
+    {
+        disciplina: 'Programação',
+        tarefas: [
+            { id: 12, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
+            { id: 13, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
+            // Adicione mais tarefas aqui
+            { id: 14, descricao: 'Estudar a Revolução Francesa', dataEntrega: '18/10/2023' },
+        ],
+    },
+
+    {
+        disciplina: 'Programação',
+        tarefas: [
+            { id: 15, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
+            { id: 16, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
+            // Adicione mais tarefas aqui
+            { id: 17, descricao: 'Estudar a Revolução Francesa', dataEntrega: '18/10/2023' },
+        ],
+    },
+
+
+    {
+        disciplina: 'Programação',
+        tarefas: [
+            { id: 18, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
+            { id: 19, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
+            // Adicione mais tarefas aqui
+            { id: 20, descricao: 'Estudar a Revolução Francesa', dataEntrega: '18/10/2023' },
+        ],
+    },
+
+    {
+        disciplina: 'Programação',
+        tarefas: [
+            { id: 21, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
+            { id: 22, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
+            // Adicione mais tarefas aqui
+            { id: 23, descricao: 'Estudar a Revolução Francesa', dataEntrega: '18/10/2023' },
+        ],
+    },
+
+
+    {
+        disciplina: 'Programação',
+        tarefas: [
+            { id: 24, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
+            { id: 25, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
+            // Adicione mais tarefas aqui
+            { id: 26, descricao: 'Estudar a Revolução Francesa', dataEntrega: '18/10/2023' },
+        ],
+    },
+
+    {
+        disciplina: 'Programação',
+        tarefas: [
+            { id: 27, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
+            { id: 28, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
+            // Adicione mais tarefas aqui
+            { id: 29, descricao: 'Estudar a Revolução Francesa', dataEntrega: '18/10/2023' },
+        ],
+    },
+
 ];
 
 const HomeworkScreen = () => {
@@ -77,11 +179,15 @@ const HomeworkScreen = () => {
                                             <Text style={styles.dataEntrega}>Data de Entrega: {task.dataEntrega}</Text>
                                         </View>
                                     )}
+
+                                    contentContainerStyle={styles.listContent}
                                 />
                             </View>
                         )}
                     </TouchableOpacity>
                 )}
+
+                contentContainerStyle={styles.listContent}
             />
 
             <View style={styles.NavigationButton}>
@@ -108,6 +214,10 @@ const styles = StyleSheet.create({
     },
     NavigationButton: {
         alignItems: 'center',
+    },
+    listContent: {
+        paddingTop: 10, // Adiciona espaço no topo da lista
+        paddingBottom: 350, // Adiciona espaço na parte inferior da lista
     },
     title: {
         fontSize: 24,
