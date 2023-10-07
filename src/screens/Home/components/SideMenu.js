@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import Modal from 'react-native-modal';
 import { FontAwesome } from '@expo/vector-icons';
-import styles from './styles/SideMenuStyle';
+import styles from '../parts/styles/SideMenuStyle';
 
 const SideMenu = ({ isOpen, onClose, onMenuItemClick }) => {
   const navigationItems = [

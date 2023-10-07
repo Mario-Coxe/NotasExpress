@@ -1,174 +1,171 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+
+const { width, height } = Dimensions.get('window');
 
 export default StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#D9D9D9',
-    },
-    navBar: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        backgroundColor: '#0077B6',
-        paddingHorizontal: 16,
-        paddingTop: 40,
-    },
-    menuIcon: {
-        padding: 10,
-    },
-    notificationIcon: {
-        position: 'relative', // Posição relativa para acomodar o número
-        padding: 10,
-    },
-    titleText: {
-        fontSize: 24,
-        color: 'white',
-    },
-    // Estilos para o número de notificações
-    notificationBadge: {
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        backgroundColor: 'red',
-        borderRadius: 10,
-        paddingHorizontal: 6,
-        paddingVertical: 2,
-    },
-    notificationText: {
-        color: 'white',
-        fontSize: 12,
-    },
-    card: {
-        backgroundColor: '#0077B6',
-        padding: 16,
-        borderRadius: 10,
-        margin: 16,
-        alignItems: 'center',
-        width: '90%', // Ocupa 90% da tela
-        alignSelf: 'center', // Centralizado horizontalmente
-    },
-    disciplineText: {
-        fontSize: 18,
-        color: 'white',
-        marginBottom: 10,
-        alignSelf: 'flex-start', // Alinhamento à esquerda
-    },
-    melhorPerformace: {
-        fontSize: 14,
-        color: 'white',
-        marginBottom: 10,
-        alignSelf: 'flex-start', // Alinhamento à esquerda
-    },
-    percentagem: {
-        fontSize: 14,
-        color: 'white',
-        alignSelf: 'flex-end',
-        marginTop: -20,
-    },
-    content: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    userImageContainer: {
-        alignItems: 'flex-end', // Alinhar à direita
-        justifyContent: 'flex-start', // Alinhar no topo
-        marginBottom: 10,
-        flexDirection: 'row', // Para alinhar a imagem e o texto lado a lado
-        alignSelf: 'flex-end',
-    },
-    userImage: {
-        width: 50, // Ajuste o tamanho da imagem do usuário conforme necessário
-        height: 50, // Ajuste o tamanho da imagem do usuário conforme necessário
-        borderRadius: 30, // Metade da largura/altura para torná-la circular
-        marginRight: 10, // Espaço entre a imagem e o texto
-    },
-    academics: {
-        backgroundColor: 'white',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center', // Alinhar verticalmente ao centro
-        padding: 16,
-        borderRadius: 10,
-        width: '90%', // Ocupa 90% da tela
-        alignSelf: 'center', // Centralizado horizontalmente
-        marginTop: 20,
-
-    },
-
-    modalButton: {
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    academicItem: {
-        alignItems: 'center',
-        margin: 10
-    },
-
-    modalContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-
-    },
-    bottomSheet: {
-        justifyContent: 'flex-end',
-        margin: 0,
-    },
-    modalContent: {
-        backgroundColor: 'white',
-        width: '95%',
-        padding: 20,
-        borderRadius: 5,
-        alignItems: 'center',
-        height: 240
-    },
-    modalItem: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginVertical: 10,
-        paddingHorizontal: 16,
-    },
-    modalItemText: {
-        fontSize: 16,
-        marginLeft: 10,
-    },
-    modalRow: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
-    modalColumn: {
-        flex: 1,
-        paddingHorizontal: 16,
-        width: '100%',
-    },
-    closeIcon: {
-        position: 'absolute',
-        right: 10,
-        marginBottom: 30
-    },
-    carouselContainer: {
-        marginTop: 40,
-        marginBottom: 0
-    },
-    eventPhotoContainer: {
-        width: 200,
-        height: 200,
-        borderRadius: 10,
-        marginHorizontal: 10,
-        overflow: 'hidden',
-    },
-    eventPhoto: {
-        width: '100%',
-        height: '100%',
-    },
-    eventName: {
-        position: 'absolute',
-        bottom: 10,
-        left: 10,
-        color: 'white',
-        fontSize: 14,
-        fontWeight: 'bold',
-    },
+  container: {
+    flex: 1,
+    backgroundColor: '#D9D9D9',
+  },
+  navBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#0077B6',
+    paddingHorizontal: 0.04 * width, // 4% da largura da tela como padding horizontal
+    paddingTop: 0.06 * height, // 6% da altura da tela como padding superior
+  },
+  menuIcon: {
+    padding: 0.02 * width, // 2% da largura da tela como padding
+  },
+  notificationIcon: {
+    position: 'relative',
+    padding: 0.02 * width, // 2% da largura da tela como padding
+  },
+  titleText: {
+    fontSize: 0.03 * height, // 3% da altura da tela como tamanho de fonte
+    color: 'white',
+  },
+  notificationBadge: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    backgroundColor: 'red',
+    borderRadius: 0.02 * width, // 2% da largura da tela como borda
+    paddingHorizontal: 0.012 * width, // 1.2% da largura da tela como padding horizontal
+    paddingVertical: 0.005 * height, // 0.5% da altura da tela como padding vertical
+  },
+  notificationText: {
+    color: 'white',
+    fontSize: 0.012 * height, // 1.2% da altura da tela como tamanho de fonte
+  },
+  card: {
+    backgroundColor: '#0077B6',
+    padding: 0.04 * width, // 4% da largura da tela como padding
+    borderRadius: 0.02 * width, // 2% da largura da tela como borda
+    margin: 0.05 * width, // 5% da largura da tela como margem
+    alignItems: 'center',
+    width: '90%',
+    alignSelf: 'center',
+  },
+  disciplineText: {
+    fontSize: 0.018 * height, // 1.8% da altura da tela como tamanho de fonte
+    color: 'white',
+    marginBottom: 0.01 * height, // 1% da altura da tela como margem inferior
+    alignSelf: 'flex-start',
+  },
+  melhorPerformace: {
+    fontSize: 0.014 * height, // 1.4% da altura da tela como tamanho de fonte
+    color: 'white',
+    marginBottom: 0.01 * height, // 1% da altura da tela como margem inferior
+    alignSelf: 'flex-start',
+  },
+  percentagem: {
+    fontSize: 0.014 * height, // 1.4% da altura da tela como tamanho de fonte
+    color: 'white',
+    alignSelf: 'flex-end',
+    marginTop: -0.02 * height, // 2% da altura da tela como margem superior negativa
+  },
+  content: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  userImageContainer: {
+    alignItems: 'flex-end',
+    justifyContent: 'flex-start',
+    marginBottom: 0.01 * height, // 1% da altura da tela como margem inferior
+    flexDirection: 'row',
+    alignSelf: 'flex-end',
+  },
+  userImage: {
+    width: 0.1 * width, // 10% da largura da tela
+    height: 0.1 * width, // 10% da largura da tela
+    borderRadius: 0.03 * width, // 3% da largura da tela como borda
+    marginRight: 0.02 * width, // 2% da largura da tela como margem direita
+  },
+  academics: {
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 0.05 * width, // 5% da largura da tela como padding
+    borderRadius: 0.02 * width, // 2% da largura da tela como borda
+    width: '90%',
+    alignSelf: 'center',
+    marginTop: 0.03 * height, // 3% da altura da tela como margem superior
+  },
+  modalButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  academicItem: {
+    alignItems: 'center',
+    margin: 0.01 * height, // 1% da altura da tela como margem
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  bottomSheet: {
+    justifyContent: 'flex-end',
+    margin: 0,
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    width: 0.95 * width, // 95% da largura da tela
+    padding: 0.04 * width, // 4% da largura da tela como padding
+    borderRadius: 0.01 * width, // 1% da largura da tela como borda
+    alignItems: 'center',
+    minHeight: 0.2 * height, // 20% da altura da tela como altura mínima
+  },
+  modalItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 0.01 * height, // 1% da altura da tela como margem vertical
+    paddingHorizontal: 0.016 * width, // 1.6% da largura da tela como padding horizontal
+  },
+  modalItemText: {
+    fontSize: 0.016 * height, // 1.6% da altura da tela como tamanho de fonte
+    marginLeft: 0.01 * width, // 1% da largura da tela como margem esquerda
+  },
+  modalRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  modalColumn: {
+    flex: 1,
+    paddingHorizontal: 0.016 * width, // 1.6% da largura da tela como padding horizontal
+    width: '100%',
+  },
+  closeIcon: {
+    position: 'absolute',
+    right: 0.01 * width, // 1% da largura da tela como margem direita
+    marginBottom: 0.03 * height, // 3% da altura da tela como margem inferior
+  },
+  carouselContainer: {
+    marginTop: 0.04 * height, // 4% da altura da tela como margem superior
+    marginBottom: 0,
+  },
+  eventPhotoContainer: {
+    width: 0.5 * width, // 40% da largura da tela
+    height: 0.2 * height, // 20% da altura da tela
+    borderRadius: 0.02 * width, // 2% da largura da tela como borda
+    marginHorizontal: 0.01 * width, // 1% da largura da tela como margem horizontal
+    overflow: 'hidden',
+  },
+  eventPhoto: {
+    width: '100%',
+    height: '100%',
+  },
+  eventName: {
+    position: 'absolute',
+    bottom: 0.01 * height, // 1% da altura da tela como margem inferior
+    left: 0.01 * width, // 1% da largura da tela como margem esquerda
+    color: 'white',
+    fontSize: 0.014 * height, // 1.4% da altura da tela como tamanho de fonte
+    fontWeight: 'bold',
+  },
 });

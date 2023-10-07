@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Calendar, LocaleConfig } from 'react-native-calendars';
 import Modal from 'react-native-modal';
-import './localeConfig';
+import '../components/localeConfig';
 import { FontAwesome } from '@expo/vector-icons';
 
 const SchoolCalendarScreen = () => {

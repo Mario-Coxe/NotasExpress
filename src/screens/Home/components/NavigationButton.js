@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { FontAwesome5, FontAwesome, AntDesign } from '@expo/vector-icons';
-import styles from './styles/NavigationButtonStyle';
+import styles from '../parts/styles/NavigationButtonStyle';
 
 const NavigationButton = ({ onPressHome, onPressChat, onPressProfile }) => {
   return (

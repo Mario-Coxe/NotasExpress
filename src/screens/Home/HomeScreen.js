@@ -3,11 +3,11 @@ import { View, Text, TouchableOpacity, StyleSheet, Image, FlatList, Dimensions }
 import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import * as Progress from 'react-native-progress';
 import Carousel from 'react-native-snap-carousel';
-import NavigationButton from './parts/NavigationButton';
-import SideMenu from './parts/SideMenu';
+import NavigationButton from './components/NavigationButton';
+import SideMenu from './components/SideMenu';
 import eventData from './request/Events';
 import styles from './styles/HomeScreenStyle'
-import NavBar from './parts/NavBar';
+import NavBar from './components/NavBar';
 import AcademicOptionsModal from './parts/AcademicOptionsModal';
 
 const HomeScreen = () => {
@@ -85,13 +85,13 @@ const HomeScreen = () => {
                 <Text style={styles.melhorPerformace}>Tua melhor Performace</Text>
                 <Text style={styles.percentagem}>75%</Text>
                 <Progress.Bar
-                    progress={0.75} // Ajuste este valor para representar o progresso desejado (de 0 a 1)
+                    progress={0.75} 
                     width={337}
-                    height={5} // Tamanho da barra de progresso mais fina
+                    height={5} 
                     color="#D9D9D9"
                     borderColor="#A9A9A9"
-                    borderRadius={0} // Borda mais arredondada
-                    style={{ alignSelf: 'flex-start' }} // Alinhamento à esquerda
+                    borderRadius={0}
+                    style={{ alignSelf: 'flex-start' }} 
                 />
             </View>
 

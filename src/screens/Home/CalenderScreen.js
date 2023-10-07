@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import NavBar from './parts/NavBar';
-import SideMenu from './parts/SideMenu';
+import { View, Text, TouchableOpacity } from 'react-native';
+import NavBar from './components/NavBar';
+import SideMenu from './components/SideMenu';
 import SchoolCalendarScreen from './parts/SchoolCalendarScreen';
-import NavigationButton from './parts/NavigationButton';
+import NavigationButton from './components/NavigationButton';
 import ScheduleScreen from './parts/ScheduleScreen';
 import EventScreen from './parts/EventScreen';
+import styles from './styles/CalenderScreenStyle';
 
 const CalendarScreen = () => {
-  const [selectedItem, setSelectedItem] = useState('ESCOLA'); // Use a mesma variável para rastrear a seleção
+  const [selectedItem, setSelectedItem] = useState('CalendarScreen'); // Use a mesma variável para rastrear a seleção
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -16,8 +17,7 @@ const CalendarScreen = () => {
   };
 
   const handleMenuItemClick = (route) => {
-    // Certifique-se de que você tem a variável 'navigation' disponível aqui
-    // navigation.navigate(route);
+    
   };
 
   const handleItemClick = (item) => {
@@ -39,7 +39,7 @@ const CalendarScreen = () => {
         title="Calendário"
         onMenuPress={toggleMenu}
         onBellPress={() => {
-          // Lidar com o pressionamento do ícone do sino, se necessário
+          //
         }}
       />
 
@@ -50,14 +50,14 @@ const CalendarScreen = () => {
       />
 
       <View style={styles.topBar}>
-        {renderTabItem('PROFESSOR', 'Horário')}
-        {renderTabItem('ESCOLA', 'Calendário')}
-        {renderTabItem('EVENTO', 'Eventos')}
+        {renderTabItem('ScheduleScreen', 'Horário')}
+        {renderTabItem('CalendarScreen', 'Calendário')}
+        {renderTabItem('EventScreen', 'Eventos')}
       </View>
 
-      {selectedItem === 'ESCOLA' && <SchoolCalendarScreen />}
-      {selectedItem === 'PROFESSOR' && <ScheduleScreen />}
-      {selectedItem === 'EVENTO' && <EventScreen />}
+      {selectedItem === 'CalendarScreen' && <SchoolCalendarScreen />}
+      {selectedItem === 'ScheduleScreen' && <ScheduleScreen />}
+      {selectedItem === 'EventScreen' && <EventScreen />}
 
       <View style={styles.NavigationButton}>
         <NavigationButton />
@@ -66,32 +66,5 @@ const CalendarScreen = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  NavigationButton: {
-    alignItems: 'center',
-  },
-  topBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 30,
-    marginTop: 20,
-  },
-  item: {
-    paddingVertical: 10,
-  },
-  selectedItem: {
-    borderBottomWidth: 3,
-    borderColor: '#0077B6',
-  },
-  eventText: {
-    fontSize: 16,
-    color: '#000',
-  },
-});
 
 export default CalendarScreen;
