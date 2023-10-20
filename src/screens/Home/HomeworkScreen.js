@@ -4,128 +4,8 @@ import { FontAwesome } from '@expo/vector-icons';
 import NavBar from './components/NavBar';
 import SideMenu from './components/SideMenu';
 import NavigationButton from './components/NavigationButton';
-
-const tarefasPorDisciplina = [
-    {
-        disciplina: 'Matemática',
-        tarefas: [
-            { id: 1, descricao: 'Resolver exercício 1', dataEntrega: '10/10/2023' },
-            { id: 2, descricao: 'Estudar para prova', dataEntrega: '15/10/2023' },
-        ],
-    },
-    {
-        disciplina: 'História',
-        tarefas: [
-            { id: 3, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
-            { id: 4, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
-            // Adicione mais tarefas aqui
-            { id: 5, descricao: 'Estudar a Revolução Francesa', dataEntrega: '18/10/2023' },
-        ],
-    },
-
-    {
-        disciplina: 'Programação',
-        tarefas: [
-            { id: 6, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
-            { id: 7, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
-            // Adicione mais tarefas aqui
-            { id: 8, descricao: 'Estudar a Revolução Francesa', dataEntrega: '18/10/2023' },
-        ],
-    },
-
-    {
-        disciplina: 'SEAC',
-        tarefas: [
-            { id: 9, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
-            { id: 10, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
-            // Adicione mais tarefas aqui
-            { id: 11, descricao: 'Estudar a Revolução Francesa', dataEntrega: '18/10/2023' },
-        ],
-    },
-
-    {
-        disciplina: 'PT',
-        tarefas: [
-            { id: 6, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
-            { id: 7, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
-            // Adicione mais tarefas aqui
-            { id: 8, descricao: 'Estudar a Revolução Francesa', dataEntrega: '18/10/2023' },
-        ],
-    },
-
-    {
-        disciplina: 'Programação',
-        tarefas: [
-            { id: 9, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
-            { id: 10, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
-            // Adicione mais tarefas aqui
-            { id: 11, descricao: 'Estudar a Revolução Francesa', dataEntrega: '18/10/2023' },
-        ],
-    },
-
-    {
-        disciplina: 'Programação',
-        tarefas: [
-            { id: 12, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
-            { id: 13, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
-            // Adicione mais tarefas aqui
-            { id: 14, descricao: 'Estudar a Revolução Francesa', dataEntrega: '18/10/2023' },
-        ],
-    },
-
-    {
-        disciplina: 'Programação',
-        tarefas: [
-            { id: 15, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
-            { id: 16, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
-            // Adicione mais tarefas aqui
-            { id: 17, descricao: 'Estudar a Revolução Francesa', dataEntrega: '18/10/2023' },
-        ],
-    },
-
-
-    {
-        disciplina: 'Programação',
-        tarefas: [
-            { id: 18, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
-            { id: 19, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
-            // Adicione mais tarefas aqui
-            { id: 20, descricao: 'Estudar a Revolução Francesa', dataEntrega: '18/10/2023' },
-        ],
-    },
-
-    {
-        disciplina: 'Programação',
-        tarefas: [
-            { id: 21, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
-            { id: 22, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
-            // Adicione mais tarefas aqui
-            { id: 23, descricao: 'Estudar a Revolução Francesa', dataEntrega: '18/10/2023' },
-        ],
-    },
-
-
-    {
-        disciplina: 'Programação',
-        tarefas: [
-            { id: 24, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
-            { id: 25, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
-            // Adicione mais tarefas aqui
-            { id: 26, descricao: 'Estudar a Revolução Francesa', dataEntrega: '18/10/2023' },
-        ],
-    },
-
-    {
-        disciplina: 'Programação',
-        tarefas: [
-            { id: 27, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
-            { id: 28, descricao: 'Escrever um ensaio', dataEntrega: '12/10/2023' },
-            // Adicione mais tarefas aqui
-            { id: 29, descricao: 'Estudar a Revolução Francesa', dataEntrega: '18/10/2023' },
-        ],
-    },
-
-];
+import tarefasPorDisciplina from './request/Homework';
+import styles from './styles/HomeworkScreenStyle';
 
 const HomeworkScreen = () => {
     const [expandedDisciplina, setExpandedDisciplina] = useState(null);
@@ -159,12 +39,12 @@ const HomeworkScreen = () => {
                         style={styles.disciplinaItem}
                         onPress={() => setExpandedDisciplina(expandedDisciplina === item ? null : item)}
                     >
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
                             <Text style={styles.disciplinaText}>{item.disciplina}</Text>
                             <FontAwesome
                                 name={expandedDisciplina === item ? 'caret-up' : 'caret-down'}
                                 size={24}
-                                color="#333"
+                                color="#0077B6"
                             />
                         </View>
                         {expandedDisciplina === item && (
@@ -207,53 +87,5 @@ const HomeworkScreen = () => {
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#f5f5f5',
-    },
-    NavigationButton: {
-        alignItems: 'center',
-    },
-    listContent: {
-        paddingTop: 10, // Adiciona espaço no topo da lista
-        paddingBottom: 350, // Adiciona espaço na parte inferior da lista
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 16,
-    },
-    disciplinaItem: {
-        flexDirection: 'column', // Alteração para tornar o contêiner vertical
-        padding: 16,
-        marginVertical: 8,
-        backgroundColor: '#fff',
-        elevation: 3,
-        borderRadius: 8,
-    },
-    disciplinaText: {
-        fontSize: 18,
-        color: '#333',
-    },
-    tarefasContainer: {
-        marginTop: 16,
-    },
-    tarefaItem: {
-        padding: 16,
-        marginVertical: 8,
-        backgroundColor: '#fff',
-        borderRadius: 8,
-        elevation: 2,
-    },
-    tarefaText: {
-        fontSize: 16,
-        color: '#333',
-    },
-    dataEntrega: {
-        fontSize: 14,
-        color: '#777',
-    },
-});
 
 export default HomeworkScreen;
