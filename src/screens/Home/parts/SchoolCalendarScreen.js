@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { Calendar, LocaleConfig } from 'react-native-calendars';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { Calendar } from 'react-native-calendars';
 import Modal from 'react-native-modal';
 import '../components/localeConfig';
 import { FontAwesome } from '@expo/vector-icons';
+import styles from './styles/SchoolCalendarScreenStyle'
 
 const SchoolCalendarScreen = () => {
   const [markedDates, setMarkedDates] = useState({
@@ -70,58 +71,5 @@ const SchoolCalendarScreen = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  customDayContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  customDayCircle: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: 'blue',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  customDayText: {
-    color: 'white',
-    fontSize: 16,
-  },
-  defaultDayText: {
-    fontSize: 16,
-  },
-  modal: {
-    justifyContent: 'flex-end',
-    margin: 0,
-  },
-  modalContent: {
-    backgroundColor: 'white',
-    padding: 16,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-  },
-  modalHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  modalTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  modalDescription: {
-    fontSize: 16,
-  },
-  modalCloseButton: {
-    padding: 10,
-    borderRadius: 5,
-    alignItems: 'center',
-  },
-});
 
 export default SchoolCalendarScreen;
