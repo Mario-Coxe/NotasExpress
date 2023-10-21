@@ -10,7 +10,6 @@ import ScheduleScreen from './src/screens/Home/parts/ScheduleScreen';
 import EventScreen from './src/screens/Home/parts/EventScreen'
 import HomeworkScreen from './src/screens/Home/HomeworkScreen';
 import ResultScreen from './src/screens/Home/ResultScreen';
-import FirstQuarterScreen from './src/screens/Home/parts/FirstQuarterScreen';
 
 
 const App = () => {
@@ -20,7 +19,7 @@ const App = () => {
   }, []);
 
   return (
-    <ResultScreen />
+    <HomeScreen />
   );
 };
 

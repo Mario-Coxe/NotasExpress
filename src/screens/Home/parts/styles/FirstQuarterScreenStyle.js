@@ -4,48 +4,51 @@ export default StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#f5f5f5',
-    },
-    NavigationButton: {
+      },
+      navigationButton: {
         alignItems: 'center',
-    },
-    listContent: {
-        paddingTop: 10, // Adiciona espaço no topo da lista
-        paddingBottom: 350, // Adiciona espaço na parte inferior da lista
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 16,
-    },
-    disciplinaItem: {
-        flexDirection: 'column', // Alteração para tornar o contêiner vertical
+      },
+      listContent: {
+        paddingTop: 10,
+        paddingBottom: 350,
+      },
+      disciplinaItem: {
         padding: 16,
         marginVertical: 8,
         backgroundColor: '#fff',
         elevation: 3,
         borderRadius: 5,
-
-    },
-    disciplinaText: {
+      },
+      disciplinaHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      },
+      disciplinaText: {
         fontSize: 18,
         color: '#333',
-    },
-    tarefasContainer: {
+      },
+      tarefasContainer: {
         marginTop: 16,
-    },
-    tarefaItem: {
+      },
+      tarefaItem: {
         padding: 16,
         marginVertical: 8,
         backgroundColor: '#fff',
         borderRadius: 8,
         elevation: 2,
-    },
-    tarefaText: {
+      },
+      tarefaText: {
         fontSize: 16,
         color: '#333',
-    },
-    dataEntrega: {
-        fontSize: 14,
-        color: '#777',
-    },
+      },
+      progressBar: {
+        height: 10,
+        backgroundColor: '#ddd',
+        borderRadius: 5,
+      },
+      progressFill: {
+        height: '100%',
+        position: 'absolute',
+      },
 });

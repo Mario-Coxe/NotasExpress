@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
-import SideMenu from '../components/SideMenu';
-import NavigationButton from '../components/NavigationButton';
-import FirstQuarter from '../request/Notas';
+import SideMenu from '../../components/SideMenu';
+import NavigationButton from '../../components/NavigationButton';
+import {ThirdQuarter} from '../../request/Notas';
+import styles from '../styles/FirstQuarterScreenStyle';
 
 const ProgressBar = ({ nota, notaMaxima }) => {
   const percentual = (nota / notaMaxima) * 100;
@@ -15,7 +16,7 @@ const ProgressBar = ({ nota, notaMaxima }) => {
   );
 };
 
-const FirstQuarterScreen = () => {
+const ThirdQuarterScreen = () => {
   const [expandedDisciplina, setExpandedDisciplina] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -32,7 +33,7 @@ const FirstQuarterScreen = () => {
       />
 
       <FlatList
-        data={FirstQuarter}
+        data={ThirdQuarter}
         keyExtractor={(item) => item.disciplina}
         renderItem={({ item }) => (
           <TouchableOpacity
@@ -94,57 +95,5 @@ const FirstQuarterScreen = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f5f5f5',
-  },
-  navigationButton: {
-    alignItems: 'center',
-  },
-  listContent: {
-    paddingTop: 10,
-    paddingBottom: 350,
-  },
-  disciplinaItem: {
-    padding: 16,
-    marginVertical: 8,
-    backgroundColor: '#fff',
-    elevation: 3,
-    borderRadius: 5,
-  },
-  disciplinaHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  disciplinaText: {
-    fontSize: 18,
-    color: '#333',
-  },
-  tarefasContainer: {
-    marginTop: 16,
-  },
-  tarefaItem: {
-    padding: 16,
-    marginVertical: 8,
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    elevation: 2,
-  },
-  tarefaText: {
-    fontSize: 16,
-    color: '#333',
-  },
-  progressBar: {
-    height: 10,
-    backgroundColor: '#ddd',
-    borderRadius: 5,
-  },
-  progressFill: {
-    height: '100%',
-    position: 'absolute',
-  },
-});
 
-export default FirstQuarterScreen;
+export default ThirdQuarterScreen;

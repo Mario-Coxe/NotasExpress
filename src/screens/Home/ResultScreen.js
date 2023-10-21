@@ -7,7 +7,9 @@ import NavigationButton from './components/NavigationButton';
 import ScheduleScreen from './parts/ScheduleScreen';
 import EventScreen from './parts/EventScreen';
 import styles from './styles/CalenderScreenStyle';
-import FirstQuarterScreen from './parts/FirstQuarterScreen';
+import FirstQuarterScreen from './parts/Quater/FirstQuarterScreen';
+import SecondQuarterScreen from './parts/Quater/SecondQuarterScreen';
+import ThirdQuarterScreen from './parts/Quater/ThirdQuarterScreen';
 
 const ResultScreen = () => {
   const [selectedItem, setSelectedItem] = useState('CalendarScreen'); // Use a mesma variável para rastrear a seleção
@@ -57,8 +59,8 @@ const ResultScreen = () => {
       </View>
 
       {selectedItem === 'FirstQuarter' && <FirstQuarterScreen />}
-      {selectedItem === 'ScheduleScreen' && <ScheduleScreen />}
-      {selectedItem === 'EventScreen' && <EventScreen />}
+      {selectedItem === 'SecondQuarter' && <SecondQuarterScreen />}
+      {selectedItem === 'ThirdQuarter' && <ThirdQuarterScreen />}
       
       {/* <View style={styles.NavigationButton}>
         <NavigationButton />
