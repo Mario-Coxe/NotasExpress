@@ -3,15 +3,16 @@ import { View, Text, TouchableOpacity, TextInput, StyleSheet, Button } from 'rea
 import { FontAwesome5 } from '@expo/vector-icons'; // Usando FontAwesome5 para ícones
 import { AntDesign } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
-import { loadFonts } from '../../../assets/fonts/Fonts';
 import styles from './Styles/LoginScreenStyle';
+import { useFonts } from 'expo-font';
 
 
 const LoginScreen = () => {
 
-    useEffect(() => {
-        loadFonts();
-    }, []);
+    const [fontsLoaded, fontError] = useFonts({
+        'Poppins-Bold': require('../../../assets/fonts/Poppins-Bold.ttf'),
+    });
+
 
 
     const [showPassword, setShowPassword] = useState(false);
@@ -19,28 +20,24 @@ const LoginScreen = () => {
     const [password, setPassword] = useState('');
 
     const handleLogin = () => {
-        // Aqui você pode adicionar a lógica de autenticação
-        // para verificar o nome de usuário e a senha.
+
     };
 
     const handleForgotPassword = () => {
-        // Adicione a lógica para lidar com a recuperação de senha aqui.
+
     };
-
-
-
 
     return (
         <View style={styles.container}>
             <View style={styles.cardContainer}>
-                <Text style={[styles.bemvindoText, { fontFamily: 'bold' }]}>Bem-Vindo!</Text>
-                <Text style={[styles.loginText, { fontFamily: 'regular' }]}>Faça o Login</Text>
+                <Text style={[styles.bemvindoText, { fontFamily: fontsLoaded ? 'Poppins-Bold' : 'Arial' }]}>Bem-Vindo!</Text>
+                <Text style={[styles.loginText, { fontFamily: fontsLoaded ? 'Poppins-Bold' : 'Arial' }]}>Faça o Login</Text>
             </View>
             <View style={styles.inputContainer}>
                 <View style={styles.inputIconContainer}>
                     <FontAwesome5 name="user" size={24} color="gray" style={styles.inputIcon} />
                     <TextInput
-                        style={[styles.input, { fontFamily: 'regular' }]}
+                        style={[styles.input, { fontFamily: 'Poppins-Bold' }]}
                         placeholder="E-mail"
                         onChangeText={text => setUsername(text)}
                         placeholderTextColor={'gray'}
@@ -49,7 +46,7 @@ const LoginScreen = () => {
                 <View style={styles.inputIconContainer}>
                     <AntDesign name="lock1" size={24} color="gray" style={styles.inputIcon} />
                     <TextInput
-                        style={[styles.input, { fontFamily: 'regular' }]}
+                        style={[styles.input, { fontFamily: 'Poppins-Bold' }]}
                         placeholder="Senha"
                         secureTextEntry={!showPassword}
                         onChangeText={text => setPassword(text)}
@@ -65,12 +62,12 @@ const LoginScreen = () => {
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity onPress={handleForgotPassword}>
-                    <Text style={[styles.forgotPasswordText, { fontFamily: 'regular' }]}>
+                    <Text style={[styles.forgotPasswordText, { fontFamily: 'Poppins-Bold' }]}>
                         Esqueceu a Senha?
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.entrarButton} onPress={handleLogin}>
-                    <Text style={[styles.entrarButtonText, {fontFamily: 'bold'}]}>Entrar</Text>
+                    <Text style={[styles.entrarButtonText, { fontFamily: 'Poppins-Bold' }]}>Entrar</Text>
                 </TouchableOpacity>
 
             </View>
