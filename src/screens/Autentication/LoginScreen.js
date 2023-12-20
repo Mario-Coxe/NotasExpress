@@ -11,8 +11,8 @@ const LoginScreen = () => {
 
     const [fontsLoaded, fontError] = useFonts({
         'Poppins-Bold': require('../../../assets/fonts/Poppins-Bold.ttf'),
+        'Poppins-Regular': require('../../../assets/fonts/Poppins-Regular.ttf'),
     });
-
 
 
     const [showPassword, setShowPassword] = useState(false);
@@ -37,8 +37,8 @@ const LoginScreen = () => {
                 <View style={styles.inputIconContainer}>
                     <FontAwesome5 name="user" size={24} color="gray" style={styles.inputIcon} />
                     <TextInput
-                        style={[styles.input, { fontFamily: 'Poppins-Bold' }]}
-                        placeholder="E-mail"
+                        style={[styles.input, { fontFamily: fontsLoaded ? 'Poppins-Regular' : 'Poppins-Regular' }]}
+                        placeholder="Número"
                         onChangeText={text => setUsername(text)}
                         placeholderTextColor={'gray'}
                     />
@@ -46,7 +46,7 @@ const LoginScreen = () => {
                 <View style={styles.inputIconContainer}>
                     <AntDesign name="lock1" size={24} color="gray" style={styles.inputIcon} />
                     <TextInput
-                        style={[styles.input, { fontFamily: 'Poppins-Bold' }]}
+                        style={[styles.input, { fontFamily: fontsLoaded ? 'Poppins-Regular' : 'Poppins-Regular' }]}
                         placeholder="Senha"
                         secureTextEntry={!showPassword}
                         onChangeText={text => setPassword(text)}
@@ -62,12 +62,12 @@ const LoginScreen = () => {
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity onPress={handleForgotPassword}>
-                    <Text style={[styles.forgotPasswordText, { fontFamily: 'Poppins-Bold' }]}>
+                    <Text style={[styles.forgotPasswordText, { fontFamily: fontsLoaded ? 'Poppins-Regular' : 'Poppins-Regular' }]}>
                         Esqueceu a Senha?
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.entrarButton} onPress={handleLogin}>
-                    <Text style={[styles.entrarButtonText, { fontFamily: 'Poppins-Bold' }]}>Entrar</Text>
+                    <Text style={[styles.entrarButtonText, { fontFamily: fontsLoaded ? 'Poppins-Bold' : 'Poppins-Boldj' }]}>Entrar</Text>
                 </TouchableOpacity>
 
             </View>
