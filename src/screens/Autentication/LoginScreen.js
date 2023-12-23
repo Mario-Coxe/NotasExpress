@@ -5,6 +5,9 @@ import { AntDesign } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import styles from './Styles/LoginScreenStyle';
 import { useFonts } from 'expo-font';
+import { useDispatch } from "react-redux";
+import { login } from '../../features/authentication/authSlice';
+
 
 
 const LoginScreen = () => {
@@ -16,11 +19,12 @@ const LoginScreen = () => {
 
 
     const [showPassword, setShowPassword] = useState(false);
-    const [username, setUsername] = useState('');
+    const [telefone, setPhone] = useState('');
     const [password, setPassword] = useState('');
+    const dispatch = useDispatch()
 
     const handleLogin = () => {
-
+        dispatch(login({password, telefone}))
     };
 
     const handleForgotPassword = () => {
@@ -39,7 +43,7 @@ const LoginScreen = () => {
                     <TextInput
                         style={[styles.input, { fontFamily: fontsLoaded ? 'Poppins-Regular' : 'Poppins-Regular' }]}
                         placeholder="Número"
-                        onChangeText={text => setUsername(text)}
+                        onChangeText={text => setPhone(text)}
                         placeholderTextColor={'gray'}
                     />
                 </View>
