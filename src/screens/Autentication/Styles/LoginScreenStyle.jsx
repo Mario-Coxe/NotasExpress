@@ -30,10 +30,12 @@ export default StyleSheet.create({
     loginText: {
         color: '#fff',
         fontSize: 14,
+      
     },
     bemvindoText: {
         color: '#fff',
-        fontSize: 24
+        fontSize: 24,
+        
     },
     inputContainer: {
         paddingHorizontal: 20,

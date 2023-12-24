@@ -12,6 +12,7 @@ export const loadFonts = async () => {
 
 
 // Rest of the import statements
+/*
 import { useFonts } from 'expo-font';
 
 export default function App() {
@@ -21,3 +22,4 @@ export default function App() {
     'Poppins-Light': require('./Poppins-Light.ttf'),
   });
 }
+*/

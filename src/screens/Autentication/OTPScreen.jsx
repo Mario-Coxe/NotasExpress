@@ -1,24 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import { Fontisto, AntDesign } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
-import { loadFonts } from '../../../assets/fonts/Fonts';
 import styles from './Styles/OTPScreenStyle';
+import { useNavigation } from '@react-navigation/native';
 
-const ResetPasswordScreen = () => {
-  useEffect(() => {
-    loadFonts();
-  }, []);
-
+const OTPScreen = () => {
+  
   const [otpDigits, setOtpDigits] = useState(['', '', '', '']);
+  const navigation = useNavigation()
 
   const handleSendOtp = () => {
-    // Enviar o código OTP para verificação aqui
+    navigation.navigate("Reset")
   };
 
   const handleOtpInputChange = (text, index) => {
     if (text.length === 1 && index < 3) {
-      // Focus no próximo campo de entrada quando um dígito é inserido
       otpInputRefs[index + 1].focus();
     }
     const newOtpDigits = [...otpDigits];
@@ -26,20 +23,19 @@ const ResetPasswordScreen = () => {
     setOtpDigits(newOtpDigits);
   };
 
-  // Referências para os campos de entrada de texto
   const otpInputRefs = [];
 
   return (
     <View style={styles.container}>
       <View style={styles.cardContainer}>
-        <Text style={[styles.bemvindoText, { fontFamily: 'bold' }]}>
+        <Text style={[styles.bemvindoText]}>
           Verificação de OTP
         </Text>
-        <Text style={[styles.loginText, { fontFamily: 'regular' }]}>
+        <Text style={[styles.loginText]}>
           Digite o código de verificação de 4 dígitos
         </Text>
-        <Text style={[styles.loginText, { fontFamily: 'regular' }]}>
-          enviando para <Text style={[styles.loginText, { fontFamily: 'bold' }]}>mariocoxedev@gmail.com</Text>
+        <Text style={[styles.loginText]}>
+          enviando para <Text style={[styles.loginText]}>+244 000000000</Text>
         </Text>
         <TouchableOpacity
           style={styles.backButton}
@@ -53,7 +49,7 @@ const ResetPasswordScreen = () => {
           {otpDigits.map((digit, index) => (
             <TextInput
               key={index}
-              style={[styles.otpInput, { fontFamily: 'regular' }]}
+              style={[styles.otpInput]}
               placeholder="0"
               placeholderTextColor={'gray'}
               maxLength={1}
@@ -65,7 +61,7 @@ const ResetPasswordScreen = () => {
           ))}
         </View>
         <TouchableOpacity style={styles.entrarButton} onPress={handleSendOtp}>
-          <Text style={[styles.entrarButtonText, { fontFamily: 'bold' }]}>
+          <Text style={[styles.entrarButtonText]}>
             Enviar
           </Text>
         </TouchableOpacity>
@@ -75,4 +71,4 @@ const ResetPasswordScreen = () => {
   );
 };
 
-export default ResetPasswordScreen;
+export default OTPScreen;

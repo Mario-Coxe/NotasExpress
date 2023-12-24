@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { View, Image, Text, StatusBar } from "react-native";
-import { useNavigation } from "@react-navigation/native"; // Importe o hook useNavigation
+import { useNavigation } from "@react-navigation/native"; 
 import styles from "./Styles/SplashScreenStyle";
 
 const SplashScreen = () => {
@@ -8,11 +8,9 @@ const SplashScreen = () => {
 
   useEffect(() => {
     const redirectTimeout = setTimeout(() => {
-      // Após 3 segundos, navegue para a tela de login
       navigation.navigate("Login");
-    }, 3000);
+    }, 1000);
 
-    // Limpe o timeout quando o componente for desmontado
     return () => clearTimeout(redirectTimeout);
   }, [navigation]);
 
