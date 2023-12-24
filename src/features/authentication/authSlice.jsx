@@ -31,68 +31,7 @@ export const login = createAsyncThunk("login", async (data) => {
   }
 });
 
-/*
 
-export const register = createAsyncThunk("register", async (data) => {
-  try {
-    const response = await axios.post(API_URL + "api/v1/register", data, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
-    console.log(response.data);
-    return response.data;
-  } catch (error) {
-    if (error.response && error.response.status === 422) {
-      console.error("Erro 422 - Solicitação inválida:", error.response.data);
-      console.error("Erro ao criar o usuário: Preencha todos os campos");
-    } else {
-      // Outro tipo de erro
-      console.error("Erro:", error);
-    }
-  }
-
-  /*
-  const response = await fetch(API_URL + "api/v1/register", {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-    },
-  });
-
-  const resp = await response.json();
-  console.log(resp);
-  return resp;
-});
-
-/*
-
-export const updateUser = createAsyncThunk("updateUser", async (data) => {
-  
-  console.log(data.id);
-  console.log(data)
-  try{
-    const response = await axios.put(API_URL + api/v1/user/update/${data.id}, data)
-    console.log(response.data);
-    return response.data;
-  }catch(error){
-    console.error(error.response.data)
-  }
-  
-  /*
-  const response = await fetch(API_URL + "api/v1/user/update/" + id, {
-    method: "PUT",
-    body: data,
-    headers: {
-      "Content-Type": "multipart/form-data",
-      //"Authorization": Bearer ${token}
-    },
-  });
-});
-*/
 
 const authSlice = createSlice({
   name: "auth",
@@ -110,6 +49,8 @@ const authSlice = createSlice({
           state.isloading = false;
           if (message) {
             state.message = message;
+            state.user = user;
+            state.token = token;
             console.warn(state.message);
           } else {
             state.user = user;

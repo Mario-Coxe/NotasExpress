@@ -9,6 +9,8 @@ import eventData from './request/Events';
 import styles from './styles/HomeScreenStyle'
 import NavBar from './components/NavBar';
 import AcademicOptionsModal from './parts/AcademicOptionsModal';
+import { useDispatch, useSelector } from "react-redux";
+
 
 const HomeScreen = () => {
     const [notificationsCount, setNotificationsCount] = useState(6); // Exemplo de contagem de notificações
@@ -17,6 +19,14 @@ const HomeScreen = () => {
     const updateNotifications = (newCount) => {
         setNotificationsCount(newCount);
     };
+
+
+    // Use `useSelector` para acessar o estado do Redux
+    const user = useSelector((state) => state.auth.user);
+    const message = useSelector((state) => state.auth.message);
+    const token = useSelector((state) => state.auth.token);
+
+    console.log("MESSAGE", user)
 
     const [isModalVisible, setModalVisible] = useState(false);
     const academicOptions = [
@@ -62,7 +72,7 @@ const HomeScreen = () => {
                 notificationsCount={notificationsCount} // Adicione esta linha
                 onMenuPress={toggleMenu}
                 onBellPress={() => {
-                   
+
                 }}
             />
 
@@ -85,13 +95,13 @@ const HomeScreen = () => {
                 <Text style={styles.melhorPerformace}>Tua melhor Performace</Text>
                 <Text style={styles.percentagem}>75%</Text>
                 <Progress.Bar
-                    progress={0.75} 
+                    progress={0.75}
                     width={337}
-                    height={5} 
+                    height={5}
                     color="#D9D9D9"
                     borderColor="#A9A9A9"
                     borderRadius={0}
-                    style={{ alignSelf: 'flex-start' }} 
+                    style={{ alignSelf: 'flex-start' }}
                 />
             </View>
 

@@ -4,12 +4,10 @@ import { FontAwesome5 } from "@expo/vector-icons"; // Usando FontAwesome5 para �
 import { AntDesign } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import styles from "./Styles/LoginScreenStyle";
-import {useFonts, Poppins_700Bold, Poppins_400Regular } from "@expo-google-fonts/poppins"
-import { useDispatch } from "react-redux";
+import { useFonts, Poppins_700Bold, Poppins_400Regular } from "@expo-google-fonts/poppins"
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../features/authentication/authSlice";
 import { useNavigation } from "@react-navigation/native";
-
-
 
 const LoginScreen = () => {
 
@@ -19,13 +17,17 @@ const LoginScreen = () => {
     Poppins_400Regular
   });
 
-  
-
   if(!fontsLoaded){
     return null
   }
-
   */
+
+  // Use `useSelector` para acessar o estado do Redux
+  const user = useSelector((state) => state.auth.user);
+  const message = useSelector((state) => state.auth.message);
+  const token = useSelector((state) => state.auth.token);
+
+
 
   const [showPassword, setShowPassword] = useState(false);
   const [telefone, setPhone] = useState("");
@@ -37,13 +39,20 @@ const LoginScreen = () => {
     try {
       const response = await dispatch(login({ password, telefone }));
 
+      console.log("payload",  response.payload)
       // Verifica se o login foi bem-sucedido com base na resposta
       if (
         response.payload &&
         response.payload.message === "User Logged In Successfully"
       ) {
-        // Navega para a tela "Home" se o login for bem-sucedido
-        navigation.navigate("Home");
+        // Verifica se o type_user é "aluno"
+        if (response.payload.user && response.payload.user.type_user === "aluno") {
+          // Navega para a tela "Home" se o login for bem-sucedido e o type_user for "aluno"
+          navigation.navigate("Home");
+        } else {
+          // Se o type_user não for "aluno", faça alguma outra coisa ou exiba uma mensagem
+          console.error("O tipo de usuário não é aluno:", response.payload.user);
+        }
       } else {
         // Lida com outros cenários, se necessário
         console.error("Login não foi bem-sucedido:", response.payload);
@@ -54,11 +63,13 @@ const LoginScreen = () => {
     }
   };
 
+
+
   const handleForgotPassword = () => {
 
     navigation.navigate("Forgot");
-    
-   };
+
+  };
 
   return (
     <View style={styles.container}>
