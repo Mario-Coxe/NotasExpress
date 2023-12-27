@@ -49,7 +49,7 @@ const studentSlice = createSlice({
         }
       )
       .addCase(fetchStudentByTeamIdAndTelefone.rejected, (state) => {
-        console.error("Erro na ação fetchStudentByTeamIdAndTelefone:", action.error);
+        //console.error("Erro na ação fetchStudentByTeamIdAndTelefone:", action.error);
         state.isloading = true;
       });
   },

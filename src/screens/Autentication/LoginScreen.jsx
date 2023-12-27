@@ -22,8 +22,8 @@ const LoginScreen = () => {
   }
   */
   const [showPassword, setShowPassword] = useState(false);
-  const [telefone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
+  const [telefone, setPhone] = useState("922723380");
+  const [password, setPassword] = useState("admin");
   const dispatch = useDispatch();
   const navigation = useNavigation();
 

@@ -40,15 +40,12 @@ const HomeScreen = () => {
           telefone: user.telefone,
         })
       ).then((result) => {
-        console.log(
-          "Resultado da ação fetchStudentByTeamIdAndTelefone:",
-          result
-        );
+        //console.log("Resultado da ação fetchStudentByTeamIdAndTelefone:",result);
       });
     }
   }, [dispatch, user]);
 
-  // Função para atualizar as notificações
+
   const updateNotifications = (newCount) => {
     setNotificationsCount(newCount);
   };
@@ -108,7 +105,7 @@ const HomeScreen = () => {
         {/* Imagem do usuário à direita no topo */}
         <View style={styles.userImageContainer}>
           <Image
-            source={require("../../../assets/image/users/userName.jpg")} // Substitua pelo caminho da imagem do usuário
+            source={require("../../../assets/image/users/user.png")} // Substitua pelo caminho da imagem do usuário
             style={styles.userImage}
           />
         </View>
