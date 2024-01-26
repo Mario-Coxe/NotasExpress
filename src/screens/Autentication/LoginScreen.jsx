@@ -22,14 +22,14 @@ const LoginScreen = () => {
   }
   */
   const [showPassword, setShowPassword] = useState(false);
-  const [telefone, setPhone] = useState("922723380");
-  const [password, setPassword] = useState("admin");
+  const [phone_number, setPhone] = useState("999999999");
+  const [password, setPassword] = useState("1234");
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
   const handleLogin = async () => {
     try {
-      const response = await dispatch(login({ password, telefone }));
+      const response = await dispatch(login({ password, phone_number }));
       if (
         response.payload &&
         response.payload.message === "User Logged In Successfully"
@@ -40,7 +40,6 @@ const LoginScreen = () => {
           console.error("O tipo de usuário não é aluno:", response.payload.user);
         }
       } else {
-        // Lida com outros cenários, se necessário
         console.error("Algo aconteceu!!:", response.payload);
       }
     } catch (error) {
@@ -49,9 +48,7 @@ const LoginScreen = () => {
   };
 
   const handleForgotPassword = () => {
-
     navigation.navigate("Forgot");
-
   };
 
   return (
