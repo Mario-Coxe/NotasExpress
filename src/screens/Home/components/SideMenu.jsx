@@ -12,6 +12,8 @@ const SideMenu = ({ isOpen, onClose, onMenuItemClick }) => {
   const student = useSelector((state) => state.student.student);
   const navigation = useNavigation();
 
+  const defaultImageUrl = "http://172.22.240.1:8080/storage/student-images/default.png";
+
   const navigationItems = [
     { label: "Home", route: "Home", icon: "home" },
     { label: " Quiz", route: "", icon: "bookmark" },
@@ -32,10 +34,10 @@ const SideMenu = ({ isOpen, onClose, onMenuItemClick }) => {
       animationOut='slideOutLeft'>
       <View style={styles.container}>
         <Image
-          source={require("../../../../assets/image/users/user.png")}
+          source={{ uri: student?.photo === 'student-images/default.png' ? defaultImageUrl : `http://172.22.240.1:8080/storage/${student?.photo}` }}
           style={styles.userImage}
         />
-        <Text style={styles.userName}>{student?.nome}</Text>
+        <Text style={styles.userName}>{student?.name}</Text>
         {navigationItems.map((item) => (
           <TouchableOpacity
             key={item.label}

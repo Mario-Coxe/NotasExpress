@@ -12,11 +12,10 @@ const initialState = {
 
 export const fetchStudentByTeamIdAndTelefone = createAsyncThunk(
   "student/fetchByTeamIdAndTelefone",
-  async ({ team_id, telefone }) => {
+  async ({ team_id, phone_number }) => {
     try {
-      const response = await axios.get(`${API_URL}students/${team_id}/${telefone}`);
-
-      console.log(response.data);
+      const response = await axios.get(`${API_URL}students/${team_id}/${phone_number}`);
+      //console.log(response.data);
       return response.data;
     } catch (error) {
       console.error("Erro:", error);

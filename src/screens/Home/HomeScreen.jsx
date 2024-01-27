@@ -24,23 +24,26 @@ import { fetchStudentByTeamIdAndTelefone } from "../../features/student/studentS
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
-  const [notificationsCount, setNotificationsCount] = useState(6); // Exemplo de contagem de notificações
+  const [notificationsCount, setNotificationsCount] = useState(6); 
 
-  // Use `useSelector` para acessar o estado do Redux
   const user = useSelector((state) => state.auth.user);
   const message = useSelector((state) => state.auth.message);
   const token = useSelector((state) => state.auth.token);
+  const student = useSelector((state) => state.student.student);
+
+
+  const defaultImageUrl = "http://172.22.240.1:8080/storage/student-images/default.png";
+
 
   useEffect(() => {
-    // Verifica se o usuário está definido antes de fazer a chamada
     if (user) {
       dispatch(
         fetchStudentByTeamIdAndTelefone({
           team_id: user.team_id,
-          telefone: user.telefone,
+          phone_number: user.phone_number,
         })
       ).then((result) => {
-        //console.log("Resultado da ação fetchStudentByTeamIdAndTelefone:",result);
+        //console.log("Resultado:",result);
       });
     }
   }, [dispatch, user]);
@@ -60,7 +63,7 @@ const HomeScreen = () => {
     { id: "6", icon: "question", text: "Ajuda" },
   ];
 
-  //sidebar menu
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -70,9 +73,7 @@ const HomeScreen = () => {
   const handleMenuItemClick = (route) => {
     navigation.navigate(route);
   };
-  //fim sidebar menu
 
-  //Modal Mais Opcoes
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -100,14 +101,13 @@ const HomeScreen = () => {
         onMenuItemClick={handleMenuItemClick}
       />
 
-      {/* Card com disciplina e barra de progresso */}
+
       <View style={styles.card}>
-        {/* Imagem do usuário à direita no topo */}
         <View style={styles.userImageContainer}>
-          <Image
-            source={require("../../../assets/image/users/user.png")} // Substitua pelo caminho da imagem do usuário
-            style={styles.userImage}
-          />
+        <Image
+          source={{ uri: student?.photo === 'student-images/default.png' ? defaultImageUrl : `http://172.22.240.1:8080/storage/${student?.photo}` }}
+          style={styles.userImage}
+        />
         </View>
         <Text style={styles.disciplineText}>Programação</Text>
         <Text style={styles.melhorPerformace}>Tua melhor Performace</Text>

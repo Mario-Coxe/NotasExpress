@@ -45,15 +45,15 @@ const authSlice = createSlice({
       })
       .addCase(
         login.fulfilled,
-        (state, { payload: { message, user, token } }) => {
+        (state, { payload: { message, data, token } }) => {
           state.isloading = false;
           if (message) {
             state.message = message;
-            state.user = user;
+            state.user = data;
             state.token = token;
             console.warn(state.message);
           } else {
-            state.user = user;
+            state.user = data;
             state.token = token;
             console.warn("sucesso!");
           }
