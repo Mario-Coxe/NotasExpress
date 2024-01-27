@@ -52,15 +52,38 @@ const HomeScreen = () => {
         //console.log("Resultado:",result);
       });
 
+      /*
       dispatch(
         fetchEventByTeamId({
           team_id: user.team_id,
         })
       )
+      */
 
     }
   }, [dispatch, user]);
 
+
+
+  const fetchData = async () => {
+    try {
+      if (user) {
+        const response = await dispatch(fetchEventByTeamId({
+          team_id: user.team_id,
+        }));
+        console.log('Eventos atualizados:', response.payload.data.events);
+      }
+    } catch (error) {
+    } finally {
+      setTimeout(fetchData, 10 * 60 * 1000);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+
+    return () => clearTimeout();
+  }, [dispatch, user]);
 
   const updateNotifications = (newCount) => {
     setNotificationsCount(newCount);

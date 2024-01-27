@@ -17,7 +17,7 @@ const SideMenu = ({ isOpen, onClose, onMenuItemClick }) => {
   const navigationItems = [
     { label: "Home", route: "Home", icon: "home" },
     { label: " Quiz", route: "", icon: "bookmark" },
-    { label: "Calendario", route: "Calendario", icon: "calendar" },
+    { label: "Calendario", route: "Calendar", icon: "calendar" },
     { label: "Minha Turma", route: "MinhaTurma", icon: "group" },
     { label: "Chat", route: "Chat", icon: "comments" },
   ];
