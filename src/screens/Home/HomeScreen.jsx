@@ -21,15 +21,18 @@ import NavBar from "./components/NavBar";
 import AcademicOptionsModal from "./parts/AcademicOptionsModal";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStudentByTeamIdAndTelefone } from "../../features/student/studentSlice";
+import { fetchEventByTeamId } from "../../features/event/eventSlice";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
-  const [notificationsCount, setNotificationsCount] = useState(6); 
+  const [notificationsCount, setNotificationsCount] = useState(6);
 
   const user = useSelector((state) => state.auth.user);
   const message = useSelector((state) => state.auth.message);
   const token = useSelector((state) => state.auth.token);
   const student = useSelector((state) => state.student.student);
+  const events = useSelector((state) => state.events.events);
+
 
 
   const defaultImageUrl = "http://172.22.240.1:8080/storage/student-images/default.png";
@@ -41,10 +44,20 @@ const HomeScreen = () => {
         fetchStudentByTeamIdAndTelefone({
           team_id: user.team_id,
           phone_number: user.phone_number,
-        })
+        }),
+
+
+
       ).then((result) => {
         //console.log("Resultado:",result);
       });
+
+      dispatch(
+        fetchEventByTeamId({
+          team_id: user.team_id,
+        })
+      )
+
     }
   }, [dispatch, user]);
 
@@ -80,7 +93,11 @@ const HomeScreen = () => {
 
   const renderEventPhoto = ({ item }) => (
     <TouchableOpacity style={styles.eventPhotoContainer}>
-      <Image source={item.image} style={styles.eventPhoto} resizeMode='cover' />
+      <Image
+        source={{ uri: `http://172.22.240.1:8080/storage/${item?.photo}` }}
+        style={styles.eventPhoto}
+        resizeMode='cover'
+      />
       <Text style={styles.eventName}>{item.theme}</Text>
     </TouchableOpacity>
   );
@@ -92,7 +109,7 @@ const HomeScreen = () => {
         title='NotasExpress'
         notificationsCount={notificationsCount} // Adicione esta linha
         onMenuPress={toggleMenu}
-        onBellPress={() => {}}
+        onBellPress={() => { }}
       />
 
       <SideMenu
@@ -104,10 +121,10 @@ const HomeScreen = () => {
 
       <View style={styles.card}>
         <View style={styles.userImageContainer}>
-        <Image
-          source={{ uri: student?.photo === 'student-images/default.png' ? defaultImageUrl : `http://172.22.240.1:8080/storage/${student?.photo}` }}
-          style={styles.userImage}
-        />
+          <Image
+            source={{ uri: student?.photo === 'student-images/default.png' ? defaultImageUrl : `http://172.22.240.1:8080/storage/${student?.photo}` }}
+            style={styles.userImage}
+          />
         </View>
         <Text style={styles.disciplineText}>Programação</Text>
         <Text style={styles.melhorPerformace}>Tua melhor Performace</Text>
@@ -147,7 +164,7 @@ const HomeScreen = () => {
         {/* Carrossel de fotos de eventos */}
         <View style={styles.carouselContainer}>
           <Carousel
-            data={eventData}
+            data={events}
             renderItem={renderEventPhoto}
             sliderWidth={Dimensions.get("window").width}
             itemWidth={200}
@@ -160,9 +177,9 @@ const HomeScreen = () => {
         </View>
 
         <NavigationButton
-          onPressHome={() => {}}
-          onPressChat={() => {}}
-          onPressProfile={() => {}}
+          onPressHome={() => { }}
+          onPressChat={() => { }}
+          onPressProfile={() => { }}
         />
       </View>
 

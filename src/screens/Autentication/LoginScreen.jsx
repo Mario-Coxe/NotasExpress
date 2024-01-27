@@ -22,7 +22,7 @@ const LoginScreen = () => {
   }
   */
   const [showPassword, setShowPassword] = useState(false);
-  const [phone_number, setPhone] = useState("999999999");
+  const [phone_number, setPhone] = useState("922222222");
   const [password, setPassword] = useState("1234");
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -31,6 +31,10 @@ const LoginScreen = () => {
   const handleLogin = async () => {
     try {
       const response = await dispatch(login({ password, phone_number }));
+
+      console.log("RESPONSE->", response)
+
+
       if (response.payload.data.type_user === "student") {
         navigation.navigate("Home");
       } else {

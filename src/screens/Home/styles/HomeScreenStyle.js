@@ -155,6 +155,7 @@ export default StyleSheet.create({
     borderRadius: 0.02 * width, // 2% da largura da tela como borda
     marginHorizontal: 0.01 * width, // 1% da largura da tela como margem horizontal
     overflow: 'hidden',
+    backgroundColor: "#000"
   },
   eventPhoto: {
     width: '100%',
@@ -164,8 +165,8 @@ export default StyleSheet.create({
     position: 'absolute',
     bottom: 0.01 * height, // 1% da altura da tela como margem inferior
     left: 0.01 * width, // 1% da largura da tela como margem esquerda
-    color: 'white',
-    fontSize: 0.014 * height, // 1.4% da altura da tela como tamanho de fonte
+    color: '#0077B6',
+    fontSize: 0.015 * height, // 1.4% da altura da tela como tamanho de fonte
     fontWeight: 'bold',
   },
 });
