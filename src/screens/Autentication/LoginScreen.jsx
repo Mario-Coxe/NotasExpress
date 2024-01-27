@@ -27,20 +27,14 @@ const LoginScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
+
   const handleLogin = async () => {
     try {
       const response = await dispatch(login({ password, phone_number }));
-      if (
-        response.payload &&
-        response.payload.message === "User Logged In Successfully"
-      ) {
-        if (response.payload.user && response.payload.user.type_user === "aluno") {
-          navigation.navigate("Home");
-        } else {
-          console.error("O tipo de usuário não é aluno:", response.payload.user);
-        }
+      if (response.payload.data.user.type_user === "student") {
+        navigation.navigate("Home");
       } else {
-        console.error("Algo aconteceu!!:", response.payload);
+        console.error("O tipo de usuário não é aluno:", response.data.user.type_user);
       }
     } catch (error) {
       console.error("Erro durante o login:", error);
