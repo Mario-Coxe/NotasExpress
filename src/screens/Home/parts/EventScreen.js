@@ -4,7 +4,7 @@ import eventData from '../request/Events';
 import { FontAwesome5 } from '@expo/vector-icons';
 import styles from './styles/EventScreenStyle';
 import { useDispatch, useSelector } from "react-redux";
-
+import { URL_BACKOFFICE } from '../../../../application.properties';
 const EventScreen = () => {
 
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const EventScreen = () => {
 
   const renderEventItem = ({ item }) => (
     <View style={styles.eventItem}>
-      <Image source={{ uri: `http://172.22.240.1:8080/storage/${item?.photo}`}} style={styles.eventImage} />
+      <Image source={{ uri: `${URL_BACKOFFICE}storage/${item?.photo}`}} style={styles.eventImage} />
       <View style={styles.eventInfo}>
         <Text style={styles.eventTheme}>{item.theme}</Text>
         <Text style={styles.eventDate}>{item.data_time}</Text>
