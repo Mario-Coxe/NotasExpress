@@ -1,2 +1,3 @@
-const API_URL = "http://192.168.11.63:81/api/"
-export default API_URL;
+const API_URL = "http://172.21.0.1:8080/api/";
+const URL_BACKOFFICE = "http://172.21.0.1:8181/";
+export { API_URL, OTHER_VARIABLE };

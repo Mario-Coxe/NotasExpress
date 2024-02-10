@@ -12,7 +12,7 @@ const SideMenu = ({ isOpen, onClose, onMenuItemClick }) => {
   const student = useSelector((state) => state.student.student);
   const navigation = useNavigation();
 
-  const defaultImageUrl = "http://172.22.240.1:8080/storage/student-images/default.png";
+  const defaultImageUrl = "http://192.168.11.63:8181//storage/student-images/default.png";
 
   const navigationItems = [
     { label: "Home", route: "Home", icon: "home" },
@@ -34,7 +34,7 @@ const SideMenu = ({ isOpen, onClose, onMenuItemClick }) => {
       animationOut='slideOutLeft'>
       <View style={styles.container}>
         <Image
-          source={{ uri: student?.photo === 'student-images/default.png' ? defaultImageUrl : `http://172.22.240.1:8080/storage/${student?.photo}` }}
+          source={{ uri: student?.photo === 'student-images/default.png' ? defaultImageUrl : `http://192.168.11.63:8181/storage/${student?.photo}` }}
           style={styles.userImage}
         />
         <Text style={styles.userName}>{student?.name}</Text>

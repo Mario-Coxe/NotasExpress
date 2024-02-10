@@ -22,6 +22,8 @@ import AcademicOptionsModal from "./parts/AcademicOptionsModal";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStudentByTeamIdAndTelefone } from "../../features/student/studentSlice";
 import { fetchEventByTeamId } from "../../features/event/eventSlice";
+import { API_BACKOFFICE } from "../../../application.properties";
+
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -35,7 +37,8 @@ const HomeScreen = () => {
 
 
 
-  const defaultImageUrl = "http://172.22.240.1:8080/storage/student-images/default.png";
+  console.log(API_BACKOFFICE)
+  const defaultImageUrl = "http://192.168.11.63:8181/storage/student-images/default.png";
 
 
   useEffect(() => {
@@ -117,7 +120,7 @@ const HomeScreen = () => {
   const renderEventPhoto = ({ item }) => (
     <TouchableOpacity style={styles.eventPhotoContainer}>
       <Image
-        source={{ uri: `http://172.22.240.1:8080/storage/${item?.photo}` }}
+        source={{ uri: `http://192.168.11.63:8181/storage/${item?.photo}` }}
         style={styles.eventPhoto}
         resizeMode='cover'
       />

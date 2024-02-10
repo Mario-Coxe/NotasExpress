@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import API_URL from "../../../application.properties";
 import axios from "axios";
+import { API_URL } from "../../../application.properties";
 
 const initialState = {
   message: null,
@@ -18,7 +18,7 @@ export const login = createAsyncThunk("login", async (data) => {
       },
     });
 
-    //console.log(response.data);
+    console.log(response.data);
     return response.data;
   } catch (error) {
     if (error.response && error.response.status === 401) {
