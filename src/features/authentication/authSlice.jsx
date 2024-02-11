@@ -18,7 +18,7 @@ export const login = createAsyncThunk("login", async (data) => {
       },
     });
 
-    console.log(response.data);
+    //console.log(response.data);
     return response.data;
   } catch (error) {
     if (error.response && error.response.status === 401) {

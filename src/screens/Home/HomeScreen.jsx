@@ -73,7 +73,7 @@ const HomeScreen = () => {
         const response = await dispatch(fetchEventByTeamId({
           team_id: user.team_id,
         }));
-        console.log('Eventos atualizados:', response.payload.data.events);
+        //console.log('Eventos atualizados:', response.payload.data.events);
       }
     } catch (error) {
     } finally {
