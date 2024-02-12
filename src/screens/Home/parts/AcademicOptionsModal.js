@@ -20,7 +20,6 @@ const AcademicOptionsModal = ({ isVisible, toggleModal, academicOptions }) => {
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
           <View style={styles.modalRow}>
-            {/* Itens à esquerda */}
             <View style={styles.modalColumn}>
               {academicOptions.slice(0, 3).map((item) => (
                 <TouchableOpacity style={styles.modalItem} key={item.id}>
@@ -30,7 +29,6 @@ const AcademicOptionsModal = ({ isVisible, toggleModal, academicOptions }) => {
               ))}
             </View>
 
-            {/* Itens à direita */}
             <View style={styles.modalColumn}>
               {academicOptions.slice(3, 6).map((item) => (
                 <TouchableOpacity style={styles.modalItem} key={item.id}>
