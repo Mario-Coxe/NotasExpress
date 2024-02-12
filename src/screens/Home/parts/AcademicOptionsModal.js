@@ -8,13 +8,13 @@ const AcademicOptionsModal = ({ isVisible, toggleModal, academicOptions }) => {
   return (
     <Modal
       isVisible={isVisible}
-      backdropOpacity={0.0}
+      backdropOpacity={0.8}
       onBackdropPress={toggleModal}
       animationIn={'slideInRight'}
       animationOut={'slideOutRight'}
-      animationOutTiming={1000}
-      animationInTiming={1000}
-      overlayOpacity={0.5}
+      animationOutTiming={2000}
+      animationInTiming={1500}
+      overlayOpacity={0.0}
       style={styles.bottomSheet}
     >
       <View style={styles.modalContainer}>

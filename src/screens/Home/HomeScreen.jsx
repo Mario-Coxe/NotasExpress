@@ -10,12 +10,11 @@ import {
   FlatList,
   Dimensions,
 } from "react-native";
-import { FontAwesome5, Ionicons } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 import * as Progress from "react-native-progress";
 import Carousel from "react-native-snap-carousel";
 import NavigationButton from "./components/NavigationButton";
 import SideMenu from "./components/SideMenu";
-import eventData from "./request/Events";
 import styles from "./styles/HomeScreenStyle";
 import NavBar from "./components/NavBar";
 import AcademicOptionsModal from "./parts/AcademicOptionsModal";
@@ -23,11 +22,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchStudentByTeamIdAndTelefone } from "../../features/student/studentSlice";
 import { fetchEventByTeamId } from "../../features/event/eventSlice";
 import { URL_BACKOFFICE } from "../../../application.properties";
+import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
   const [notificationsCount, setNotificationsCount] = useState(6);
-
+  const navigation = useNavigation();
   const user = useSelector((state) => state.auth.user);
   const message = useSelector((state) => state.auth.message);
   const token = useSelector((state) => state.auth.token);
@@ -47,21 +47,9 @@ const HomeScreen = () => {
           team_id: user.team_id,
           phone_number: user.phone_number,
         }),
-
-
-
       ).then((result) => {
         //console.log("Resultado:",result);
       });
-
-      /*
-      dispatch(
-        fetchEventByTeamId({
-          team_id: user.team_id,
-        })
-      )
-      */
-
     }
   }, [dispatch, user]);
 
@@ -97,7 +85,7 @@ const HomeScreen = () => {
     { id: "2", icon: "book", text: "Homework" },
     { id: "3", icon: "calendar-alt", text: "Calendário" },
     { id: "4", icon: "book-open", text: "Biblioteca" },
-    { id: "5", icon: "file-alt", text: "Notas" },
+    { id: "5", icon: "file-alt", text: "Notas", route: "Result" },
     { id: "6", icon: "question", text: "Ajuda" },
   ];
 
@@ -111,7 +99,6 @@ const HomeScreen = () => {
   const handleMenuItemClick = (route) => {
     navigation.navigate(route);
   };
-
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -127,6 +114,7 @@ const HomeScreen = () => {
     </TouchableOpacity >
   );
 
+  
 return (
   <View style={styles.container}>
     {/* Barra de navegação */}
@@ -168,7 +156,7 @@ return (
     {/* Menu Acadêmico */}
     <View style={styles.academics}>
       <FlatList
-        data={academicOptions.slice(0, 4)} // Mostra apenas 4 itens
+        data={academicOptions.slice(0, 4)}
         horizontal
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (

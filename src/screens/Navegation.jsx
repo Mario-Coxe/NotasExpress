@@ -11,6 +11,8 @@ import ResetPasswordScreen from "./Autentication/ResetPasswordScreen";
 
 import HomeScreen from "./Home/HomeScreen";
 import CalendarScreen from "./Home/CalenderScreen";
+import ResultScreen from './Home/ResultScreen';
+
 import { Provider } from "react-redux";
 import { Store } from "../features/store/index";
 
@@ -54,6 +56,11 @@ function Navegation() {
           <Stack.Screen
             name='Calendar'
             component={CalendarScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Result'
+            component={ResultScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
