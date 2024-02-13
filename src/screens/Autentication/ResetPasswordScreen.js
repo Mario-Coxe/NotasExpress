@@ -6,20 +6,27 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
-  StyleSheet,
-  Button,
 } from "react-native";
-import { FontAwesome5 } from "@expo/vector-icons"; // Usando FontAwesome5 para ícones
+import { FontAwesome5 } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import styles from "./Styles/LoginScreenStyle";
 import { useNavigation } from "@react-navigation/native";
+import { useFonts, Poppins_700Bold, Poppins_400Regular, Poppins_600SemiBold } from "@expo-google-fonts/poppins"
+
 
 const ResetPasswordScreen = () => {
+
+  const [fontsLoaded] = useFonts({
+    Poppins_700Bold,
+    Poppins_400Regular,
+    Poppins_600SemiBold
+  });
+
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigation = useNavigation() 
+  const navigation = useNavigation()
 
   const handleLogin = () => {
     navigation.navigate("Login")
@@ -29,17 +36,25 @@ const ResetPasswordScreen = () => {
 
   };
 
+  if (!fontsLoaded) {
+    return (
+      <View style={styles.container}>
+
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.cardContainer}>
-        <Text style={[styles.bemvindoText]}>Redefinir Senha</Text>
-        <Text style={[styles.loginText]}>
+        <Text style={[styles.bemvindoText, { fontFamily: "Poppins_700Bold" }]}>Redefinir Senha</Text>
+        <Text style={[styles.loginText, { fontFamily: "Poppins_400Regular" }]}>
           Digite seu novo senha nos campos abaixo
         </Text>
-        <Text style={[styles.loginText]}>
+        <Text style={[styles.loginText, { fontFamily: "Poppins_400Regular" }]}>
           e clique em Redefinir Senha para concluir
         </Text>
-        <Text style={[styles.loginText]}>
+        <Text style={[styles.loginText, { fontFamily: "Poppins_400Regular" }]}>
           o processo de redefinição de senha
         </Text>
       </View>
@@ -52,7 +67,7 @@ const ResetPasswordScreen = () => {
             style={styles.inputIcon}
           />
           <TextInput
-            style={[styles.input]}
+            style={[styles.input, { fontFamily: "Poppins_600SemiBold" }]}
             placeholder='Senha'
             secureTextEntry={!showPassword}
             onChangeText={(text) => setPassword(text)}
@@ -75,7 +90,7 @@ const ResetPasswordScreen = () => {
             style={styles.inputIcon}
           />
           <TextInput
-            style={[styles.input]}
+            style={[styles.input, { fontFamily: "Poppins_600SemiBold" }]}
             placeholder='Confirmar Senha'
             secureTextEntry={!showPassword}
             onChangeText={(text) => setPassword(text)}
@@ -92,7 +107,7 @@ const ResetPasswordScreen = () => {
         </View>
 
         <TouchableOpacity style={styles.entrarButton} onPress={handleLogin}>
-          <Text style={[styles.entrarButtonText]}>Redefinir Senha</Text>
+          <Text style={[styles.entrarButtonText, { fontFamily: "Poppins_600SemiBold" }]}>Redefinir Senha</Text>
         </TouchableOpacity>
       </View>
       <StatusBar style='#0077B6' />
