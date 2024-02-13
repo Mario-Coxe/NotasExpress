@@ -44,7 +44,7 @@ export default StyleSheet.create({
       fontSize: 20,
     },
     modalDescription: {
-      fontSize: 16,
+      fontSize: 15,
     },
     modalCloseButton: {
       padding: 10,

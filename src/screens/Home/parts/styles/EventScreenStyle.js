@@ -8,8 +8,8 @@ export default StyleSheet.create({
       marginTop: 20,
     },
     listContent: {
-      paddingTop: 10, // Adiciona espaço no topo da lista
-      paddingBottom: 100, // Adiciona espaço na parte inferior da lista
+      paddingTop: 10, 
+      paddingBottom: 100, 
     },
     searchContainer: {
       flexDirection: 'row',
@@ -25,6 +25,7 @@ export default StyleSheet.create({
     },
     searchInput: {
       flex: 1,
+      fontSize: 14
     },
     eventItem: {
       backgroundColor: '#fff',
@@ -44,16 +45,18 @@ export default StyleSheet.create({
       marginLeft: 16,
     },
     eventTheme: {
-      fontSize: 18,
+      fontSize: 16,
       color: '#0077B6',
-      fontWeight: 'bold',
     },
     eventDate: {
       color: '#555',
+      fontSize: 13
+
     },
     eventDescription: {
       marginTop: 8,
       fontSize: 14,
       color: '#000000',
+      fontSize: 14
     },
   });
