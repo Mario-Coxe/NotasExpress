@@ -12,18 +12,18 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     backgroundColor: '#0077B6',
-    paddingHorizontal: 0.04 * width, // 4% da largura da tela como padding horizontal
-    paddingTop: 0.06 * height, // 6% da altura da tela como padding superior
+    paddingHorizontal: 0.04 * width, 
+    paddingTop: 0.06 * height, 
   },
   menuIcon: {
-    padding: 0.02 * width, // 2% da largura da tela como padding
+    padding: 0.02 * width, 
   },
   notificationIcon: {
     position: 'relative',
-    padding: 0.02 * width, // 2% da largura da tela como padding
+    padding: 0.02 * width, 
   },
   titleText: {
-    fontSize: 0.03 * height, // 3% da altura da tela como tamanho de fonte
+    fontSize: 0.02 * height, 
     color: 'white',
   },
   notificationBadge: {
@@ -31,40 +31,40 @@ export default StyleSheet.create({
     top: 0,
     right: 0,
     backgroundColor: 'red',
-    borderRadius: 0.02 * width, // 2% da largura da tela como borda
-    paddingHorizontal: 0.012 * width, // 1.2% da largura da tela como padding horizontal
-    paddingVertical: 0.005 * height, // 0.5% da altura da tela como padding vertical
+    borderRadius: 0.02 * width,
+    paddingHorizontal: 0.012 * width, 
+    paddingVertical: 0.005 * height, 
   },
   notificationText: {
     color: 'white',
-    fontSize: 0.012 * height, // 1.2% da altura da tela como tamanho de fonte
+    fontSize: 0.012 * height, 
   },
   card: {
     backgroundColor: '#0077B6',
-    padding: 0.04 * width, // 4% da largura da tela como padding
-    borderRadius: 0.02 * width, // 2% da largura da tela como borda
-    margin: 0.05 * width, // 5% da largura da tela como margem
+    padding: 0.04 * width, 
+    borderRadius: 0.02 * width, 
+    margin: 0.05 * width, 
     alignItems: 'center',
     width: '90%',
     alignSelf: 'center',
   },
   disciplineText: {
-    fontSize: 0.018 * height, // 1.8% da altura da tela como tamanho de fonte
+    fontSize: 0.018 * height, 
     color: 'white',
-    marginBottom: 0.01 * height, // 1% da altura da tela como margem inferior
+    marginBottom: 0.01 * height, 
     alignSelf: 'flex-start',
   },
   melhorPerformace: {
-    fontSize: 0.014 * height, // 1.4% da altura da tela como tamanho de fonte
+    fontSize: 0.014 * height, 
     color: 'white',
-    marginBottom: 0.01 * height, // 1% da altura da tela como margem inferior
+    marginBottom: 0.01 * height, 
     alignSelf: 'flex-start',
   },
   percentagem: {
-    fontSize: 0.014 * height, // 1.4% da altura da tela como tamanho de fonte
+    fontSize: 0.014 * height,
     color: 'white',
     alignSelf: 'flex-end',
-    marginTop: -0.02 * height, // 2% da altura da tela como margem superior negativa
+    marginTop: -0.02 * height, 
   },
   content: {
     flex: 1,
@@ -74,26 +74,26 @@ export default StyleSheet.create({
   userImageContainer: {
     alignItems: 'flex-end',
     justifyContent: 'flex-start',
-    marginBottom: 0.01 * height, // 1% da altura da tela como margem inferior
+    marginBottom: 0.01 * height, 
     flexDirection: 'row',
     alignSelf: 'flex-end',
   },
   userImage: {
-    width: 0.1 * width, // 10% da largura da tela
-    height: 0.1 * width, // 10% da largura da tela
-    borderRadius: 0.03 * width, // 3% da largura da tela como borda
-    marginRight: 0.02 * width, // 2% da largura da tela como margem direita
+    width: 0.1 * width, 
+    height: 0.1 * width, 
+    borderRadius: 0.03 * width, 
+    marginRight: 0.02 * width,
   },
   academics: {
     backgroundColor: 'white',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 0.05 * width, // 5% da largura da tela como padding
-    borderRadius: 0.02 * width, // 2% da largura da tela como borda
+    padding: 0.05 * width, 
+    borderRadius: 0.02 * width,
     width: '90%',
     alignSelf: 'center',
-    marginTop: 0.03 * height, // 3% da altura da tela como margem superior
+    marginTop: 0.03 * height,
   },
   modalButton: {
     alignItems: 'center',
@@ -101,7 +101,7 @@ export default StyleSheet.create({
   },
   academicItem: {
     alignItems: 'center',
-    margin: 0.01 * height, // 1% da altura da tela como margem
+    margin: 0.01 * height, 
   },
   modalContainer: {
     flex: 1,
@@ -115,21 +115,21 @@ export default StyleSheet.create({
   },
   modalContent: {
     backgroundColor: 'white',
-    width: 0.95 * width, // 95% da largura da tela
-    padding: 0.04 * width, // 4% da largura da tela como padding
-    borderRadius: 0.01 * width, // 1% da largura da tela como borda
+    width: 0.95 * width, 
+    padding: 0.04 * width, 
+    borderRadius: 0.01 * width, 
     alignItems: 'center',
-    minHeight: 0.2 * height, // 20% da altura da tela como altura mínima
+    minHeight: 0.2 * height,
   },
   modalItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 0.01 * height, // 1% da altura da tela como margem vertical
-    paddingHorizontal: 0.016 * width, // 1.6% da largura da tela como padding horizontal
+    marginVertical: 0.01 * height, 
+    paddingHorizontal: 0.016 * width, 
   },
   modalItemText: {
-    fontSize: 0.016 * height, // 1.6% da altura da tela como tamanho de fonte
-    marginLeft: 0.01 * width, // 1% da largura da tela como margem esquerda
+    fontSize: 0.016 * height, 
+    marginLeft: 0.01 * width, 
   },
   modalRow: {
     flexDirection: 'row',
@@ -137,23 +137,23 @@ export default StyleSheet.create({
   },
   modalColumn: {
     flex: 1,
-    paddingHorizontal: 0.016 * width, // 1.6% da largura da tela como padding horizontal
+    paddingHorizontal: 0.016 * width, 
     width: '100%',
   },
   closeIcon: {
     position: 'absolute',
-    right: 0.01 * width, // 1% da largura da tela como margem direita
-    marginBottom: 0.03 * height, // 3% da altura da tela como margem inferior
+    right: 0.01 * width, 
+    marginBottom: 0.03 * height, 
   },
   carouselContainer: {
-    marginTop: 0.04 * height, // 4% da altura da tela como margem superior
+    marginTop: 0.04 * height, 
     marginBottom: 0,
   },
   eventPhotoContainer: {
-    width: 0.5 * width, // 40% da largura da tela
-    height: 0.2 * height, // 20% da altura da tela
-    borderRadius: 0.02 * width, // 2% da largura da tela como borda
-    marginHorizontal: 0.01 * width, // 1% da largura da tela como margem horizontal
+    width: 0.5 * width, 
+    height: 0.2 * height, 
+    borderRadius: 0.02 * width, 
+    marginHorizontal: 0.01 * width, 
     overflow: 'hidden',
     backgroundColor: "#000"
   },
@@ -163,10 +163,10 @@ export default StyleSheet.create({
   },
   eventName: {
     position: 'absolute',
-    bottom: 0.01 * height, // 1% da altura da tela como margem inferior
-    left: 0.01 * width, // 1% da largura da tela como margem esquerda
+    bottom: 0.01 * height, 
+    left: 0.01 * width, 
     color: '#0077B6',
-    fontSize: 0.015 * height, // 1.4% da altura da tela como tamanho de fonte
+    fontSize: 0.015 * height, 
     fontWeight: 'bold',
   },
 });

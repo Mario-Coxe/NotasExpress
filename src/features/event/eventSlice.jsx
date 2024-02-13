@@ -39,10 +39,10 @@ const findEventsByTeamSlice = createSlice({
           if (message) {
             state.message = message;
             state.events = events;
-            console.warn(state.message);
+            //console.warn(state.message);
           } else {
             state.events = events;
-            console.warn("sucesso!");
+            //console.warn("sucesso!");
           }
         }
       )
@@ -85,10 +85,10 @@ const findEventsBySearchSlice = createSlice({
           if (message) {
             state.message = message;
             state.events = events;
-            console.warn(state.message);
+           // console.warn(state.message);
           } else {
             state.events = events;
-            console.warn("sucesso!");
+            //console.warn("sucesso!");
           }
         }
       )

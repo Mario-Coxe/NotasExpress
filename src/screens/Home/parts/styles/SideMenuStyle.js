@@ -4,12 +4,12 @@ export default StyleSheet.create({
  
     bottomSection: {
       flexDirection: 'column',
-      alignItems: 'center', // Alinha horizontalmente ao centro
+      alignItems: 'center', 
       marginTop: 20,
     },
     bottomButton: {
       flexDirection: 'row',
-      alignItems: 'center', // Alinha verticalmente ao centro
+      alignItems: 'center', 
       marginVertical: 10,
     },
     icon: {
@@ -40,14 +40,14 @@ export default StyleSheet.create({
       borderRadius: 50,
     },
     userName: {
-      fontSize: 18,
+      fontSize: 16,
       marginTop: 10,
       color: '#fff',
     },
     navItemContent: {
       flexDirection: 'row',
       alignItems: 'center',
-      justifyContent: 'center', // Alinha horizontalmente ao centro
+      justifyContent: 'center', 
     },
     navItem: {
       flexDirection: 'row',
@@ -60,7 +60,7 @@ export default StyleSheet.create({
     },
     navItemText: {
       color: '#fff',
-      fontSize: 16,
+      fontSize: 15,
     },
     bottomSection: {
       flex: 1,
@@ -75,6 +75,7 @@ export default StyleSheet.create({
       padding: 10,
       borderRadius: 5,
       marginTop: 20,
+      height: 40,
       alignItems: 'center',
     },
   });

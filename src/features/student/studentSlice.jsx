@@ -40,10 +40,10 @@ const studentSlice = createSlice({
           if (message) {
             state.message = message;
             state.student = student;
-            console.warn(state.message);
+            //console.warn(state.message);
           } else {
             state.student = student;
-            console.warn("sucesso!");
+            //console.warn("sucesso!");
           }
         }
       )

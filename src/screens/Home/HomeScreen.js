@@ -47,29 +47,18 @@ const HomeScreen = () => {
         //console.log("Resultado:",result);
       });
     }
+
+    dispatch(
+      fetchEventByTeamId({
+        team_id: user.team_id,
+      }),
+    ).then((result) => {
+      //console.log("Resultado:",result);
+    });
+
   }, [dispatch, user]);
 
 
-
-  const fetchData = async () => {
-    try {
-      if (user) {
-        const response = await dispatch(fetchEventByTeamId({
-          team_id: user.team_id,
-        }));
-        //console.log('Eventos atualizados:', response.payload.data.events);
-      }
-    } catch (error) {
-    } finally {
-      setTimeout(fetchData, 10 * 60 * 1000);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-
-    return () => clearTimeout();
-  }, [dispatch, user]);
 
   const updateNotifications = (newCount) => {
     setNotificationsCount(newCount);
@@ -106,17 +95,15 @@ const HomeScreen = () => {
         style={styles.eventPhoto}
         resizeMode='cover'
       />
-      <Text style={styles.eventName}>{item.theme}</Text>
     </TouchableOpacity >
   );
 
 
   return (
     <View style={styles.container}>
-      {/* Barra de navegação */}
       <NavBar
-        title='NotasExpress'
-        notificationsCount={notificationsCount} // Adicione esta linha
+        title='Turma+'
+        notificationsCount={notificationsCount}
         onMenuPress={toggleMenu}
         onBellPress={() => { }}
       />
@@ -149,7 +136,7 @@ const HomeScreen = () => {
         />
       </View>
 
-      {/* Menu Acadêmico */}
+
       <View style={styles.academics}>
         <FlatList
           data={academicOptions.slice(0, 4)}
@@ -162,15 +149,14 @@ const HomeScreen = () => {
             </TouchableOpacity>
           )}
         />
-        {/* Botão para abrir o modal com todas as opções */}
+
         <TouchableOpacity style={styles.modalButton} onPress={toggleModal}>
           <FontAwesome5 name='chevron-down' size={30} color='#0077B6' />
         </TouchableOpacity>
       </View>
 
-      {/* Conteúdo da tela */}
+
       <View style={styles.content}>
-        {/* Carrossel de fotos de eventos */}
         <View style={styles.carouselContainer}>
           <Carousel
             data={events}

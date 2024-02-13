@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, TextInput } from "react-native";
-import { FontAwesome5 } from "@expo/vector-icons"; // Usando FontAwesome5 para ícones
+import { View, Text, TouchableOpacity, TextInput, ActivityIndicator } from "react-native";
+import { FontAwesome5 } from "@expo/vector-icons"; 
 import { AntDesign } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import styles from "./Styles/LoginScreenStyle";
@@ -9,18 +9,17 @@ import { useDispatch } from "react-redux";
 import { login } from "../../features/authentication/authSlice";
 import { useNavigation } from "@react-navigation/native";
 
+
+
 const LoginScreen = () => {
 
-  /*
+
   const [fontsLoaded] = useFonts({
     Poppins_700Bold,
     Poppins_400Regular
   });
 
-  if(!fontsLoaded){
-    return null
-  }
-  */
+
   const [showPassword, setShowPassword] = useState(false);
   const [phone_number, setPhone] = useState("945047525");
   const [password, setPassword] = useState("1234");
@@ -47,10 +46,19 @@ const LoginScreen = () => {
     navigation.navigate("Forgot");
   };
 
+
+  if (!fontsLoaded) {
+    return (
+      <View style={styles.container}>
+    
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.cardContainer}>
-        <Text style={styles.bemvindoText}>Bem-Vindo!</Text>
+        <Text style={[styles.bemvindoText, { fontFamily: "Poppins_700Bold" }]}>Bem-Vindo!</Text>
         <Text style={styles.loginText}>Faça o Login</Text>
       </View>
       <View style={styles.inputContainer}>
