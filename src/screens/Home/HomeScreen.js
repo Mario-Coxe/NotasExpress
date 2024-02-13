@@ -5,7 +5,6 @@ import {
   View,
   Text,
   TouchableOpacity,
-  StyleSheet,
   Image,
   FlatList,
   Dimensions,
@@ -23,8 +22,18 @@ import { fetchStudentByTeamIdAndTelefone } from "../../features/student/studentS
 import { fetchEventByTeamId } from "../../features/event/eventSlice";
 import { URL_BACKOFFICE } from "../../../application.properties";
 import { useNavigation } from '@react-navigation/native';
+import { useFonts, Poppins_700Bold, Poppins_400Regular, Poppins_600SemiBold } from "@expo-google-fonts/poppins"
+
 
 const HomeScreen = () => {
+
+  const [fontsLoaded] = useFonts({
+    Poppins_700Bold,
+    Poppins_400Regular,
+    Poppins_600SemiBold,
+  });
+
+
   const dispatch = useDispatch();
   const [notificationsCount, setNotificationsCount] = useState(6);
   const navigation = useNavigation();
@@ -98,6 +107,13 @@ const HomeScreen = () => {
     </TouchableOpacity >
   );
 
+  if (!fontsLoaded) {
+    return (
+      <View style={styles.container}>
+
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -114,7 +130,6 @@ const HomeScreen = () => {
         onMenuItemClick={handleMenuItemClick}
       />
 
-
       <View style={styles.card}>
         <View style={styles.userImageContainer}>
           <Image
@@ -122,8 +137,8 @@ const HomeScreen = () => {
             style={styles.userImage}
           />
         </View>
-        <Text style={styles.disciplineText}>Programação</Text>
-        <Text style={styles.melhorPerformace}>Tua melhor Performace</Text>
+        <Text style={[styles.disciplineText, { fontFamily: "Poppins_600SemiBold" }]}>Programação</Text>
+        <Text style={[styles.melhorPerformace, { fontFamily: "Poppins_400Regular" }]}>Tua melhor Performace</Text>
         <Text style={styles.percentagem}>75%</Text>
         <Progress.Bar
           progress={0.75}
