@@ -16,7 +16,7 @@ const CalendarScreen = () => {
   });
 
 
-  const [selectedItem, setSelectedItem] = useState('CalendarScreen');
+  const [selectedItem, setSelectedItem] = useState('ScheduleScreen');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {

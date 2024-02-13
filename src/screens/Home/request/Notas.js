@@ -3,19 +3,19 @@ export const FirstQuarter = [
     {
         disciplina: 'Matemática',
         notas: [
-            { id: 1, mac: '10' },
-            { id: 2, pp: '25', },
-            { id: 3, pt: '20', },
-            { id: 4, mt: '20', },
+            { id: 1, mac: 10 },
+            { id: 2, pp: 25 },
+            { id: 3, pt: 20 },
+            { id: 4, mt: 20 },
         ],
     },
     {
         disciplina: 'História',
         notas: [
-            { id: 1, mac: '10' },
-            { id: 2, pp: '25', },
-            { id: 3, pt: '20', },
-            { id: 4, mt: '20', },
+            { id: 1, mac: 10 },
+            { id: 2, pp: 25 },
+            { id: 3, pt: 20 },
+            { id: 4, mt: 20 },
         ],
     },
 ];
@@ -31,26 +31,24 @@ export const SecondQuarter = [
             { id: 4, mt: 20 },
         ],
     },
-
     {
         disciplina: 'Física',
         notas: [
-            { id: 1, mac: '10' },
-            { id: 2, pp: '25', },
-            { id: 3, pt: '20', },
-            { id: 4, mt: '20', },
+            { id: 1, mac: 10 },
+            { id: 2, pp: 25 },
+            { id: 3, pt: 20 },
+            { id: 4, mt: 20 },
         ],
     },
     {
-        disciplina: 'Técnica De Linguagem de Programção',
+        disciplina: 'Técnica De Linguagem de Programação',
         notas: [
-            { id: 1, mac: '10' },
-            { id: 2, pp: '25', },
-            { id: 3, pt: '20', },
-            { id: 4, mt: '20', },
+            { id: 1, mac: 10 },
+            { id: 2, pp: 25 },
+            { id: 3, pt: 20 },
+            { id: 4, mt: 20 },
         ],
     },
-
 ];
 
 
@@ -68,29 +66,28 @@ export const ThirdQuarter = [
     {
         disciplina: 'História',
         notas: [
-            { id: 1, mac: '10' },
-            { id: 2, pp: '25', },
-            { id: 3, pt: '20', },
-            { id: 4, mt: '20', },
+            { id: 1, mac: 10 },
+            { id: 2, pp: 25 },
+            { id: 3, pt: 20 },
+            { id: 4, mt: 20 },
         ],
     },
-
     {
         disciplina: 'Física',
         notas: [
-            { id: 1, mac: '10' },
-            { id: 2, pp: '25', },
-            { id: 3, pt: '20', },
-            { id: 4, mt: '20', },
+            { id: 1, mac: 10 },
+            { id: 2, pp: 25 },
+            { id: 3, pt: 20 },
+            { id: 4, mt: 20 },
         ],
     },
     {
-        disciplina: 'Técnica De Linguagem de Programção',
+        disciplina: 'Técnica De Linguagem de Programação',
         notas: [
-            { id: 1, mac: '10' },
-            { id: 2, pp: '25', },
-            { id: 3, pt: '20', },
-            { id: 4, mt: '20', },
+            { id: 1, mac: 10 },
+            { id: 2, pp: 25 },
+            { id: 3, pt: 20 },
+            { id: 4, mt: 20 },
         ],
     },
 ];

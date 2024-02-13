@@ -25,7 +25,7 @@ export default StyleSheet.create({
         alignItems: 'center',
       },
       disciplinaText: {
-        fontSize: 18,
+        fontSize: 15,
         color: '#333',
       },
       tarefasContainer: {

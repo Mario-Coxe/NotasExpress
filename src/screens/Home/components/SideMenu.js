@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import Modal from "react-native-modal";
 import { FontAwesome } from "@expo/vector-icons";
 import styles from "../parts/styles/SideMenuStyle";
@@ -30,8 +30,8 @@ const SideMenu = ({ isOpen, onClose, onMenuItemClick }) => {
     { label: "Calendario", route: "Calendar", icon: "calendar" },
     { label: "Minha Turma", route: "MinhaTurma", icon: "group" },
     { label: "Chat", route: "Chat", icon: "comments" },
-    { label: "Notas", route: "Result", icon: "sticky-note-o" },
-
+    { label: "Notas", route: "Result", icon: "sticky-note" },
+    { label: "Tarefas", route: "HomeWork", icon: "building" },
   ];
 
   //console.log('estudante: ', student)

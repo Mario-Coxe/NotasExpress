@@ -2,17 +2,23 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import NavBar from './components/NavBar';
 import SideMenu from './components/SideMenu';
-import SchoolCalendarScreen from './parts/SchoolCalendarScreen';
-import NavigationButton from './components/NavigationButton';
-import ScheduleScreen from './parts/ScheduleScreen';
-import EventScreen from './parts/EventScreen';
 import styles from './styles/CalenderScreenStyle';
 import FirstQuarterScreen from './parts/Quater/FirstQuarterScreen';
 import SecondQuarterScreen from './parts/Quater/SecondQuarterScreen';
 import ThirdQuarterScreen from './parts/Quater/ThirdQuarterScreen';
+import { useFonts, Poppins_400Regular, Poppins_600SemiBold, Poppins_800ExtraBold } from "@expo-google-fonts/poppins"
+
 
 const ResultScreen = () => {
-  const [selectedItem, setSelectedItem] = useState('CalendarScreen'); // Use a mesma variável para rastrear a seleção
+
+  const [fontsLoaded] = useFonts({
+    Poppins_400Regular,
+    Poppins_600SemiBold,
+    Poppins_800ExtraBold
+  });
+
+
+  const [selectedItem, setSelectedItem] = useState('FirstQuarter');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -32,9 +38,17 @@ const ResultScreen = () => {
       style={[styles.item, selectedItem === item && styles.selectedItem]}
       onPress={() => handleItemClick(item)}
     >
-      <Text style={styles.eventText}>{text}</Text>
+      <Text style={[styles.eventText, { fontFamily: "Poppins_600SemiBold" }]}>{text}</Text>
     </TouchableOpacity>
   );
+
+  if (!fontsLoaded) {
+    return (
+      <View style={styles.container}>
+
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -42,7 +56,7 @@ const ResultScreen = () => {
         title="Notas"
         onMenuPress={toggleMenu}
         onBellPress={() => {
-          //
+
         }}
       />
 
@@ -61,7 +75,7 @@ const ResultScreen = () => {
       {selectedItem === 'FirstQuarter' && <FirstQuarterScreen />}
       {selectedItem === 'SecondQuarter' && <SecondQuarterScreen />}
       {selectedItem === 'ThirdQuarter' && <ThirdQuarterScreen />}
-      
+
       {/* <View style={styles.NavigationButton}>
         <NavigationButton />
       </View> */}

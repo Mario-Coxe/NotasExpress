@@ -1,22 +1,20 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import SideMenu from '../../components/SideMenu';
 import NavigationButton from '../../components/NavigationButton';
 import { FirstQuarter } from '../../request/Notas';
 import styles from '../styles/FirstQuarterScreenStyle';
-
-const ProgressBar = ({ nota, notaMaxima }) => {
-  const percentual = (nota / notaMaxima) * 100;
-
-  return (
-    <View style={styles.progressBar}>
-      <View style={[styles.progressFill, { width: `${percentual}%`, backgroundColor: percentual >= 10 ? 'green' : 'red' }]} />
-    </View>
-  );
-};
+import { useFonts, Poppins_400Regular, Poppins_600SemiBold } from "@expo-google-fonts/poppins"
 
 const FirstQuarterScreen = () => {
+
+  const [fontsLoaded] = useFonts({
+    Poppins_400Regular,
+    Poppins_600SemiBold,
+  });
+
+
   const [expandedDisciplina, setExpandedDisciplina] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -24,6 +22,16 @@ const FirstQuarterScreen = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+
+  if (!fontsLoaded) {
+    return (
+      <View style={styles.container}>
+
+      </View>
+    );
+  }
+
 
   return (
     <View style={styles.container}>
@@ -42,7 +50,7 @@ const FirstQuarterScreen = () => {
             onPress={() => setExpandedDisciplina(expandedDisciplina === item ? null : item)}
           >
             <View style={styles.disciplinaHeader}>
-              <Text style={styles.disciplinaText}>{item.disciplina}</Text>
+              <Text style={[styles.disciplinaText, { fontFamily: "Poppins_400Regular" }]}>{item.disciplina}</Text>
               <FontAwesome
                 name={expandedDisciplina === item ? 'caret-up' : 'caret-down'}
                 size={24}
@@ -58,17 +66,9 @@ const FirstQuarterScreen = () => {
 
                   return (
                     <View style={styles.tarefaItem} key={nota.id}>
-                      {notaKey !== 'grafico' ? (
-                        <Text style={styles.tarefaText} key={notaKey}>
-                          {notaKey.toUpperCase()}: {notaValue}
-                        </Text>
-                      ) : (
-                        <ProgressBar
-                          nota={parseInt(notaValue)}
-                          notaMaxima={20}
-                          key={nota.id}
-                        />
-                      )}
+                      <Text style={[styles.tarefaText, { fontFamily: "Poppins_600SemiBold" }]} key={notaKey}>
+                        {notaKey.toUpperCase()}: {notaValue}
+                      </Text>
                     </View>
                   );
                 })}
@@ -82,13 +82,13 @@ const FirstQuarterScreen = () => {
       <View style={styles.navigationButton}>
         <NavigationButton
           onPressHome={() => {
-            // Lógica para navegar para a tela "Home"
+
           }}
           onPressChat={() => {
-            // Lógica para navegar para a tela de "Chat"
+
           }}
           onPressProfile={() => {
-            // Lógica para navegar para a tela de "Perfil"
+
           }}
         />
       </View>

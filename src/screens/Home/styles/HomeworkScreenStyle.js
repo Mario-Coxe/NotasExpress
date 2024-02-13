@@ -13,8 +13,7 @@ export default StyleSheet.create({
         paddingBottom: 350, // Adiciona espaço na parte inferior da lista
     },
     title: {
-        fontSize: 24,
-        fontWeight: 'bold',
+        fontSize: 16,
         marginBottom: 16,
     },
     disciplinaItem: {
@@ -27,7 +26,7 @@ export default StyleSheet.create({
 
     },
     disciplinaText: {
-        fontSize: 18,
+        fontSize: 15,
         color: '#333',
     },
     tarefasContainer: {
@@ -41,7 +40,7 @@ export default StyleSheet.create({
         elevation: 2,
     },
     tarefaText: {
-        fontSize: 16,
+        fontSize: 15,
         color: '#333',
     },
     dataEntrega: {

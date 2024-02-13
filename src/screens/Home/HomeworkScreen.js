@@ -14,14 +14,33 @@ import SideMenu from "./components/SideMenu";
 import NavigationButton from "./components/NavigationButton";
 import tarefasPorDisciplina from "./request/Homework";
 import styles from "./styles/HomeworkScreenStyle";
+import { useFonts, Poppins_700Bold, Poppins_400Regular, Poppins_600SemiBold, Poppins_600SemiBold_Italic } from "@expo-google-fonts/poppins"
+
 
 const HomeworkScreen = () => {
+
+  const [fontsLoaded] = useFonts({
+    Poppins_700Bold,
+    Poppins_400Regular,
+    Poppins_600SemiBold,
+    Poppins_600SemiBold_Italic
+  });
+
+
   const [expandedDisciplina, setExpandedDisciplina] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  if (!fontsLoaded) {
+    return (
+      <View style={styles.container}>
+
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -54,7 +73,7 @@ const HomeworkScreen = () => {
                 justifyContent: "space-between",
                 alignItems: "center",
               }}>
-              <Text style={styles.disciplinaText}>{item.disciplina}</Text>
+              <Text style={[styles.disciplinaText, { fontFamily: "Poppins_400Regular" }]}>{item.disciplina}</Text>
               <FontAwesome
                 name={expandedDisciplina === item ? "caret-up" : "caret-down"}
                 size={24}
@@ -63,14 +82,14 @@ const HomeworkScreen = () => {
             </View>
             {expandedDisciplina === item && (
               <View style={styles.tarefasContainer}>
-                <Text style={styles.title}>Tarefas de {item.disciplina}</Text>
+                <Text style={[styles.title, { fontFamily: "Poppins_600SemiBold_Italic" }]}>Tarefas de {item.disciplina}</Text>
                 <FlatList
                   data={item.tarefas}
                   keyExtractor={(task) => task.id.toString()}
                   renderItem={({ item: task }) => (
                     <View style={styles.tarefaItem}>
-                      <Text style={styles.tarefaText}>{task.descricao}</Text>
-                      <Text style={styles.dataEntrega}>
+                      <Text style={[styles.tarefaText, { fontFamily: "Poppins_400Regular" }]}>{task.descricao}</Text>
+                      <Text style={[styles.dataEntrega, { fontFamily: "Poppins_400Regular" }]}>
                         Data de Entrega: {task.dataEntrega}
                       </Text>
                     </View>
