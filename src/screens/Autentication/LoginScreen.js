@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, TextInput, ActivityIndicator } from "react-native";
-import { FontAwesome5 } from "@expo/vector-icons"; 
+import { FontAwesome5 } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import styles from "./Styles/LoginScreenStyle";
-import { useFonts, Poppins_700Bold, Poppins_400Regular } from "@expo-google-fonts/poppins"
+import { useFonts, Poppins_700Bold, Poppins_400Regular, Poppins_600SemiBold } from "@expo-google-fonts/poppins"
 import { useDispatch } from "react-redux";
 import { login } from "../../features/authentication/authSlice";
 import { useNavigation } from "@react-navigation/native";
@@ -16,7 +16,8 @@ const LoginScreen = () => {
 
   const [fontsLoaded] = useFonts({
     Poppins_700Bold,
-    Poppins_400Regular
+    Poppins_400Regular,
+    Poppins_600SemiBold
   });
 
 
@@ -50,7 +51,7 @@ const LoginScreen = () => {
   if (!fontsLoaded) {
     return (
       <View style={styles.container}>
-    
+
       </View>
     );
   }
@@ -59,7 +60,7 @@ const LoginScreen = () => {
     <View style={styles.container}>
       <View style={styles.cardContainer}>
         <Text style={[styles.bemvindoText, { fontFamily: "Poppins_700Bold" }]}>Bem-Vindo!</Text>
-        <Text style={styles.loginText}>Faça o Login</Text>
+        <Text style={[styles.loginText, { fontFamily: "Poppins_600SemiBold" }]}>Faça o Login</Text>
       </View>
       <View style={styles.inputContainer}>
         <View style={styles.inputIconContainer}>
@@ -67,11 +68,11 @@ const LoginScreen = () => {
             name="user"
             size={24}
             color="gray"
-            style={styles.inputIcon}
+            style={[styles.inputIcon]}
           />
           <TextInput
             style={[
-              styles.input,
+              styles.input, { fontFamily: "Poppins_600SemiBold" }
             ]}
             placeholder="Número"
             onChangeText={(text) => setPhone(text)}
@@ -87,7 +88,7 @@ const LoginScreen = () => {
           />
           <TextInput
             style={[
-              styles.input,
+              styles.input, { fontFamily: "Poppins_600SemiBold" }
             ]}
             placeholder="Senha"
             secureTextEntry={!showPassword}
@@ -106,7 +107,7 @@ const LoginScreen = () => {
         <TouchableOpacity onPress={handleForgotPassword}>
           <Text
             style={[
-              styles.forgotPasswordText,
+              styles.forgotPasswordText, { fontFamily: "Poppins_400Regular" }
             ]}
           >
             Esqueceu a Senha?
@@ -115,7 +116,7 @@ const LoginScreen = () => {
         <TouchableOpacity style={styles.entrarButton} onPress={handleLogin}>
           <Text
             style={[
-              styles.entrarButtonText,
+              styles.entrarButtonText, { fontFamily: "Poppins_600SemiBold" }
             ]}
           >
             Entrar
