@@ -8,8 +8,17 @@ import styles from "../parts/styles/SideMenuStyle";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { URL_BACKOFFICE } from "../../../../application.properties";
+import { useFonts, Poppins_700Bold, Poppins_400Regular, Poppins_600SemiBold } from "@expo-google-fonts/poppins"
 
 const SideMenu = ({ isOpen, onClose, onMenuItemClick }) => {
+
+  const [fontsLoaded] = useFonts({
+    Poppins_700Bold,
+    Poppins_400Regular,
+    Poppins_600SemiBold,
+  });
+
+
   const student = useSelector((state) => state.student.student);
   const navigation = useNavigation();
 
@@ -27,6 +36,13 @@ const SideMenu = ({ isOpen, onClose, onMenuItemClick }) => {
 
   //console.log('estudante: ', student)
 
+  if (!fontsLoaded) {
+    return (
+      <View style={styles.container}>
+
+      </View>
+    );
+  }
   return (
     <Modal
       isVisible={isOpen}
@@ -40,7 +56,7 @@ const SideMenu = ({ isOpen, onClose, onMenuItemClick }) => {
           source={{ uri: student?.photo === 'student-images/default.png' ? defaultImageUrl : `${URL_BACKOFFICE}storage/${student?.photo}` }}
           style={styles.userImage}
         />
-        <Text style={styles.userName}>{student?.name}</Text>
+        <Text style={[styles.userName, { fontFamily: "Poppins_600SemiBold" }]}>{student?.name}</Text>
         {
           navigationItems.map((item) => (
             <TouchableOpacity
@@ -52,7 +68,7 @@ const SideMenu = ({ isOpen, onClose, onMenuItemClick }) => {
               }}>
               <View style={styles.navItemContent}>
                 <FontAwesome name={item.icon} size={20} style={styles.icon} />
-                <Text style={styles.navItemText}>{item.label}</Text>
+                <Text style={[styles.navItemText, { fontFamily: "Poppins_400Regular" }]}>{item.label}</Text>
               </View>
             </TouchableOpacity>
           ))
@@ -61,11 +77,11 @@ const SideMenu = ({ isOpen, onClose, onMenuItemClick }) => {
         <View style={styles.bottomSection}>
           <TouchableOpacity style={styles.bottomButton}>
             <FontAwesome name='cog' size={20} style={styles.icon} />
-            <Text style={styles.buttonText}>Definições</Text>
+            <Text style={[styles.buttonText, { fontFamily: "Poppins_400Regular" }]}>Definições</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.bottomButton}>
             <FontAwesome name='question-circle' size={20} style={styles.icon} />
-            <Text style={styles.buttonText}>Ajuda</Text>
+            <Text style={[styles.buttonText, { fontFamily: "Poppins_400Regular" }]}>Ajuda</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.logoutButton}>
             <FontAwesome name='sign-out' size={20} style={styles.logouticon} />

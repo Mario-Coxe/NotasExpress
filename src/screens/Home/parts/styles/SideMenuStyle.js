@@ -38,11 +38,14 @@ export default StyleSheet.create({
       width: 100,
       height: 100,
       borderRadius: 50,
+      left: 50
     },
     userName: {
       fontSize: 16,
       marginTop: 10,
+      marginBottom: 10,
       color: '#fff',
+      left: 50
     },
     navItemContent: {
       flexDirection: 'row',
