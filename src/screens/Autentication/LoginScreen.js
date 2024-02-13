@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, TextInput, ActivityIndicator } from "react-native";
+import React, { useState } from "react";
+import { View, Text, TouchableOpacity, TextInput } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
@@ -13,13 +13,11 @@ import { useNavigation } from "@react-navigation/native";
 
 const LoginScreen = () => {
 
-
   const [fontsLoaded] = useFonts({
     Poppins_700Bold,
     Poppins_400Regular,
     Poppins_600SemiBold
   });
-
 
   const [showPassword, setShowPassword] = useState(false);
   const [phone_number, setPhone] = useState("945047525");
