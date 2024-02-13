@@ -7,9 +7,17 @@ import NavigationButton from './components/NavigationButton';
 import ScheduleScreen from './parts/ScheduleScreen';
 import EventScreen from './parts/EventScreen';
 import styles from './styles/CalenderScreenStyle';
+import { useFonts, Poppins_400Regular } from "@expo-google-fonts/poppins"
 
 const CalendarScreen = () => {
-  const [selectedItem, setSelectedItem] = useState('CalendarScreen'); // Use a mesma variável para rastrear a seleção
+
+  const [fontsLoaded] = useFonts({
+    Poppins_400Regular,
+  });
+
+
+
+  const [selectedItem, setSelectedItem] = useState('CalendarScreen');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -17,7 +25,7 @@ const CalendarScreen = () => {
   };
 
   const handleMenuItemClick = (route) => {
-    
+
   };
 
   const handleItemClick = (item) => {
@@ -29,9 +37,18 @@ const CalendarScreen = () => {
       style={[styles.item, selectedItem === item && styles.selectedItem]}
       onPress={() => handleItemClick(item)}
     >
-      <Text style={styles.eventText}>{text}</Text>
+      <Text style={[styles.eventText, { fontFamily: "Poppins_400Regular" }]}>{text}</Text>
     </TouchableOpacity>
   );
+
+
+  if (!fontsLoaded) {
+    return (
+      <View style={styles.container}>
+
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>

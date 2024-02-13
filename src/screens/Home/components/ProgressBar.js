@@ -1,9 +1,25 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Svg, Circle } from 'react-native-svg';
+import { useFonts, Poppins_600SemiBold } from "@expo-google-fonts/poppins"
+
 
 const ProgressBar = ({ nota, notaMaxima }) => {
+
+  const [fontsLoaded] = useFonts({
+    Poppins_600SemiBold,
+  });
+
+
   const percentual = (nota / notaMaxima) * 100;
+
+  if (!fontsLoaded) {
+    return (
+      <View style={styles.container}>
+
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -27,7 +43,7 @@ const ProgressBar = ({ nota, notaMaxima }) => {
           fill="transparent"
         />
       </Svg>
-      <Text style={styles.notaText}>{nota}</Text>
+      <Text style={[styles.notaText, { fontFamily: "Poppins_600SemiBold" }]}>{nota}</Text>
     </View>
   );
 };
@@ -40,7 +56,6 @@ const styles = StyleSheet.create({
   notaText: {
     marginTop: 10,
     fontSize: 16,
-    fontWeight: 'bold',
   },
 });
 
