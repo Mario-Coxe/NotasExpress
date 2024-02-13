@@ -42,7 +42,6 @@ export default StyleSheet.create({
     },
     modalTitle: {
       fontSize: 20,
-      fontWeight: 'bold',
     },
     modalDescription: {
       fontSize: 16,

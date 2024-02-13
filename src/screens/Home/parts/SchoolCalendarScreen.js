@@ -5,11 +5,19 @@ import Modal from 'react-native-modal';
 import '../components/localeConfig';
 import { FontAwesome } from '@expo/vector-icons';
 import styles from './styles/SchoolCalendarScreenStyle'
+import { useFonts, Poppins_400Regular, Poppins_600SemiBold } from "@expo-google-fonts/poppins"
 
 const SchoolCalendarScreen = () => {
+
+  const [fontsLoaded] = useFonts({
+    Poppins_400Regular,
+    Poppins_600SemiBold
+  });
+
+
   const [markedDates, setMarkedDates] = useState({
-    '2023-10-05': { marked: true, description: 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, pelas 10h' },
-    '2023-10-10': { marked: true, description: 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, elas 10h' },
+    '2024-02-02': { marked: true, description: 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, pelas 10h' },
+    '2024-02-16': { marked: true, description: 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, elas 10h' },
   });
   const [selectedDate, setSelectedDate] = useState(null);
   const [isModalVisible, setModalVisible] = useState(false);
@@ -25,6 +33,15 @@ const SchoolCalendarScreen = () => {
     setModalVisible(false);
   };
 
+  if (!fontsLoaded) {
+    return (
+      <View style={styles.container}>
+
+      </View>
+    );
+  }
+
+
   return (
     <View style={styles.container}>
       <Calendar
@@ -36,7 +53,7 @@ const SchoolCalendarScreen = () => {
             return (
               <View style={styles.customDayContainer}>
                 <View style={styles.customDayCircle}>
-                  <Text style={styles.customDayText}>{date.day}</Text>
+                  <Text style={[styles.customDayText, { fontFamily: "Poppins_400Regular" }]}>{date.day}</Text>
                 </View>
               </View>
             );
@@ -54,7 +71,7 @@ const SchoolCalendarScreen = () => {
       >
         <View style={styles.modalContent}>
           <View style={styles.modalHeader}>
-            <Text style={styles.modalTitle}>Detalhes da Data</Text>
+            <Text style={[styles.modalTitle, { fontFamily: "Poppins_600SemiBold" }]}>Detalhes da Data</Text>
             <TouchableOpacity
               style={styles.modalCloseButton}
               onPress={closeModal}
@@ -62,7 +79,7 @@ const SchoolCalendarScreen = () => {
               <FontAwesome name="times" size={24} color="#8B0000" />
             </TouchableOpacity>
           </View>
-          <Text style={styles.modalDescription}>
+          <Text style={[styles.modalDescription, { fontFamily: "Poppins_400Regular" }]}>
             {markedDates[selectedDate]?.description}
           </Text>
         </View>
