@@ -1,12 +1,22 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
-import { Fontisto, AntDesign } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import styles from './Styles/OTPScreenStyle';
 import { useNavigation } from '@react-navigation/native';
+import { useFonts, Poppins_700Bold, Poppins_400Regular, Poppins_600SemiBold } from "@expo-google-fonts/poppins"
+
+
 
 const OTPScreen = () => {
-  
+
+  const [fontsLoaded] = useFonts({
+    Poppins_700Bold,
+    Poppins_400Regular,
+    Poppins_600SemiBold
+  });
+
+
   const [otpDigits, setOtpDigits] = useState(['', '', '', '']);
   const navigation = useNavigation()
 
@@ -25,17 +35,26 @@ const OTPScreen = () => {
 
   const otpInputRefs = [];
 
+
+  if (!fontsLoaded) {
+    return (
+      <View style={styles.container}>
+
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.cardContainer}>
-        <Text style={[styles.bemvindoText]}>
+        <Text style={[styles.bemvindoText, { fontFamily: "Poppins_700Bold" }]}>
           Verificação de OTP
         </Text>
-        <Text style={[styles.loginText]}>
+        <Text style={[styles.loginText, { fontFamily: "Poppins_400Regular" }]}>
           Digite o código de verificação de 4 dígitos
         </Text>
         <Text style={[styles.loginText]}>
-          enviando para <Text style={[styles.loginText]}>+244 000000000</Text>
+          enviando para <Text style={[styles.loginText, { fontFamily: "Poppins_400Regular" }]}>+244 000000000</Text>
         </Text>
         <TouchableOpacity
           style={styles.backButton}
@@ -49,7 +68,7 @@ const OTPScreen = () => {
           {otpDigits.map((digit, index) => (
             <TextInput
               key={index}
-              style={[styles.otpInput]}
+              style={[styles.otpInput, { fontFamily: "Poppins_600SemiBold" }]}
               placeholder="0"
               placeholderTextColor={'gray'}
               maxLength={1}
@@ -61,7 +80,7 @@ const OTPScreen = () => {
           ))}
         </View>
         <TouchableOpacity style={styles.entrarButton} onPress={handleSendOtp}>
-          <Text style={[styles.entrarButtonText]}>
+          <Text style={[styles.entrarButtonText, { fontFamily: "Poppins_600SemiBold" }]}>
             Enviar
           </Text>
         </TouchableOpacity>
