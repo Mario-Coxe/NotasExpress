@@ -169,4 +169,7 @@ export default StyleSheet.create({
     fontSize: 0.015 * height, 
     fontWeight: 'bold',
   },
+  academicstexts: {
+    
+  }
 });

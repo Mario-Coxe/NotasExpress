@@ -16,7 +16,6 @@ import NavigationButton from "./components/NavigationButton";
 import SideMenu from "./components/SideMenu";
 import styles from "./styles/HomeScreenStyle";
 import NavBar from "./components/NavBar";
-import AcademicOptionsModal from "./parts/AcademicOptionsModal";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStudentByTeamIdAndTelefone } from "../../features/student/studentSlice";
 import { fetchEventByTeamId } from "../../features/event/eventSlice";
@@ -154,20 +153,16 @@ const HomeScreen = () => {
 
       <View style={styles.academics}>
         <FlatList
-          data={academicOptions.slice(0, 4)}
+          data={academicOptions.slice(0, 6)}
           horizontal
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <TouchableOpacity style={styles.academicItem}>
               <FontAwesome5 name={item.icon} size={30} color='#0077B6' />
-              <Text>{item.text}</Text>
+              <Text style={[styles.academicstexts, { fontFamily: "Poppins_400Regular" }]}>{item.text}</Text>
             </TouchableOpacity>
           )}
         />
-
-        <TouchableOpacity style={styles.modalButton} onPress={toggleModal}>
-          <FontAwesome5 name='chevron-down' size={30} color='#0077B6' />
-        </TouchableOpacity>
       </View>
 
 
@@ -192,12 +187,6 @@ const HomeScreen = () => {
           onPressProfile={() => { }}
         />
       </View>
-
-      <AcademicOptionsModal
-        isVisible={isModalVisible}
-        toggleModal={toggleModal}
-        academicOptions={academicOptions}
-      />
     </View>
   );
 };
