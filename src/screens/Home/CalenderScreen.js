@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import NavBar from './components/NavBar';
 import SideMenu from './components/SideMenu';
@@ -8,12 +8,33 @@ import ScheduleScreen from './parts/ScheduleScreen';
 import EventScreen from './parts/EventScreen';
 import styles from './styles/CalenderScreenStyle';
 import { useFonts, Poppins_400Regular } from "@expo-google-fonts/poppins"
+import { fetchCalenderTeamIdAndClass } from '../../features/calender/calenderSlice';
+import { useDispatch, useSelector } from "react-redux";
 
 const CalendarScreen = () => {
 
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
   });
+
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
+  const student = useSelector((state) => state.student.student);
+  const calender = useSelector((state) => state.calender.calender);
+
+
+  useEffect(() => {
+    if (user) {
+      dispatch(
+        fetchCalenderTeamIdAndClass({
+          team_id: student.team_id,
+          class_id: student.class_id,
+        }),
+      ).then((result) => {
+        //console.log("Calendarios:", result);
+      });
+    }
+  }, [dispatch, user]);
 
 
   const [selectedItem, setSelectedItem] = useState('ScheduleScreen');

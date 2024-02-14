@@ -3,7 +3,6 @@ import { View, Text, FlatList } from 'react-native';
 import styles from './styles/ScheduleScreenStyle'
 
 
-
 const ScheduleScreen = () => {
   const scheduleData = [
     { id: '1', day: 'Segunda-feira', time: '08:00 - 09:30', subject: 'Matemática' },

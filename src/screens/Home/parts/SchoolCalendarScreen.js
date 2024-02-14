@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import Modal from 'react-native-modal';
 import '../components/localeConfig';
 import { FontAwesome } from '@expo/vector-icons';
-import styles from './styles/SchoolCalendarScreenStyle'
-import { useFonts, Poppins_400Regular, Poppins_600SemiBold } from "@expo-google-fonts/poppins"
+import styles from './styles/SchoolCalendarScreenStyle';
+import { useFonts, Poppins_400Regular, Poppins_600SemiBold } from "@expo-google-fonts/poppins";
+import { useSelector } from 'react-redux';
 
 const SchoolCalendarScreen = () => {
 
@@ -14,11 +15,9 @@ const SchoolCalendarScreen = () => {
     Poppins_600SemiBold
   });
 
+  const calender = useSelector((state) => state.calender.calender);
 
-  const [markedDates, setMarkedDates] = useState({
-    '2024-02-02': { marked: true, description: 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, pelas 10h' },
-    '2024-02-16': { marked: true, description: 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, elas 10h' },
-  });
+  const [markedDates, setMarkedDates] = useState({});
   const [selectedDate, setSelectedDate] = useState(null);
   const [isModalVisible, setModalVisible] = useState(false);
 
@@ -33,6 +32,17 @@ const SchoolCalendarScreen = () => {
     setModalVisible(false);
   };
 
+  useEffect(() => {
+    const updatedMarkedDates = {};
+    calender.forEach(event => {
+      updatedMarkedDates[event.data_day] = {
+        marked: true,
+        description: event.description,
+      };
+    });
+    setMarkedDates(updatedMarkedDates);
+  }, [calender]);
+
   if (!fontsLoaded) {
     return (
       <View style={styles.container}>
@@ -40,7 +50,6 @@ const SchoolCalendarScreen = () => {
       </View>
     );
   }
-
 
   return (
     <View style={styles.container}>
@@ -76,7 +85,7 @@ const SchoolCalendarScreen = () => {
               style={styles.modalCloseButton}
               onPress={closeModal}
             >
-              <FontAwesome name="times" size={24} color="#8B0000" />
+              <FontAwesome name="times" size={23} color="red" />
             </TouchableOpacity>
           </View>
           <Text style={[styles.modalDescription, { fontFamily: "Poppins_400Regular" }]}>
@@ -87,6 +96,5 @@ const SchoolCalendarScreen = () => {
     </View>
   );
 };
-
 
 export default SchoolCalendarScreen;

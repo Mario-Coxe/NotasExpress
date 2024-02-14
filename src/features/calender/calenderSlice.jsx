@@ -14,7 +14,7 @@ export const fetchCalenderTeamIdAndClass = createAsyncThunk(
   "calender/fetchCalenderTeamIdAndClass",
   async ({ team_id, class_id }) => {
     try {
-      const response = await axios.get(`${API_URL}students/${team_id}/${class_id}`);
+      const response = await axios.get(`${API_URL}calender/${team_id}/${class_id}`);
       //console.log(response.data);
       return response.data;
     } catch (error) {
