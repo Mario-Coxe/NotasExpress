@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList, TextInput, Image } from 'react-native';
+import { View, Text, FlatList, TextInput, Image, Modal, TouchableOpacity } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import styles from './styles/EventScreenStyle';
 import { useDispatch, useSelector } from "react-redux";
@@ -24,6 +24,8 @@ const EventScreen = () => {
 
   const [searchText, setSearchText] = useState('');
   const [trueOrFalse, setTrueOrFalse] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     if (searchText !== '') {
@@ -38,21 +40,44 @@ const EventScreen = () => {
   }, [dispatch, user, searchText]);
 
   const renderEventItem = ({ item }) => (
-    <View style={styles.eventItem}>
+    <TouchableOpacity style={styles.eventItem} onPress={() => handleEventPress(item)}>
       <Image source={{ uri: `${URL_BACKOFFICE}storage/${item?.photo}` }} style={styles.eventImage} />
       <View style={styles.eventInfo}>
         <Text style={[styles.eventTheme, { fontFamily: "Poppins_800ExtraBold" }]}>{item.theme}</Text>
         <Text style={[styles.eventDate, { fontFamily: "Poppins_400Regular" }]}>{item.data_time}</Text>
         <Text style={[styles.eventDescription, { fontFamily: "Poppins_400Regular" }]}>{item.description}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
+
   );
+
+  /*
+    const renderEventItem = ({ item }) => (
+        <TouchableOpacity style={styles.eventItem} onPress={() => handleEventPress(item)}>
+            <Image source={{ uri: `${URL_BACKOFFICE}storage/${item?.photo}` }} style={styles.eventImage} />
+            <View style={styles.eventInfo}>
+                <Text style={styles.eventTheme}>{item.theme}</Text>
+                <Text style={styles.eventDate}>{item.data_time}</Text>
+                <Text style={styles.eventDescription}>{item.description}</Text>
+            </View>
+        </TouchableOpacity>
+    );
+  */
 
   const renderEmptyEvents = () => (
     <View style={styles.emptyEventsContainer}>
       <Text style={styles.emptyEventsText}>Nenhum evento encontrado.</Text>
     </View>
   );
+
+  const handleEventPress = (event) => {
+    setSelectedEvent(event);
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
 
   if (!fontsLoaded) {
     return (
@@ -78,6 +103,24 @@ const EventScreen = () => {
         renderItem={renderEventItem}
         contentContainerStyle={styles.listContent}
       />
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={closeModal}
+      >
+        <View style={styles.modalContainer}>
+          <TouchableOpacity style={styles.modalBackground} onPress={closeModal} />
+          <View style={styles.modalContent}>
+            {selectedEvent && (
+              <View>
+                <Image source={{ uri: `${URL_BACKOFFICE}storage/${selectedEvent.photo}` }} style={styles.modalEventImage} />
+                <Text style={styles.modalEventDescription}>{selectedEvent.description}</Text>
+              </View>
+            )}
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };

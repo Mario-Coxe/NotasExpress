@@ -13,7 +13,7 @@ import HomeScreen from "./Home/HomeScreen";
 import CalendarScreen from "./Home/CalenderScreen";
 import ResultScreen from './Home/ResultScreen';
 import HomeworkScreen from "./Home/HomeworkScreen";
-
+import LibraryScreen from "./Home/LibraryScreen";
 import { Provider } from "react-redux";
 import { Store } from "../features/store/index";
 
@@ -67,6 +67,11 @@ function Navegation() {
           <Stack.Screen
             name='Result'
             component={ResultScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Library'
+            component={LibraryScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

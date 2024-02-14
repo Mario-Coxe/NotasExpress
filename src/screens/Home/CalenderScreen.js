@@ -20,7 +20,6 @@ const CalendarScreen = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const student = useSelector((state) => state.student.student);
-  const calender = useSelector((state) => state.calender.calender);
 
 
   useEffect(() => {

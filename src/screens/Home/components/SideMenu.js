@@ -32,6 +32,8 @@ const SideMenu = ({ isOpen, onClose, onMenuItemClick }) => {
     { label: "Chat", route: "Chat", icon: "comments" },
     { label: "Notas", route: "Result", icon: "sticky-note" },
     { label: "Tarefas", route: "HomeWork", icon: "building" },
+    { label: "Bibliteca", route: "Library", icon: "book" },
+
   ];
 
   //console.log('estudante: ', student)
