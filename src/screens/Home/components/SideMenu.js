@@ -3,7 +3,7 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import Modal from "react-native-modal";
-import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome, AntDesign,  } from "@expo/vector-icons";
 import styles from "../parts/styles/SideMenuStyle";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
@@ -32,6 +32,7 @@ const SideMenu = ({ isOpen, onClose, onMenuItemClick }) => {
     { label: "Chat", route: "Chat", icon: "comments" },
     { label: "Notas", route: "Result", icon: "sticky-note" },
     { label: "Tarefas", route: "HomeWork", icon: "building" },
+    { label: "Eventos", route: "Events", icon: "magic" },
     { label: "Bibliteca", route: "Library", icon: "book" },
 
   ];

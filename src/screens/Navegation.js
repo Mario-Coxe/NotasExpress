@@ -8,7 +8,7 @@ import LoginScreen from "./Autentication/LoginScreen";
 import ForgotPasswordScreen from "./Autentication/ForgotPasswordScreen";
 import OTPScreen from "./Autentication/OTPScreen";
 import ResetPasswordScreen from "./Autentication/ResetPasswordScreen";
-
+import EventScreen from "./Home/parts/EventScreen";
 import HomeScreen from "./Home/HomeScreen";
 import CalendarScreen from "./Home/CalenderScreen";
 import ResultScreen from './Home/ResultScreen';
@@ -72,6 +72,11 @@ function Navegation() {
           <Stack.Screen
             name='Library'
             component={LibraryScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Events'
+            component={EventScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

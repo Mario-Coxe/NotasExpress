@@ -45,7 +45,6 @@ export default StyleSheet.create({
   },
   modalDescription: {
     fontSize: 15,
-    fontFamily: "Poppins_400Regular",
     textAlign: "justify",
     lineHeight: 23,
   },
