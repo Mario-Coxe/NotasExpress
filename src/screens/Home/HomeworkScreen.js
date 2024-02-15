@@ -45,7 +45,7 @@ const HomeworkScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.cardContainer}>
-        <Text style={[styles.bemvindoText, { fontFamily: "Poppins_800ExtraBold" }]}>Biblioteca</Text>
+        <Text style={[styles.bemvindoText, { fontFamily: "Poppins_800ExtraBold" }]}>Tarefas</Text>
         <TouchableOpacity
           style={styles.backButton}
           onPress={() => navigation.goBack()}>
