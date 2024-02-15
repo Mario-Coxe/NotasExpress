@@ -143,6 +143,20 @@ export default StyleSheet.create({
         flexDirection: 'row',
     },
     icon: {
-        marginLeft: 10,
-    }
+        marginLeft: 0,
+        marginTop: 51
+    },
+    downloadsContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 8,
+    },
+    downloadIcon: {
+        marginRight: 4,
+    },
+    downloadsCount: {
+        fontSize: 14,
+        color: '#555',
+    },
+
 });

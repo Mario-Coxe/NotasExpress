@@ -49,18 +49,18 @@ const LibraryScreen = () => {
             <View style={styles.eventInfo}>
                 <Text style={[styles.eventTheme, { fontFamily: "Poppins_800ExtraBold" }]}>{item.theme}</Text>
                 <Text style={[styles.eventDate, { fontFamily: "Poppins_400Regular" }]}>{item.data_time}</Text>
+                <View style={styles.downloadsContainer}>
+                    <FontAwesome5 name="download" size={16} color="#0077B6" style={styles.downloadIcon} />
+                    <Text style={styles.downloadsCount}>{10}</Text>
+                </View>
             </View>
             <View style={styles.iconContainer}>
-                <TouchableOpacity style={styles.icon}>
-                    <FontAwesome5 name="star" size={20} color="gold" />
-                </TouchableOpacity>
                 <TouchableOpacity style={styles.icon}>
                     <FontAwesome5 name="download" size={20} color="black" />
                 </TouchableOpacity>
             </View>
         </TouchableOpacity>
     );
-
     const renderEmptyEvents = () => (
         <View style={styles.emptyEventsContainer}>
             <Text style={[styles.emptyEventsText, { fontFamily: "Poppins_800ExtraBold" }]}>Nenhum evento encontrado.</Text>
