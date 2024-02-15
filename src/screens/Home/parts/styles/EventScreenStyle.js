@@ -7,7 +7,6 @@ export default StyleSheet.create({
   },
   NavigationButton: {
     alignItems: 'center',
-
   },
   cardContainer: {
     height: 100,
@@ -25,8 +24,7 @@ export default StyleSheet.create({
   },
   Container: {
     paddingHorizontal: 20,
-    flex: 1,
-    marginBottom: -600
+    flex: 1 // Adicionado flex: 1 para ocupar todo o espaço disponível
   },
 
   backButton: {
@@ -35,8 +33,6 @@ export default StyleSheet.create({
     left: 350,
     zIndex: 1,
   },
-
-
 
   listContent: {
     paddingTop: 10,
@@ -83,18 +79,14 @@ export default StyleSheet.create({
   eventDate: {
     color: '#555',
     fontSize: 13
-
   },
   eventDescription: {
     marginTop: 8,
     fontSize: 14,
     color: '#000000',
-    fontSize: 14,
     textAlign: "justify",
     lineHeight: 23,
   },
-
-
 
   modalContainer: {
     flex: 1,
@@ -130,6 +122,4 @@ export default StyleSheet.create({
     textAlign: "justify",
     lineHeight: 23,
   },
-
-
 });
