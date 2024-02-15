@@ -110,6 +110,15 @@ export default StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 40,
   },
+  closeIconCircle: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(255, 0, 0, 0.1)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
   modalEventImage: {
     width: "100%",
     height: 450,
@@ -121,5 +130,11 @@ export default StyleSheet.create({
     color: "#333",
     textAlign: "justify",
     lineHeight: 23,
+    
+  },
+
+  closeIconContainer: {
+    alignItems: 'flex-end',
+    marginTop: -40,
   },
 });

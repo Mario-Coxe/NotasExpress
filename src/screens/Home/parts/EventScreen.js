@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, TextInput, Image, Modal, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, TextInput, Image, Modal, TouchableOpacity, ScrollView } from 'react-native';
 import { FontAwesome5, AntDesign } from '@expo/vector-icons';
 import styles from './styles/EventScreenStyle';
 import { useDispatch, useSelector } from "react-redux";
@@ -110,10 +110,19 @@ const EventScreen = () => {
         <View style={styles.modalContainer}>
           <TouchableOpacity style={styles.modalBackground} onPress={closeModal} />
           <View style={styles.modalContent}>
+            <View style={styles.closeIconContainer}>
+              <TouchableOpacity onPress={closeModal}>
+                <View style={styles.closeIconCircle}>
+                  <AntDesign name="close" size={24} color="red" />
+                </View>
+              </TouchableOpacity>
+            </View>
             {selectedEvent && (
               <View>
                 <Image source={{ uri: `${URL_BACKOFFICE}storage/${selectedEvent.photo}` }} style={styles.modalEventImage} />
-                <Text style={styles.modalEventDescription}>{selectedEvent.description}</Text>
+                <ScrollView style={{ maxHeight: 200 }}> 
+                  <Text style={styles.modalEventDescription}>{selectedEvent.description}</Text>
+                </ScrollView>
               </View>
             )}
           </View>
