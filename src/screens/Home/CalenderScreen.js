@@ -10,6 +10,8 @@ import styles from './styles/CalenderScreenStyle';
 import { useFonts, Poppins_400Regular } from "@expo-google-fonts/poppins"
 import { fetchCalenderTeamIdAndClass } from '../../features/calender/calenderSlice';
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
+import { AntDesign } from "@expo/vector-icons";
 
 const CalendarScreen = () => {
 
@@ -18,6 +20,7 @@ const CalendarScreen = () => {
   });
 
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const user = useSelector((state) => state.auth.user);
   const student = useSelector((state) => state.student.student);
 
@@ -71,13 +74,14 @@ const CalendarScreen = () => {
 
   return (
     <View style={styles.container}>
-      <NavBar
-        title="Calendário"
-        onMenuPress={toggleMenu}
-        onBellPress={() => {
-          //
-        }}
-      />
+      <View style={styles.cardContainer}>
+        <Text style={[styles.bemvindoText, { fontFamily: "Poppins_800ExtraBold" }]}>Calendários</Text>
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => navigation.goBack()}>
+          <AntDesign name='arrowleft' size={24} color='#fff' />
+        </TouchableOpacity>
+      </View>
 
       <SideMenu
         isOpen={isMenuOpen}
@@ -88,12 +92,10 @@ const CalendarScreen = () => {
       <View style={styles.topBar}>
         {renderTabItem('ScheduleScreen', 'Horário')}
         {renderTabItem('CalendarScreen', 'Calendário')}
-        {renderTabItem('EventScreen', 'Eventos')}
       </View>
 
       {selectedItem === 'CalendarScreen' && <SchoolCalendarScreen />}
       {selectedItem === 'ScheduleScreen' && <ScheduleScreen />}
-      {selectedItem === 'EventScreen' && <EventScreen />}
 
       <View style={styles.NavigationButton}>
         <NavigationButton />

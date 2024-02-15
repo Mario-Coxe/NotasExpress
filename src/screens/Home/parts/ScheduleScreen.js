@@ -1,34 +1,49 @@
 import React from 'react';
 import { View, Text, FlatList } from 'react-native';
-import styles from './styles/ScheduleScreenStyle'
-
+import styles from './styles/ScheduleScreenStyle';
 
 const ScheduleScreen = () => {
   const scheduleData = [
-    { id: '1', day: 'Segunda-feira', time: '08:00 - 09:30', subject: 'Matemática' },
-    { id: '2', day: 'Terça-feira', time: '10:00 - 11:30', subject: 'História' },
-    { id: '3', day: 'Quarta-feira', time: '12:00 - 13:30', subject: 'Inglês' },
-    { id: '4', day: 'Quinta-feira', time: '14:00 - 15:30', subject: 'Ciências' },
-    { id: '5', day: 'Sexta-feira', time: '09:00 - 10:30', subject: 'Geografia' },
+    { id: '1', day: 'Segunda', time: '08:00 09:30', subject: 'MT' },
+    { id: '2', day: 'Terça', time: '10:00 11:30', subject: 'HIS' },
+    { id: '3', day: 'Quarta', time: '12:00 13:30', subject: 'ING' },
+    { id: '4', day: 'Quinta', time: '14:00 15:30', subject: 'PT' },
+    { id: '5', day: 'Sexta', time: '09:00 10:30', subject: 'GD' },
   ];
 
-  const itemHeight = 100; // Altura fixa para cada item
-  const marginVertical = 10; // Margens no topo e na parte inferior dos itens
+  const weekdays = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'];
 
   return (
     <View style={styles.container}>
+      <View style={styles.tableHeader}>
+        <View style={styles.headerCell}>
+          <Text style={styles.headerText}>Horário</Text>
+        </View>
+        {weekdays.map((day) => (
+          <View key={day} style={styles.headerCell}>
+            <Text style={styles.headerText}>{day}</Text>
+          </View>
+        ))}
+      </View>
       <FlatList
         data={scheduleData}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <View style={[styles.scheduleItem, { height: itemHeight, marginVertical }]}>
-            <Text style={styles.scheduleDay}>{item.day}</Text>
-            <Text style={styles.scheduleTime}>{item.time}</Text>
-            <Text style={styles.scheduleSubject}>{item.subject}</Text>
+          <View style={styles.row}>
+            <View style={styles.timeCell}>
+              <Text>{item.time}</Text>
+            </View>
+            {weekdays.map((day) => (
+              <View key={day} style={styles.cell}>
+                {item.day === day && (
+                  <>
+                    <Text style={styles.subject}>{item.subject}</Text>
+                  </>
+                )}
+              </View>
+            ))}
           </View>
         )}
-        contentContainerStyle={styles.listContent}
-        style={styles.flatList}
       />
     </View>
   );
