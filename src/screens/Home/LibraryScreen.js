@@ -1,26 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, TextInput, FlatList, Image, Modal } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+import { View, Text, TouchableOpacity, TextInput, FlatList, Image, Modal, ScrollView } from "react-native";
+import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import styles from "./styles/LibraryScreenStyle";
 import { useNavigation } from "@react-navigation/native";
-import { useFonts, Poppins_700Bold, Poppins_400Regular, Poppins_600SemiBold } from "@expo-google-fonts/poppins"
+import { useFonts, Poppins_800ExtraBold, Poppins_400Regular, Poppins_600SemiBold } from "@expo-google-fonts/poppins"
 import { useDispatch, useSelector } from "react-redux";
 import { searchEventByTeamId } from '../../features/event/eventSlice';
 import { URL_BACKOFFICE } from "../../../application.properties";
-import { FontAwesome5 } from '@expo/vector-icons';
 import NavigationButton from "./components/NavigationButton";
+import { LinearGradient } from 'expo-linear-gradient';
 
 const LibraryScreen = () => {
 
     const [fontsLoaded] = useFonts({
-        Poppins_700Bold,
         Poppins_400Regular,
-        Poppins_600SemiBold
+        Poppins_600SemiBold,
+        Poppins_800ExtraBold,
     });
 
     const navigation = useNavigation();
-
     const dispatch = useDispatch();
     const user = useSelector((state) => state.auth.user);
     const eventsSearch = useSelector((state) => state.eventsSearch.events);
@@ -39,34 +38,34 @@ const LibraryScreen = () => {
         }
         if (user) {
             dispatch(searchEventByTeamId({ team_id: user.team_id, searchValue: searchText }));
-            console.log(eventsSearch)
+            //console.log(eventsSearch)
         }
     }, [dispatch, user, searchText]);
+
 
     const renderEventItem = ({ item }) => (
         <TouchableOpacity style={styles.eventItem} onPress={() => handleEventPress(item)}>
             <Image source={{ uri: `${URL_BACKOFFICE}storage/${item?.photo}` }} style={styles.eventImage} />
             <View style={styles.eventInfo}>
-                <Text style={styles.eventTheme}>{item.theme}</Text>
-                <Text style={styles.eventDate}>{item.data_time}</Text>
-                <Text style={styles.eventDescription}>{item.description}</Text>
+                <Text style={[styles.eventTheme, { fontFamily: "Poppins_800ExtraBold" }]}>{item.theme}</Text>
+                <Text style={[styles.eventDate, { fontFamily: "Poppins_400Regular" }]}>{item.data_time}</Text>
+            </View>
+            <View style={styles.iconContainer}>
+                <TouchableOpacity style={styles.icon}>
+                    <FontAwesome5 name="star" size={20} color="gold" />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.icon}>
+                    <FontAwesome5 name="download" size={20} color="black" />
+                </TouchableOpacity>
             </View>
         </TouchableOpacity>
     );
 
     const renderEmptyEvents = () => (
         <View style={styles.emptyEventsContainer}>
-            <Text style={styles.emptyEventsText}>Nenhum evento encontrado.</Text>
+            <Text style={[styles.emptyEventsText, { fontFamily: "Poppins_800ExtraBold" }]}>Nenhum evento encontrado.</Text>
         </View>
     );
-
-    if (!fontsLoaded) {
-        return (
-            <View style={styles.container}>
-
-            </View>
-        );
-    }
 
     const handleEventPress = (event) => {
         setSelectedEvent(event);
@@ -77,10 +76,19 @@ const LibraryScreen = () => {
         setModalVisible(false);
     };
 
+    if (!fontsLoaded) {
+        return (
+            <View style={styles.container}>
+
+            </View>
+        );
+    }
+
     return (
         <View style={styles.container}>
+            
             <View style={styles.cardContainer}>
-                <Text style={styles.bemvindoText}>Biblioteca</Text>
+                <Text style={[styles.bemvindoText, { fontFamily: "Poppins_800ExtraBold" }]}>Biblioteca</Text>
                 <TouchableOpacity
                     style={styles.backButton}
                     onPress={() => navigation.goBack()}>
@@ -113,16 +121,25 @@ const LibraryScreen = () => {
                 <View style={styles.modalContainer}>
                     <TouchableOpacity style={styles.modalBackground} onPress={closeModal} />
                     <View style={styles.modalContent}>
+                        <View style={styles.closeIconContainer}>
+                            <TouchableOpacity onPress={closeModal}>
+                                <View style={styles.closeIconCircle}>
+                                    <AntDesign name="close" size={24} color="red" />
+                                </View>
+                            </TouchableOpacity>
+                        </View>
                         {selectedEvent && (
                             <View>
                                 <Image source={{ uri: `${URL_BACKOFFICE}storage/${selectedEvent.photo}` }} style={styles.modalEventImage} />
-                                <Text style={styles.modalEventDescription}>{selectedEvent.description}</Text>
+                                <ScrollView style={{ maxHeight: 200 }}>
+                                    <Text style={styles.modalEventDescription}>{selectedEvent.description}</Text>
+                                </ScrollView>
                             </View>
                         )}
                     </View>
                 </View>
             </Modal>
-            <StatusBar style='light' />
+
 
             <View style={styles.NavigationButton}>
                 <NavigationButton
