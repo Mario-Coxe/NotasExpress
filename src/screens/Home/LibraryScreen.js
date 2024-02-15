@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, TextInput, FlatList, Image, Modal, ScrollView } from "react-native";
 import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
-import { StatusBar } from "expo-status-bar";
 import styles from "./styles/LibraryScreenStyle";
 import { useNavigation } from "@react-navigation/native";
 import { useFonts, Poppins_800ExtraBold, Poppins_400Regular, Poppins_600SemiBold } from "@expo-google-fonts/poppins"
@@ -9,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { searchEventByTeamId } from '../../features/event/eventSlice';
 import { URL_BACKOFFICE } from "../../../application.properties";
 import NavigationButton from "./components/NavigationButton";
-import { LinearGradient } from 'expo-linear-gradient';
+
 
 const LibraryScreen = () => {
 

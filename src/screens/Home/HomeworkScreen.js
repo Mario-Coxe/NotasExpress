@@ -6,15 +6,14 @@ import {
   Text,
   FlatList,
   TouchableOpacity,
-  StyleSheet,
 } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
-import NavBar from "./components/NavBar";
+import { FontAwesome, AntDesign } from "@expo/vector-icons";
 import SideMenu from "./components/SideMenu";
 import NavigationButton from "./components/NavigationButton";
 import tarefasPorDisciplina from "./request/Homework";
 import styles from "./styles/HomeworkScreenStyle";
 import { useFonts, Poppins_700Bold, Poppins_400Regular, Poppins_600SemiBold, Poppins_600SemiBold_Italic } from "@expo-google-fonts/poppins"
+import { useNavigation } from "@react-navigation/native";
 
 
 const HomeworkScreen = () => {
@@ -25,6 +24,7 @@ const HomeworkScreen = () => {
     Poppins_600SemiBold,
     Poppins_600SemiBold_Italic
   });
+  const navigation = useNavigation();
 
 
   const [expandedDisciplina, setExpandedDisciplina] = useState(null);
@@ -44,13 +44,14 @@ const HomeworkScreen = () => {
 
   return (
     <View style={styles.container}>
-      <NavBar
-        title='Tarefas'
-        onMenuPress={toggleMenu}
-        onBellPress={() => {
-          // Lógica para ação do ícone do sino
-        }}
-      />
+      <View style={styles.cardContainer}>
+        <Text style={[styles.bemvindoText, { fontFamily: "Poppins_800ExtraBold" }]}>Biblioteca</Text>
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => navigation.goBack()}>
+          <AntDesign name='arrowleft' size={24} color='#fff' />
+        </TouchableOpacity>
+      </View>
 
       <SideMenu
         isOpen={isMenuOpen}
