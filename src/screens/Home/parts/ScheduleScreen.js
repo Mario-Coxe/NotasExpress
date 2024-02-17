@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Modal, Image } from 'react-native';
+import { FontAwesome5 } from "@expo/vector-icons";
+import { isWithinInterval, parseISO } from 'date-fns'; // Importe a função isWithinInterval do date-fns
 import styles from './styles/ScheduleScreenStyle';
 
 const ScheduleScreen = () => {
@@ -7,17 +9,18 @@ const ScheduleScreen = () => {
   const [selectedProfessor, setSelectedProfessor] = useState(null);
 
   const scheduleData = [
-    { id: '1', day: 'Segunda', time: '08:00 09:30', subject: 'MT', professor: { name: 'Evandro Eusebio', subject: 'Matemática', isDirector: true, photo: require('../../../../assets/image/users/evandro.jpeg') } },
-    { id: '2', day: 'Terça', time: '10:00 11:30', subject: 'HIS', professor: { name: 'José Luis', subject: 'História', isDirector: false, photo: require('../../../../assets/image/users/evandro.jpeg') } },
-    { id: '3', day: 'Quarta', time: '12:00 13:30', subject: 'ING', professor: { name: 'Mauro Coxe', subject: 'Inglês', isDirector: false, photo: require('../../../../assets/image/users/evandro.jpeg') } },
-    { id: '4', day: 'Quinta', time: '14:00 15:30', subject: 'PT', professor: { name: 'Ronaldo Coxe', subject: 'Português', isDirector: false, photo: require('../../../../assets/image/users/evandro.jpeg') } },
-    { id: '5', day: 'Sexta', time: '09:00 10:30', subject: 'GD', professor: { name: 'Isaías Coxe', subject: 'Geografia', isDirector: true, photo: require('../../../../assets/image/users/evandro.jpeg') } },
+    { id: '6', day: 'Segunda', startTime: '08:00', endTime: '09:30', subject: 'MT', professor: { name: 'Evandro Eusebio', subject: 'Matemática', isDirector: true, photo: require('../../../../assets/image/users/evandro.jpeg') } },
+    { id: '1', day: 'Segunda', startTime: '08:00', endTime: '09:30', subject: 'MT', professor: { name: 'Evandro Eusebio', subject: 'Matemática', isDirector: true, photo: require('../../../../assets/image/users/evandro.jpeg') } },
+    { id: '2', day: 'Terça', startTime: '10:00', endTime: '11:30', subject: 'HIS', professor: { name: 'José Luis', subject: 'História', isDirector: false, photo: require('../../../../assets/image/users/evandro.jpeg') } },
+    { id: '3', day: 'Quarta', startTime: '12:00', endTime: '13:30', subject: 'ING', professor: { name: 'Mauro Coxe', subject: 'Inglês', isDirector: false, photo: require('../../../../assets/image/users/evandro.jpeg') } },
+    { id: '4', day: 'Quinta', startTime: '14:00', endTime: '15:30', subject: 'PT', professor: { name: 'Ronaldo Coxe', subject: 'Português', isDirector: false, photo: require('../../../../assets/image/users/evandro.jpeg') } },
+    { id: '5', day: 'Sexta', startTime: '09:00', endTime: '10:30', subject: 'GD', professor: { name: 'Isaías Coxe', subject: 'Geografia', isDirector: true, photo: require('../../../../assets/image/users/evandro.jpeg') } },
   ];
 
   const weekdays = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'];
 
-  const openModal = (professor) => {
-    setSelectedProfessor(professor);
+  const openModal = (item) => {
+    setSelectedProfessor(item.professor);
     setModalVisible(true);
   };
 
@@ -37,28 +40,29 @@ const ScheduleScreen = () => {
           </View>
         ))}
       </View>
-      <FlatList
-        data={scheduleData}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View style={styles.row}>
-            <TouchableOpacity style={styles.timeCell}>
-              <Text>{item.time}</Text>
+      {scheduleData.map((item) => (
+        <View key={item.id} style={styles.row}>
+          <TouchableOpacity style={styles.timeCell}>
+            <Text>{`${item.startTime} - ${item.endTime}`}</Text>
+          </TouchableOpacity>
+          {weekdays.map((day) => (
+            <TouchableOpacity
+              key={day}
+              style={styles.cell}
+              onPress={() => {
+                if (item.day === day && item.subject) { 
+                  openModal(item);
+                }
+              }}
+            >
+              {item.day === day && (
+                <Text style={styles.subject}>{item.subject}</Text>
+              )}
             </TouchableOpacity>
-            {weekdays.map((day) => (
-              <TouchableOpacity
-                key={day}
-                style={styles.cell}
-                onPress={() => openModal(item.professor)}
-              >
-                {item.day === day && (
-                  <Text style={styles.subject}>{item.subject}</Text>
-                )}
-              </TouchableOpacity>
-            ))}
-          </View>
-        )}
-      />
+          ))}
+        </View>
+      ))}
+
       <Modal
         animationType="fade"
         transparent={true}
@@ -67,19 +71,17 @@ const ScheduleScreen = () => {
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-            <Text style={styles.modalHeaderText}>Informações do Professor</Text>
-            <Image source={selectedProfessor?.photo} style={styles.professorImage} />
+            <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
+              <FontAwesome5 name={"times-circle"} size={22} color="red" />
+            </TouchableOpacity>
+            {console.log(selectedProfessor?.name)}
+            <Image source={selectedProfessor?.photo} style={styles.professorImage} resizeMode="contain" />
             <Text style={styles.professorName}>{selectedProfessor?.name}</Text>
-            <View style={styles.professorDetails}>
-              {console.log(selectedProfessor?.name)}
-              <Text style={styles.professorSubject}>Disciplina: {selectedProfessor?.subject}</Text>
-            </View>
+            <Text style={styles.professorSubject}>Disciplina: {selectedProfessor?.subject}</Text>
           </View>
-          <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
-            <Text style={styles.closeButtonText}>Fechar</Text>
-          </TouchableOpacity>
         </View>
       </Modal>
+
     </View>
   );
 };

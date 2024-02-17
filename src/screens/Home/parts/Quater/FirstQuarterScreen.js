@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
-import SideMenu from '../../components/SideMenu';
 import NavigationButton from '../../components/NavigationButton';
 import { FirstQuarter } from '../../request/Notas';
 import styles from '../styles/FirstQuarterScreenStyle';
 import { useFonts, Poppins_400Regular, Poppins_600SemiBold } from "@expo-google-fonts/poppins"
+import { useNavigation } from "@react-navigation/native";
 
 const FirstQuarterScreen = () => {
 
@@ -14,7 +14,7 @@ const FirstQuarterScreen = () => {
     Poppins_600SemiBold,
   });
 
-
+  const navigation = useNavigation();
   const [expandedDisciplina, setExpandedDisciplina] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -35,12 +35,6 @@ const FirstQuarterScreen = () => {
 
   return (
     <View style={styles.container}>
-      <SideMenu
-        isOpen={isMenuOpen}
-        onClose={toggleMenu}
-        onMenuItemClick={() => console.log('Menu item clicked')}
-      />
-
       <FlatList
         data={FirstQuarter}
         keyExtractor={(item) => item.disciplina}

@@ -63,81 +63,54 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.0)", 
-   
+    backgroundColor: "rgba(0, 0, 0, 0.1)",
   },
   modalContent: {
     backgroundColor: "#fff",
     width: width * 0.8,
-    borderRadius: 20,
+    borderRadius: 5,
     padding: 20,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 3,
+      height: 0,
     },
-    shadowOpacity: 10,
-    shadowRadius: 20,
-    elevation: 1000,
-    height: 220
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+    elevation: 5,
   },
   modalHeaderText: {
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 10,
-    color: "#0077B6", // Cor de destaque para o cabeçalho
+    color: "#0077B6",
     textAlign: "center",
-  },
-  modalText: {
-    fontSize: 16,
-    marginBottom: 10,
-    color: "#333", // Cor do texto principal
-    textAlign: "center",
-  },
-  closeButton: {
-    backgroundColor: "#0077B6", // Cor do botão de fechar
-    borderRadius: 10,
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    marginTop: 20,
-    alignSelf: "center",
-  },
-  closeButtonText: {
-    fontSize: 18,
-    color: "#fff", // Cor do texto do botão de fechar
-    fontWeight: "bold",
-  },
-  professorInfo: {
-    marginTop: 20,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
   },
   professorImage: {
-    width: 110, // Largura da imagem do professor
-    height: 150, // Altura da imagem do professor
-    borderRadius: 30, // Bordas arredondadas para uma aparência mais suave
-    marginBottom: 10, // Espaço abaixo da imagem
-  },
-  professorDetails: {
-    alignContent: "flex-end",
-    alignItems: "flex-end"
+    width: 110,
+    height: 130,
+    borderRadius: 20,
+    marginBottom: 10,
+    alignSelf: 'center'
   },
   professorName: {
     fontSize: 18,
     textAlign: 'center',
-    marginLeft: 135,
-    marginTop: -120
+    marginBottom: 10,
   },
   professorSubject: {
     fontSize: 16,
-    marginBottom: 5,
+    marginBottom: 10,
     color: "#555",
-    textAlign: "center", // Alinhamento centralizado do texto
+    textAlign: "center",
   },
-  professorRole: {
-    fontSize: 16,
-    color: "#555",
-    textAlign: "center", // Alinhamento centralizado do texto
+  closeButton: {
+    alignItems: 'flex-end',
   },
+  closeButtonText: {
+    fontSize: 18,
+    color: "#fff",
+    fontWeight: "bold",
+  },
+
 });

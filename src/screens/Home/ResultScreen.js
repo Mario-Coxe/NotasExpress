@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import NavBar from './components/NavBar';
 import SideMenu from './components/SideMenu';
 import styles from './styles/CalenderScreenStyle';
 import FirstQuarterScreen from './parts/Quater/FirstQuarterScreen';
 import SecondQuarterScreen from './parts/Quater/SecondQuarterScreen';
 import ThirdQuarterScreen from './parts/Quater/ThirdQuarterScreen';
 import { useFonts, Poppins_400Regular, Poppins_600SemiBold, Poppins_800ExtraBold } from "@expo-google-fonts/poppins"
-
-
+import { useNavigation } from "@react-navigation/native";
+import { AntDesign } from '@expo/vector-icons';
 const ResultScreen = () => {
 
   const [fontsLoaded] = useFonts({
@@ -17,7 +16,7 @@ const ResultScreen = () => {
     Poppins_800ExtraBold
   });
 
-
+  const navigation = useNavigation();
   const [selectedItem, setSelectedItem] = useState('FirstQuarter');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -52,13 +51,14 @@ const ResultScreen = () => {
 
   return (
     <View style={styles.container}>
-      <NavBar
-        title="Notas"
-        onMenuPress={toggleMenu}
-        onBellPress={() => {
-
-        }}
-      />
+      <View style={styles.cardContainer}>
+        <Text style={[styles.bemvindoText, { fontFamily: "Poppins_800ExtraBold" }]}>Notas</Text>
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => navigation.goBack()}>
+          <AntDesign name='arrowleft' size={24} color='#fff' />
+        </TouchableOpacity>
+      </View>
 
       <SideMenu
         isOpen={isMenuOpen}

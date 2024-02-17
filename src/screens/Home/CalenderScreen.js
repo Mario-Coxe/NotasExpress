@@ -7,7 +7,7 @@ import NavigationButton from './components/NavigationButton';
 import ScheduleScreen from './parts/ScheduleScreen';
 import EventScreen from './parts/EventScreen';
 import styles from './styles/CalenderScreenStyle';
-import { useFonts, Poppins_400Regular } from "@expo-google-fonts/poppins"
+import { useFonts, Poppins_400Regular, Poppins_800ExtraBold } from "@expo-google-fonts/poppins"
 import { fetchCalenderTeamIdAndClass } from '../../features/calender/calenderSlice';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
@@ -17,6 +17,7 @@ const CalendarScreen = () => {
 
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
+    Poppins_800ExtraBold
   });
 
   const dispatch = useDispatch();

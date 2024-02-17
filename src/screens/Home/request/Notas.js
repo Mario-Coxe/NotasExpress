@@ -3,10 +3,10 @@ export const FirstQuarter = [
     {
         disciplina: 'Matemática',
         notas: [
-            { id: 1, mac: 10 },
-            { id: 2, pp: 25 },
+            { id: 1, mac: 12 },
+            { id: 2, pp: 14 },
             { id: 3, pt: 20 },
-            { id: 4, mt: 20 },
+            { id: 4, mt: 15 },
         ],
     },
     {

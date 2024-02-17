@@ -99,7 +99,7 @@ const LibraryScreen = () => {
                     <FontAwesome5 name="search" size={20} color="#555" style={styles.searchIcon} />
                     <TextInput
                         style={styles.searchInput}
-                        placeholder="Pesquisar eventos"
+                        placeholder="Pesquisar livros"
                         onChangeText={setSearchText}
                     />
                 </View>
