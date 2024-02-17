@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity, Modal, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Modal, Image } from 'react-native';
 import { FontAwesome5 } from "@expo/vector-icons";
-import { isWithinInterval, parseISO } from 'date-fns'; // Importe a função isWithinInterval do date-fns
 import styles from './styles/ScheduleScreenStyle';
+import { useFonts, Poppins_400Regular, Poppins_600SemiBold } from "@expo-google-fonts/poppins"
 
 const ScheduleScreen = () => {
+
+  const [fontsLoaded] = useFonts({
+    Poppins_400Regular,
+    Poppins_600SemiBold,
+  });
+
+
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedProfessor, setSelectedProfessor] = useState(null);
 
@@ -28,35 +35,45 @@ const ScheduleScreen = () => {
     setModalVisible(false);
   };
 
+
+  if (!fontsLoaded) {
+    return (
+      <View style={styles.container}>
+
+      </View>
+    );
+  }
+
+
   return (
     <View style={styles.container}>
       <View style={styles.tableHeader}>
         <View style={styles.headerCell}>
-          <Text style={styles.headerText}>Horário</Text>
+          <Text style={[styles.headerText, { fontFamily: "Poppins_400Regular" }]}>Horário</Text>
         </View>
         {weekdays.map((day) => (
           <View key={day} style={styles.headerCell}>
-            <Text style={styles.headerText}>{day}</Text>
+            <Text style={[styles.headerText, { fontFamily: "Poppins_400Regular" }]}>{day}</Text>
           </View>
         ))}
       </View>
       {scheduleData.map((item) => (
         <View key={item.id} style={styles.row}>
           <TouchableOpacity style={styles.timeCell}>
-            <Text>{`${item.startTime} - ${item.endTime}`}</Text>
+            <Text style={{ fontFamily: "Poppins_400Regular", color: "#000" }}>{`${item.startTime}   ${item.endTime}`}</Text>
           </TouchableOpacity>
           {weekdays.map((day) => (
             <TouchableOpacity
               key={day}
               style={styles.cell}
               onPress={() => {
-                if (item.day === day && item.subject) { 
+                if (item.day === day && item.subject) {
                   openModal(item);
                 }
               }}
             >
               {item.day === day && (
-                <Text style={styles.subject}>{item.subject}</Text>
+                <Text style={[styles.subject, { fontFamily: "Poppins_600SemiBold" }]}>{item.subject}</Text>
               )}
             </TouchableOpacity>
           ))}
@@ -76,8 +93,8 @@ const ScheduleScreen = () => {
             </TouchableOpacity>
             {console.log(selectedProfessor?.name)}
             <Image source={selectedProfessor?.photo} style={styles.professorImage} resizeMode="contain" />
-            <Text style={styles.professorName}>{selectedProfessor?.name}</Text>
-            <Text style={styles.professorSubject}>Disciplina: {selectedProfessor?.subject}</Text>
+            <Text style={[styles.professorName, { fontFamily: "Poppins_600SemiBold" }]}>{selectedProfessor?.name}</Text>
+            <Text style={[styles.professorSubject, { fontFamily: "Poppins_600SemiBold" }]}>Disciplina: <Text style={{ fontFamily: "Poppins_400Regular", color: "#000", fontSize: 15}}>{selectedProfessor?.subject}</Text> </Text>
           </View>
         </View>
       </Modal>

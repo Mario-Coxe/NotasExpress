@@ -25,8 +25,8 @@ export default StyleSheet.create({
     marginRight: 2.5,
   },
   headerText: {
-    fontSize: 15,
-    color: '#333',
+    fontSize: 12,
+    color: '#000',
   },
   row: {
     flexDirection: 'row',
@@ -94,14 +94,14 @@ export default StyleSheet.create({
     alignSelf: 'center'
   },
   professorName: {
-    fontSize: 18,
+    fontSize: 16,
     textAlign: 'center',
     marginBottom: 10,
   },
   professorSubject: {
-    fontSize: 16,
+    fontSize: 15,
     marginBottom: 10,
-    color: "#555",
+    color: "#333",
     textAlign: "center",
   },
   closeButton: {
