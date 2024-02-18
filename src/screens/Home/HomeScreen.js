@@ -64,6 +64,7 @@ const HomeScreen = () => {
       //console.log("Resultado:",result);
     });
 
+
   }, [dispatch, user]);
 
 
