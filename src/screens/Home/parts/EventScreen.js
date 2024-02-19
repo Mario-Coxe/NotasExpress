@@ -8,6 +8,7 @@ import { searchEventByTeamId } from '../../../features/event/eventSlice';
 import { useFonts, Poppins_400Regular, Poppins_600SemiBold, Poppins_800ExtraBold } from "@expo-google-fonts/poppins"
 import { useNavigation } from "@react-navigation/native";
 import NavigationButton from '../components/NavigationButton';
+import { API_URL } from '../../../../application.properties';
 
 const EventScreen = () => {
 
@@ -21,13 +22,21 @@ const EventScreen = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const eventsSearch = useSelector((state) => state.eventsSearch.events);
-  const events = useSelector((state) => state.events.events);
+  const [events, setEventsUseState] = useState([]);
+
+  //const events = useSelector(state => state.events.events);
+
+  //console.log(events)
+
+
+
 
   const [searchText, setSearchText] = useState('');
   const [trueOrFalse, setTrueOrFalse] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
 
+  /*
   useEffect(() => {
     if (searchText !== '') {
       setTrueOrFalse(true)
@@ -39,6 +48,29 @@ const EventScreen = () => {
       //console.log(eventsSearch)
     }
   }, [dispatch, user, searchText]);
+*/
+
+  useEffect(() => {
+
+    const fetchEvents = async () => {
+      try {
+        console.log(searchText)
+        const response = await fetch(`${API_URL}events/search/${user.team_id}/${searchText}`);
+        if (!response.ok) {
+          throw new Error('Erro ao obter eventos');
+        }
+        setTrueOrFalse(true)
+        const data = await response.json();
+        setEventsUseState(data.events);
+        //dispatch(setEvents(data.events));
+      } catch (error) {
+        console.log('Erro ao obter eventos:', error.message);
+      }
+    };
+
+    fetchEvents();
+
+  }, [user.team_id, searchText]);
 
 
   const renderEventItem = ({ item }) => (
@@ -94,7 +126,7 @@ const EventScreen = () => {
           />
         </View>
         <FlatList
-          data={trueOrFalse ? eventsSearch : events}
+          data={events}
           keyExtractor={(item) => item.id.toString()}
           renderItem={renderEventItem}
           contentContainerStyle={styles.listContent}
@@ -120,7 +152,7 @@ const EventScreen = () => {
             {selectedEvent && (
               <View>
                 <Image source={{ uri: `${URL_BACKOFFICE}storage/${selectedEvent.photo}` }} style={styles.modalEventImage} />
-                <ScrollView style={{ maxHeight: 200 }}> 
+                <ScrollView style={{ maxHeight: 200 }}>
                   <Text style={styles.modalEventDescription}>{selectedEvent.description}</Text>
                 </ScrollView>
               </View>

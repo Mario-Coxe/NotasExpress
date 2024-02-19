@@ -23,7 +23,6 @@ const ScheduleScreen = () => {
 
   console.log(schedule)
 
-
   useEffect(() => {
 
 
@@ -36,6 +35,7 @@ const ScheduleScreen = () => {
     ).then((result) => {
       //console.log("Resultado:",result);
     });
+
 
 
   }, [dispatch, user, student]);
@@ -71,7 +71,7 @@ const ScheduleScreen = () => {
       professor: {
         name: item.disciplinas.responsible_professor_id,
         subject: item.disciplinas.name,
-        photo: require('../../../../assets/image/users/evandro.jpeg') 
+        photo: require('../../../../assets/image/users/evandro.jpeg')
       }
     };
   });
@@ -122,7 +122,6 @@ const ScheduleScreen = () => {
             <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
               <FontAwesome5 name={"times-circle"} size={22} color="red" />
             </TouchableOpacity>
-            {console.log(selectedProfessor?.name)}
             <Image source={selectedProfessor?.photo} style={styles.professorImage} resizeMode="contain" />
             <Text style={[styles.professorName, { fontFamily: "Poppins_600SemiBold" }]}>{selectedProfessor?.name}</Text>
             <Text style={[styles.professorSubject, { fontFamily: "Poppins_600SemiBold" }]}>Disciplina: <Text style={{ fontFamily: "Poppins_400Regular", color: "#000", fontSize: 15 }}>{selectedProfessor?.subject}</Text> </Text>

@@ -1,16 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import {API_URL} from "../../../application.properties";
+import { API_URL } from "../../../application.properties";
 import axios from "axios";
 
 const initialState = {
   message: null,
-  events: null,
+  events: [],
   isloading: false,
 };
 
 export const fetchEventByTeamId = createAsyncThunk(
   "events/fetchEventByTeamId",
-  async ({ team_id}) => {
+  async ({ team_id }) => {
     try {
       const response = await axios.get(`${API_URL}events/${team_id}`);
       //console.log(response.data);
@@ -26,7 +26,11 @@ export const fetchEventByTeamId = createAsyncThunk(
 const findEventsByTeamSlice = createSlice({
   name: "events",
   initialState,
-  reducers: {},
+  reducers: {
+    setEvents: (state, action) => {
+      state.events = action.payload; // Define os novos eventos no estado
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchEventByTeamId.pending, (state) => {
@@ -56,7 +60,7 @@ const findEventsByTeamSlice = createSlice({
 
 export const searchEventByTeamId = createAsyncThunk(
   "eventsSearch/searchEventByTeamId",
-  async ({ team_id, searchValue = null }) => { 
+  async ({ team_id, searchValue = null }) => {
     try {
       const response = await axios.get(`${API_URL}events/search/${team_id}/${searchValue}`);
       return response.data;
@@ -85,7 +89,7 @@ const findEventsBySearchSlice = createSlice({
           if (message) {
             state.message = message;
             state.events = events;
-           // console.warn(state.message);
+            // console.warn(state.message);
           } else {
             state.events = events;
             //console.warn("sucesso!");
@@ -101,3 +105,4 @@ const findEventsBySearchSlice = createSlice({
 
 export const findEventsByTeamReducer = findEventsByTeamSlice.reducer;
 export const findEventsBySearchReducer = findEventsBySearchSlice.reducer;
+export const setEvents = findEventsByTeamReducer.actions;

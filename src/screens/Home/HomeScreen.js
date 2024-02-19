@@ -18,11 +18,11 @@ import styles from "./styles/HomeScreenStyle";
 import NavBar from "./components/NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStudentByTeamIdAndTelefone } from "../../features/student/studentSlice";
-import { fetchEventByTeamId } from "../../features/event/eventSlice";
 import { URL_BACKOFFICE } from "../../../application.properties";
 import { useNavigation } from '@react-navigation/native';
 import { useFonts, Poppins_700Bold, Poppins_400Regular, Poppins_600SemiBold } from "@expo-google-fonts/poppins"
-
+import { API_URL } from "../../../application.properties";
+//import { setEvents } from '../../features/event/eventSlice';
 
 const HomeScreen = () => {
 
@@ -40,7 +40,8 @@ const HomeScreen = () => {
   const message = useSelector((state) => state.auth.message);
   const token = useSelector((state) => state.auth.token);
   const student = useSelector((state) => state.student.student);
-  const events = useSelector((state) => state.events.events);
+  const [events, setEventsUseState] = useState([]);
+  //onst events = useSelector(state => state.events.events);
 
   const defaultImageUrl = `${URL_BACKOFFICE}/storage/student-images/default.png`;
 
@@ -56,6 +57,9 @@ const HomeScreen = () => {
       });
     }
 
+
+    /*
+    
     dispatch(
       fetchEventByTeamId({
         team_id: user.team_id,
@@ -63,9 +67,34 @@ const HomeScreen = () => {
     ).then((result) => {
       //console.log("Resultado:",result);
     });
+    */
 
-
+    
   }, [dispatch, user]);
+
+
+  useEffect(() => {
+
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch(`${API_URL}events/${user.team_id}`);
+        if (!response.ok) {
+          throw new Error('Erro ao obter eventos');
+        }
+        const data = await response.json();
+        setEventsUseState(data.events);
+        //dispatch(setEvents(data.events));
+      } catch (error) {
+        console.log('Erro ao obter eventos:', error.message);
+      }
+    };
+
+    fetchEvents();
+
+  }, [user.team_id, events]);
+
+
+
 
 
 
@@ -91,6 +120,7 @@ const HomeScreen = () => {
   };
 
   const handleMenuItemClick = (route) => {
+    setIsMenuOpen(false)
     navigation.navigate(route);
   };
   const toggleModal = () => {

@@ -5,7 +5,7 @@ import axios from "axios";
 
 const initialState = {
   message: null,
-  schedules: null,
+  schedules: [],
   isloading: false,
 };
 
