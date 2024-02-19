@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { searchEventByTeamId } from '../../features/event/eventSlice';
 import { URL_BACKOFFICE } from "../../../application.properties";
 import NavigationButton from "./components/NavigationButton";
-
+import { fetchEventByTeamId } from "../../features/event/eventSlice";
 
 const LibraryScreen = () => {
 
@@ -28,6 +28,21 @@ const LibraryScreen = () => {
     const [trueOrFalse, setTrueOrFalse] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [modalVisible, setModalVisible] = useState(false);
+
+
+    useEffect(() => {
+
+        dispatch(
+          fetchEventByTeamId({
+            team_id: user.team_id,
+          }),
+        ).then((result) => {
+          //console.log("Resultado:",result);
+        });
+    
+
+    }, [dispatch, user]);
+
 
     useEffect(() => {
         if (searchText !== '') {
