@@ -53,8 +53,8 @@ export default StyleSheet.create({
     marginRight: 5,
   },
   subject: {
-    fontSize: 16,
-    color: '#333',
+    fontSize: 14,
+    color: '#000',
   },
 
 

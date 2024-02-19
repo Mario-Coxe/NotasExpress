@@ -9,15 +9,19 @@ const initialState = {
 };
 
 export const fetchEventByTeamId = createAsyncThunk(
-  "events/fetchEventByTeamId",
-  async ({ team_id }) => {
+  'events/fetchEventByTeamId',
+  async ({ team_id }, { getState }) => {
     try {
-      const response = await axios.get(`${API_URL}events/${team_id}`);
-      //console.log(response.data);
+      const { token } = getState().auth; // Obtenha o token de autenticação do estado
+      const response = await axios.get(`${API_URL}events/${team_id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Defina o cabeçalho de autorização com o token
+        },
+      });
       return response.data;
     } catch (error) {
-      console.error("Erro:", error);
-      throw error;
+      //console.error('Erro:', error);
+
     }
   }
 );
@@ -62,9 +66,14 @@ const findEventsByTeamSlice = createSlice({
 
 export const searchEventByTeamId = createAsyncThunk(
   "eventsSearch/searchEventByTeamId",
-  async ({ team_id, searchValue = null }) => {
+  async ({ team_id, searchValue = null }, { getState }) => {
     try {
-      const response = await axios.get(`${API_URL}events/search/${team_id}/${searchValue}`);
+      const { token } = getState().auth; // Obter o token do estado do Redux
+      const response = await axios.get(`${API_URL}events/search/${team_id}/${searchValue}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Adicionar o token ao cabeçalho de autorização
+        },
+      });
       return response.data;
     } catch (error) {
       console.error("Erro:", error);

@@ -22,6 +22,8 @@ const SchoolCalendarScreen = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [isModalVisible, setModalVisible] = useState(false);
   const user = useSelector((state) => state.auth.user);
+  const token = useSelector((state) => state.auth.token);
+
   const student = useSelector((state) => state.student.student);
   const [calender, setCalender] = useState([]);
 
@@ -41,7 +43,11 @@ const SchoolCalendarScreen = () => {
 
     const fetchEvents = async () => {
       try {
-        const response = await fetch(`${API_URL}calender/${student.team_id}/${student.class_id}`);
+        const response = await fetch(`${API_URL}calender/${student.team_id}/${student.class_id}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
         if (!response.ok) {
           throw new Error('Erro ao obter calender');
         }

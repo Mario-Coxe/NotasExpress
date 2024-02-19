@@ -69,7 +69,7 @@ const HomeScreen = () => {
     });
     */
 
-    
+
   }, [dispatch, user]);
 
 
@@ -77,7 +77,11 @@ const HomeScreen = () => {
 
     const fetchEvents = async () => {
       try {
-        const response = await fetch(`${API_URL}events/${user.team_id}`);
+        const response = await fetch(`${API_URL}events/${user.team_id}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
         if (!response.ok) {
           throw new Error('Erro ao obter eventos');
         }

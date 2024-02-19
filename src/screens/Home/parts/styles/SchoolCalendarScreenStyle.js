@@ -46,7 +46,8 @@ export default StyleSheet.create({
   modalDescription: {
     fontSize: 15,
     textAlign: "justify",
-    lineHeight: 23,
+    lineHeight: 25,
+    color: "#000"
   },
   modalCloseButton: {
     padding: 10,

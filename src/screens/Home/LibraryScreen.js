@@ -31,17 +31,15 @@ const LibraryScreen = () => {
 
 
     useEffect(() => {
-
         dispatch(
-          fetchEventByTeamId({
-            team_id: user.team_id,
-          }),
+            fetchEventByTeamId({
+                team_id: user.team_id,
+            })
         ).then((result) => {
-          //console.log("Resultado:",result);
+            // console.log("Resultado:", result);
         });
-    
-
     }, [dispatch, user]);
+
 
 
     useEffect(() => {

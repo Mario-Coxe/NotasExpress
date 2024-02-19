@@ -21,14 +21,11 @@ const EventScreen = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
+  const token = useSelector((state) => state.auth.token);
   const eventsSearch = useSelector((state) => state.eventsSearch.events);
   const [events, setEventsUseState] = useState([]);
 
   //const events = useSelector(state => state.events.events);
-
-  //console.log(events)
-
-
 
 
   const [searchText, setSearchText] = useState('');
@@ -51,15 +48,18 @@ const EventScreen = () => {
 */
 
   useEffect(() => {
-
     const fetchEvents = async () => {
       try {
-        console.log(searchText)
-        const response = await fetch(`${API_URL}events/search/${user.team_id}/${searchText}`);
+        //console.log(searchText);
+        const response = await fetch(`${API_URL}events/search/${user.team_id}/${searchText}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
         if (!response.ok) {
           throw new Error('Erro ao obter eventos');
         }
-        setTrueOrFalse(true)
+        setTrueOrFalse(true);
         const data = await response.json();
         setEventsUseState(data.events);
         //dispatch(setEvents(data.events));
@@ -69,7 +69,6 @@ const EventScreen = () => {
     };
 
     fetchEvents();
-
   }, [user.team_id, searchText]);
 
 

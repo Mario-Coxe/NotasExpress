@@ -20,6 +20,7 @@ const ScheduleScreen = () => {
   //const schedule = useSelector((state) => state.schedule.schedule);
   const student = useSelector((state) => state.student.student);
   const user = useSelector((state) => state.auth.user);
+  const token = useSelector((state) => state.auth.token);
   const [schedule, setSchedule] = useState([]);
   const [professor, setProfessor] = useState([]);
   const defaultImageUrl = `${URL_BACKOFFICE}/storage/student-images/default.png`;
@@ -49,7 +50,11 @@ const ScheduleScreen = () => {
 
     const fetchScheduleAndProfessor = async () => {
       try {
-        const scheduleResponse = await fetch(`${API_URL}horarios/${user.team_id}/${student.class_id}`);
+        const scheduleResponse = await fetch(`${API_URL}horarios/${user.team_id}/${student.class_id}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
         if (!scheduleResponse.ok) {
           throw new Error('Erro ao obter horario');
         }
@@ -58,7 +63,11 @@ const ScheduleScreen = () => {
 
         // Obtendo o id do professor responsável pela primeira disciplina do horário
         const firstSchedule = scheduleData.schedules[0];
-        const professorResponse = await fetch(`${API_URL}professor/${user.team_id}/${firstSchedule.disciplinas.responsible_professor_id}`);
+        const professorResponse = await fetch(`${API_URL}professor/${user.team_id}/${firstSchedule.disciplinas.responsible_professor_id}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
         if (!professorResponse.ok) {
           throw new Error('Erro ao obter informações do professor');
         }
@@ -104,7 +113,7 @@ const ScheduleScreen = () => {
     const foundProfessor = professor.find(prof => prof.id === item.disciplinas.responsible_professor_id);
 
 
-    let photoUrl = defaultImageUrl; 
+    let photoUrl = defaultImageUrl;
 
     if (foundProfessor) {
       photoUrl = `${URL_BACKOFFICE}storage/${foundProfessor.photo}`;
