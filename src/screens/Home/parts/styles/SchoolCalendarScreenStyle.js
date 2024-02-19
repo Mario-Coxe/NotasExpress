@@ -41,7 +41,7 @@ export default StyleSheet.create({
     marginBottom: 10,
   },
   modalTitle: {
-    fontSize: 20,
+    fontSize: 16,
   },
   modalDescription: {
     fontSize: 15,

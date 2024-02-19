@@ -62,7 +62,7 @@ const LibraryScreen = () => {
     );
     const renderEmptyEvents = () => (
         <View style={styles.emptyEventsContainer}>
-            <Text style={[styles.emptyEventsText, { fontFamily: "Poppins_800ExtraBold" }]}>Nenhum evento encontrado.</Text>
+            <Text style={[styles.emptyEventsText, { fontFamily: "Poppins_800ExtraBold" }]}>Nenhum livro encontrado.</Text>
         </View>
     );
 

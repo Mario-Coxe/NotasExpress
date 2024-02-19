@@ -27,9 +27,11 @@ const findEventsByTeamSlice = createSlice({
   name: "events",
   initialState,
   reducers: {
+    /*
     setEvents: (state, action) => {
       state.events = action.payload; // Define os novos eventos no estado
     },
+    */
   },
   extraReducers: (builder) => {
     builder
@@ -105,4 +107,4 @@ const findEventsBySearchSlice = createSlice({
 
 export const findEventsByTeamReducer = findEventsByTeamSlice.reducer;
 export const findEventsBySearchReducer = findEventsBySearchSlice.reducer;
-export const setEvents = findEventsByTeamReducer.actions;
+//export const setEvents = findEventsByTeamReducer.actions;

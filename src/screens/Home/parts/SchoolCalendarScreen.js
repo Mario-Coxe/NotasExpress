@@ -7,6 +7,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import styles from './styles/SchoolCalendarScreenStyle';
 import { useFonts, Poppins_400Regular, Poppins_600SemiBold } from "@expo-google-fonts/poppins";
 import { useSelector } from 'react-redux';
+import { API_URL } from '../../../../application.properties';
 
 const SchoolCalendarScreen = () => {
 
@@ -15,11 +16,15 @@ const SchoolCalendarScreen = () => {
     Poppins_600SemiBold
   });
 
-  const calender = useSelector((state) => state.calender.calender);
+  //const calender = useSelector((state) => state.calender.calender);
 
   const [markedDates, setMarkedDates] = useState({});
   const [selectedDate, setSelectedDate] = useState(null);
   const [isModalVisible, setModalVisible] = useState(false);
+  const user = useSelector((state) => state.auth.user);
+  const student = useSelector((state) => state.student.student);
+  const [calender, setCalender] = useState([]);
+
 
   const handleDayPress = (day) => {
     if (markedDates[day.dateString]) {
@@ -33,6 +38,27 @@ const SchoolCalendarScreen = () => {
   };
 
   useEffect(() => {
+
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch(`${API_URL}calender/${student.team_id}/${student.class_id}`);
+        if (!response.ok) {
+          throw new Error('Erro ao obter calender');
+        }
+        const data = await response.json();
+        setCalender(data.calender);
+
+        //console.log(calender)
+      } catch (error) {
+        console.log('Erro ao obter calender:', error.message);
+      }
+    };
+
+    fetchEvents();
+
+  }, [student.team_id, student.class_id]);
+
+  useEffect(() => {
     const updatedMarkedDates = {};
     calender.forEach(event => {
       updatedMarkedDates[event.data_day] = {
@@ -42,6 +68,11 @@ const SchoolCalendarScreen = () => {
     });
     setMarkedDates(updatedMarkedDates);
   }, [calender]);
+
+
+
+
+
 
   if (!fontsLoaded) {
     return (

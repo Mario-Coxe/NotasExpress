@@ -26,6 +26,7 @@ const CalendarScreen = () => {
   const student = useSelector((state) => state.student.student);
 
 
+  /*
   useEffect(() => {
     if (user) {
       dispatch(
@@ -38,6 +39,7 @@ const CalendarScreen = () => {
       });
     }
   }, [dispatch, user]);
+  */
 
 
   const [selectedItem, setSelectedItem] = useState('ScheduleScreen');

@@ -5,7 +5,8 @@ import styles from './styles/ScheduleScreenStyle';
 import { useFonts, Poppins_400Regular, Poppins_600SemiBold } from "@expo-google-fonts/poppins"
 import { useDispatch, useSelector } from "react-redux";
 import { fetchHorarioTeamIdAndClass } from './../../../features/horario/horarioSlice';
-
+import { API_URL } from '../../../../application.properties';
+import { URL_BACKOFFICE } from '../../../../application.properties';
 const ScheduleScreen = () => {
 
   const [fontsLoaded] = useFonts({
@@ -16,29 +17,66 @@ const ScheduleScreen = () => {
   const dispatch = useDispatch();
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedProfessor, setSelectedProfessor] = useState(null);
-  const schedule = useSelector((state) => state.schedule.schedule);
+  //const schedule = useSelector((state) => state.schedule.schedule);
   const student = useSelector((state) => state.student.student);
   const user = useSelector((state) => state.auth.user);
+  const [schedule, setSchedule] = useState([]);
+  const [professor, setProfessor] = useState([]);
+  const defaultImageUrl = `${URL_BACKOFFICE}/storage/student-images/default.png`;
 
 
-  console.log(schedule)
+  //console.log(schedule)
+
+  // useEffect(() => {
+
+
+  //   dispatch(
+  //     fetchHorarioTeamIdAndClass({
+  //       team_id: user.team_id,
+  //       class_id: student.class_id,
+
+  //     }),
+  //   ).then((result) => {
+  //     //console.log("Resultado:",result);
+  //   });
+
+
+
+  // }, [dispatch, user, student]);
+
 
   useEffect(() => {
 
+    const fetchScheduleAndProfessor = async () => {
+      try {
+        const scheduleResponse = await fetch(`${API_URL}horarios/${user.team_id}/${student.class_id}`);
+        if (!scheduleResponse.ok) {
+          throw new Error('Erro ao obter horario');
+        }
+        const scheduleData = await scheduleResponse.json();
+        setSchedule(scheduleData.schedules);
 
-    dispatch(
-      fetchHorarioTeamIdAndClass({
-        team_id: user.team_id,
-        class_id: student.class_id,
+        // Obtendo o id do professor responsável pela primeira disciplina do horário
+        const firstSchedule = scheduleData.schedules[0];
+        const professorResponse = await fetch(`${API_URL}professor/${user.team_id}/${firstSchedule.disciplinas.responsible_professor_id}`);
+        if (!professorResponse.ok) {
+          throw new Error('Erro ao obter informações do professor');
+        }
+        const professorData = await professorResponse.json();
+        setProfessor(professorData.professor);
 
-      }),
-    ).then((result) => {
-      //console.log("Resultado:",result);
-    });
+        ///console.log(professor)
+
+      } catch (error) {
+        console.error('Erro ao obter horário e informações do professor:', error.message);
+      }
+    };
+
+    fetchScheduleAndProfessor();
+
+  }, [user.team_id, student.class_id]);
 
 
-
-  }, [dispatch, user, student]);
 
   const weekdays = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'];
 
@@ -60,21 +98,36 @@ const ScheduleScreen = () => {
     );
   }
 
-  const scheduleData = schedule.map(item => {
+  //console.log(professor)
+  const scheduleData = schedule ? schedule.map(item => {
+
+    const foundProfessor = professor.find(prof => prof.id === item.disciplinas.responsible_professor_id);
+
+
+    let photoUrl = defaultImageUrl; 
+
+    if (foundProfessor) {
+      photoUrl = `${URL_BACKOFFICE}storage/${foundProfessor.photo}`;
+    }
+
     return {
       id: item.id.toString(),
       day: item.day_of_week,
       startTime: item.start_time,
       endTime: item.end_time,
       subject: item.disciplinas.name,
-      abbreviation: item.abbreviation,
+      abbreviation: item.disciplinas.abbreviation,
       professor: {
-        name: item.disciplinas.responsible_professor_id,
+        name: foundProfessor ? foundProfessor.name : '',
         subject: item.disciplinas.name,
-        photo: require('../../../../assets/image/users/evandro.jpeg')
+        photo: { uri: photoUrl }
       }
     };
-  });
+  }) : [];
+
+
+
+
 
   return (
     <View style={styles.container}>
