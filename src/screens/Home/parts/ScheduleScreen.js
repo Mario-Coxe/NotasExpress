@@ -98,6 +98,7 @@ const ScheduleScreen = () => {
     setModalVisible(false);
   };
 
+  //console.log(selectedProfessor)
 
   if (!fontsLoaded) {
     return (
@@ -129,7 +130,9 @@ const ScheduleScreen = () => {
       professor: {
         name: foundProfessor ? foundProfessor.name : '',
         subject: item.disciplinas.name,
-        photo: { uri: photoUrl }
+        photo: { uri: photoUrl },
+        email: foundProfessor?.email,
+        phone_number: foundProfessor?.phone_number,
       }
     };
   }) : [];
@@ -187,6 +190,8 @@ const ScheduleScreen = () => {
             <Image source={selectedProfessor?.photo} style={styles.professorImage} resizeMode="contain" />
             <Text style={[styles.professorName, { fontFamily: "Poppins_600SemiBold" }]}>{selectedProfessor?.name}</Text>
             <Text style={[styles.professorSubject, { fontFamily: "Poppins_600SemiBold" }]}>Disciplina: <Text style={{ fontFamily: "Poppins_400Regular", color: "#000", fontSize: 15 }}>{selectedProfessor?.subject}</Text> </Text>
+            <Text style={[styles.professorSubject, { fontFamily: "Poppins_600SemiBold" }]}>Telefone: <Text style={{ fontFamily: "Poppins_400Regular", color: "#000", fontSize: 15 }}>{selectedProfessor?.phone_number}</Text> </Text>
+            <Text style={[styles.professorSubject, { fontFamily: "Poppins_600SemiBold" }]}>Email: <Text style={{ fontFamily: "Poppins_400Regular", color: "#000", fontSize: 15 }}>{selectedProfessor?.email}</Text> </Text>
           </View>
         </View>
       </Modal>

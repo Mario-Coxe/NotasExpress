@@ -69,6 +69,7 @@ export default StyleSheet.create({
     backgroundColor: "#fff",
     width: width * 0.8,
     borderRadius: 5,
+    borderTopEndRadius: 50,
     padding: 20,
     shadowColor: "#000",
     shadowOffset: {
@@ -101,7 +102,7 @@ export default StyleSheet.create({
   professorSubject: {
     fontSize: 15,
     marginBottom: 10,
-    color: "#333",
+    color: "#000",
     textAlign: "center",
   },
   closeButton: {
