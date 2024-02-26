@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -14,9 +14,11 @@ import tarefasPorDisciplina from "./request/Homework";
 import styles from "./styles/HomeworkScreenStyle";
 import { useFonts, Poppins_700Bold, Poppins_400Regular, Poppins_600SemiBold, Poppins_600SemiBold_Italic } from "@expo-google-fonts/poppins"
 import { useNavigation } from "@react-navigation/native";
-
+import { useDispatch, useSelector } from "react-redux";
+import { API_URL } from "../../../application.properties";
 
 const HomeworkScreen = () => {
+
 
   const [fontsLoaded] = useFonts({
     Poppins_700Bold,
@@ -24,15 +26,46 @@ const HomeworkScreen = () => {
     Poppins_600SemiBold,
     Poppins_600SemiBold_Italic
   });
+  const dispatch = useDispatch();
   const navigation = useNavigation();
-
-
+  const token = useSelector((state) => state.auth.token);
+  const user = useSelector((state) => state.student.student);
   const [expandedDisciplina, setExpandedDisciplina] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [Homework, setHomework] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  //console.log(user)
+  useEffect(() => {
+
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch(`${API_URL}homework/get-by-turma/${user.class_id}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        if (!response.ok) {
+          throw new Error('Erro ao obter terefa');
+        }
+        const data = await response.json();
+        setHomework(data);
+        //console.log(Homework)
+      } catch (error) {
+        console.log('Erro ao obter terefa:', error.message);
+      }
+    };
+
+    fetchEvents();
+
+  }, [user.class_id]);
+
+
+
+
 
   if (!fontsLoaded) {
     return (
@@ -60,7 +93,7 @@ const HomeworkScreen = () => {
       />
 
       <FlatList
-        data={tarefasPorDisciplina}
+        data={Homework}
         keyExtractor={(item) => item.disciplina}
         renderItem={({ item }) => (
           <TouchableOpacity
